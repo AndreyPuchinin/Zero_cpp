@@ -1,0 +1,190 @@
+{
+	"cards":
+		[
+			{
+				"name": "<number>",
+				"usual_vals": ["1", "2"],
+				"selflink_vals": 
+					[
+						{
+							"val": "<number><number>",
+							"link_name": "<number>",
+							"link_positions": [0]
+						}
+					],
+				"templ_vals": [],
+				"id_vals": []
+			},
+			{
+				"name": "<number>*2",
+				"usual_vals": [],
+				"selflink_vals": [],
+				"templ_vals": 
+					[
+						{
+							"val": "<number>+<number>",
+							"links":
+								[
+									{
+										"link_name": "<number>",
+										"link_positions": [0,9]
+									}
+								]
+						},
+					],
+				"id_vals": []
+			}
+		],
+	"inp_str": "12+21",
+	"swaps":
+		{
+			"forward_swaps":
+				[
+					{
+						"searching":
+							[
+								{
+									"usual_forward_swaps":
+										[
+											{
+												"searching":
+													[
+														{
+															"last_str": "12+21",
+															"replacible": "1",
+															"replacing": "<number>",
+															"pos": 0,
+															"new_str": "<number>2+21"
+														},
+														{
+															"last_str": "<number>2+21",
+															"replacible": "2",
+															"replacing": "<number>",
+															"pos": 8,
+															"new_str": "<number><number>+21"
+														},
+														{
+															"last_str": "<number><number>+21",
+															"replacible": "1",
+															"replacing": "<number>",
+															"pos": 17,
+															"new_str": "<number><number>+<number>1"
+														},
+														{
+															"last_str": "<number><number>+<number>1",
+															"replacible": "2",
+															"replacing": "<number>",
+															"pos": 25,
+															"new_str": "<number><number>+<number><number>"
+														}
+													],
+												"check_if_swaps_detected": true,
+											},
+											{
+												"searching": [],
+												"check_if_swaps_detected": false
+											},
+
+										],
+									"selflinks_forward_swaps":
+										[
+											{
+												"searching": 
+													[
+														{
+															"last_str": "<number><number>+<number><number>",
+															"replacible": "<number><number>",
+															"replacing": "<number>",
+															"pos": 0,
+															"new_str": "<number>+<number><number>"
+														},
+														{
+															"last_str": "<number>+<number><number>",
+															"replacible": "<number><number>",
+															"replacing": "<number>",
+															"pos": 9,
+															"new_str": "<number>+<number>"
+														}
+													],
+												"check_if_swaps_detected": true
+											},
+											{
+												"searching": [],
+												"check_if_swaps_detected": false
+											}
+										],
+									"templ_forward_swaps": 
+										[
+											{
+												"searching": 
+													[
+														{
+															"last_str": "<number>+<number>",
+															"replacible": "<number>+<number>",
+															"replacing": "<number>*2",
+															"pos": 0,
+															"new_str": "<number>*2"
+														}
+													],
+												"check_if_swaps_detected": true
+											},
+											{
+												"searching": [],
+												"check_if_swaps_detected": false
+											}
+										],
+									"id_forward_swaps":
+										[
+											{
+												"searching": [],
+												"check_if_swaps_detected": false
+											}
+										]
+								}
+							],
+						"check_if_swaps_detected": true
+					},
+					{
+						"searching": 
+							[
+								{	
+									"usual_forward_swaps": 
+										[
+											{
+												"searching": [],
+												"check_if_swaps_detected": false
+											}
+										],
+									"selflinks_forward_swaps":
+										[
+											{
+												"searching": [],
+												"check_if_swaps_detected": false
+											}
+										],
+									"templ_forward_swaps":
+										[
+											{
+												"searching": [],
+												"check_if_swaps_detected": false
+											}
+										],
+									"id_forward_swaps":
+										[
+											{
+												"searching": [],
+												"check_if_swaps_detected": false
+											}
+										],
+								}
+							],
+						"check_if_swaps_detected": false
+					}
+				],
+			"reverse_swaps":
+				{
+					"ability": false,
+					"swaps": []
+				}
+		}
+}

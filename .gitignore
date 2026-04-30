@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+*.db
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# J-code specifics (optional)
+Games/*.json  # если не хотите версировать тестовые данные
+results.md    # если генерируете его автоматически
+
+# Render / deployment
+.DS_Store
+Thumbs.db
