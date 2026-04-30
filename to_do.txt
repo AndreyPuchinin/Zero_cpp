@@ -1,0 +1,7 @@
+Ввести карточку и значения
+Card Manager
++Logger
+Parser:
+-алг поиска
+-этапы замен
++Logger
