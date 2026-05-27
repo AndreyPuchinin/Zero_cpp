@@ -1,4 +1,5 @@
 import json
+from success_class import success
 from typing import List
 print("Zero second version!")
 
@@ -9,6 +10,8 @@ class Card:
             id_vals: List[str]):
 		# Если self.name == None, карточка недействительна;
 		# также недействительна, если все контейнеры значений пустые
+		self.success = success()
+		self.success.set_successful()
 
 		self.name = name
 		self.usual_vals = usual_vals
@@ -29,41 +32,45 @@ class Card:
             self.selflink_vals, self.templ_vals, self.selflink_templ_vals,
             self.id_vals]
 		
-		contains_value = False
+		contains_value = False 			# False = точно unsucessful
+		exists_uncorrect_value = False  # False = точно sucessful
 		for i, vals_one_type in enumerate(vals_types):
 			if type(vals_one_type) != List:
-				self_vals_one_type = self_vals_types[i]
 				self_vals_one_type = []
+				self_vals_types[i] = self_vals_one_type
+				exists_uncorrect_value = True
 			for j, one_val_of_one_type in enumerate(vals_one_type):
 				if type(one_val_of_one_type) != str:
-					self_one_val_of_one_type = self_vals_types[i][j]
 					self_one_val_of_one_type = ''
+					self_vals_types[i][j] = self_one_val_of_one_type
+					exists_uncorrect_value = True
 				else:
 					contains_value = True
-
-		if not contains_value:
-			self.usual_vals = []
-			self.selflink_vals = []
-			self.templ_vals = []
-			self.selflink_templ_vals = []
-			self.id_vals = []
-			return
-		
-		# Если имя - пустая строка, то карточка недействительна
-		if name == '' or type(name) != str:
+	
+		# Если имя не строка, имя - пустая строка или нет ни одного корректного, то карточка недействительна
+		if type(name) != str or name == '' or not contains_value:
 			self.name = None
 			self.usual_vals = []
 			self.selflink_vals = []
 			self.templ_vals = []
 			self.selflink_templ_vals = []
 			self.id_vals = []
+			self.success.set_unsuccessful()
 			return
+		
+		if type(name) == str and name != '':
+			if exists_uncorrect_value:
+				self.success.set_half_successful()
+			else:
+				self.success.set_successful()
+				return
 			
+		
 
 def add_card(name, usual_vals,
             selflink_vals, templ_vals, selflink_templ_vals,
             id_vals):
-    "возвращаем словарь ключ значение"
+    """возвращаем словарь ключ значение"""
     dictionary = {
 				"name": name,
 				"usual_vals": usual_vals,
@@ -86,5 +93,5 @@ card1 = add_card("<number>",
 					],
 				[],
                 [],
-				 [])
+				[])
 print(type(card1))
