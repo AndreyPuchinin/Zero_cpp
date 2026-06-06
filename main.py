@@ -7,7 +7,8 @@ from typing import List
 class Card:
 	def __init__(self, name: str, usual_vals: List[str],
 			selflink_vals: List[str], templ_vals: List[str], selflink_templ_vals: List[str],
-            id_vals: List[str]):
+            id_vals: List[str], id_selflink_vals: List[str], id_templ_vals: List[str],
+			id_selflink_templ_vals: List[str]):
 		# Если self.name == None, карточка недействительна;
 		# также недействительна, если все контейнеры значений пустые
 		self.success = success()
@@ -19,6 +20,9 @@ class Card:
 		self.templ_vals = templ_vals
 		self.selflink_templ_vals = selflink_templ_vals
 		self.id_vals = id_vals
+		self.id_selflink_vals = id_selflink_vals
+		self.id_templ_vals = id_templ_vals
+		self.id_selflink_templ_vals = id_selflink_templ_vals
 
 		# Проверяем значения карточек
 		# Если контейнер значений не список, то делаем его пустым списком 
@@ -26,11 +30,12 @@ class Card:
 		# Если все значения оказались пустыми строками, то карточка недействительна
 		vals_types = [usual_vals,
             selflink_vals, templ_vals, selflink_templ_vals,
-            id_vals]
+            id_vals, id_selflink_vals, id_templ_vals, id_selflink_templ_vals]
 		
 		self_vals_types = [self.usual_vals,
             self.selflink_vals, self.templ_vals, self.selflink_templ_vals,
-            self.id_vals]
+            self.id_vals, self.id_selflink_vals, self.id_templ_vals, 
+			self.id_selflink_templ_vals]
 		
 		contains_value = False 			# False = точно unsucessful
 		exists_uncorrect_value = False  # False = точно sucessful
@@ -56,6 +61,9 @@ class Card:
 			self.templ_vals = []
 			self.selflink_templ_vals = []
 			self.id_vals = []
+			self.id_selflink_vals = []
+			self.id_templ_vals = []
+			self.id_selflink_templ_vals = []
 			self.success.set_unsuccessful()
 			return
 		
@@ -78,52 +86,15 @@ class Card:
 		result_str += f'templ_vals={[one_val for one_val in self.templ_vals]}\n'
 		result_str += f'selflink_templ_vals={[one_val for one_val in self.selflink_templ_vals]}\n'
 		result_str += f'id_vals={[one_val for one_val in self.id_vals]}\n'
+		result_str += f'id_selflink_vals={[one_val for one_val in self.id_selflink_vals]}\n'
+		result_str += f'id_templ_vals={[one_val for one_val in self.id_templ_vals]}\n'
+		result_str += f'id_selflink_templ_vals={[one_val for one_val in self.id_selflink_templ_vals]}\n'
 		return result_str
 
 
-def add_card(name, usual_vals,
-            selflink_vals, templ_vals, selflink_templ_vals,
-            id_vals):
-    """возвращаем словарь ключ значение"""
-    dictionary = {
-				"name": name,
-				"usual_vals": usual_vals,
-				"selflink_vals": selflink_vals,
-				"templ_vals": templ_vals,
-                "selflink_templ_vals": selflink_templ_vals,
-				"id_vals": id_vals
-			}
-    return dictionary
-
-
-card1 = add_card("<number>",
-				["1", "2"],
-					[
-						{
-							"val": "<number><number>",
-							"link_name": "<number>",
-							"link_positions": [0]
-						}
-					],
-				[],
-                [],
-				[])
-#print(type(card1),'\n')
-card2 = Card("<number>",
-				["1", "2"],
-				[						
-				"<number><number>",
-				"<number>",
-				"link_positions"
-				],
-				[],
-                [],
-				[])
-#print(card2.get_card())
-
-def imitate(correct_name: bool, correct, incorrect, few_vals: int, all_vals: int, few_types: int):
+def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals: int, few_types: int):
 	"""
-	correct_name : bool - является ли имя корректным
+	name_correctness : bool - является ли имя корректным
 	correct - что вставлять в качестве корректного значения или имена
 	incorrect - что вставлять в качестве НЕкорректного значения или имена
 	few_vals - количество корректный значений в типе
@@ -132,7 +103,7 @@ def imitate(correct_name: bool, correct, incorrect, few_vals: int, all_vals: int
 	"""
 
 	# устанавливаем корректное или некорректное имя
-	if correct_name:
+	if name_correctness and few_vals != 0 and few_types > 0:
 		name = correct
 	else:
 		name = incorrect
@@ -142,10 +113,13 @@ def imitate(correct_name: bool, correct, incorrect, few_vals: int, all_vals: int
 	templ_vals = []
 	selflink_templ_vals = []
 	id_vals = []
+	id_selflink_vals = []
+	id_templ_vals = []
+	id_selflink_templ_vals = []
 
 	vals_types = [usual_vals,
             selflink_vals, templ_vals, selflink_templ_vals,
-            id_vals]
+            id_vals, id_selflink_vals, id_templ_vals, id_selflink_templ_vals]
 	
 	# Формируем значения для ввода в Card
 	for i, one_type in enumerate(vals_types):
@@ -164,22 +138,34 @@ def imitate(correct_name: bool, correct, incorrect, few_vals: int, all_vals: int
 	# формируем карточку
 	new_card = Card(name, usual_vals,
             selflink_vals, templ_vals, selflink_templ_vals,
-            id_vals)
+            id_vals, id_selflink_vals, id_templ_vals, id_selflink_templ_vals)
 
 	# печатаем карточку
 	# print(new_card.get_card())
 
 	# если имя карточки некорректно, зануляем все значения
-	if not correct_name:
+	if not name_correctness or few_vals <= 0:
 		name = None
 		usual_vals = []
 		selflink_vals = []
 		templ_vals = []
 		selflink_templ_vals = []
 		id_vals = []
+		id_selflink_vals = []
+		id_templ_vals = []
+		id_selflink_templ_vals = []
 	
+	expected = ''
+
 	# Формируем ожидаемый вывод теста
-	expected = f'status=unsuccessful\n'
+	if few_vals == all_vals:
+		expected = f'status=successful\n'
+
+	if all_vals > few_vals >= 0  and few_types != 0 and name_correctness:
+		expected = f'status=half_successful\n'
+
+	if few_vals <= 0 or few_types <= 0 or not name_correctness:
+		expected = f'status=unsuccessful\n'
 
 	expected += f'name={name}\n'
 	expected += f'usual_vals={usual_vals}\n'
@@ -187,6 +173,9 @@ def imitate(correct_name: bool, correct, incorrect, few_vals: int, all_vals: int
 	expected += f'templ_vals={templ_vals}\n'
 	expected += f'selflink_templ_vals={selflink_templ_vals}\n'
 	expected += f'id_vals={id_vals}\n'
+	expected += f'id_selflink_vals={id_selflink_vals}\n'
+	expected += f'id_templ_vals={id_templ_vals}\n'
+	expected += f'id_selflink_templ_vals={id_selflink_templ_vals}\n'
 
 	# выводим ожидаемый вывод теста 
 	# print(expected)
@@ -201,8 +190,8 @@ def global_tests_function():
 	failed_tests = []
 
 	# Функция-замыкание для одного теста
-	def one_test(correct_name: bool, correct, incorrect, few_vals: int, all_vals: int, few_types: int):
-		result, expected, got = imitate(correct_name, correct, incorrect, few_vals, all_vals, few_types)
+	def one_test(name_correctness: bool, correct, incorrect, few_vals: int, all_vals: int, few_types: int):
+		result, expected, got = imitate(name_correctness, correct, incorrect, few_vals, all_vals, few_types)
 		
 		# print(f'{result=}\n\nexpected:\n{expected}\ngot:\n{got}\n')
 
@@ -211,7 +200,7 @@ def global_tests_function():
 			# .extend изменяет существующий список, не создавая новую локальную переменную
 			# Поэтому не будет возникать ошибки:
 			# UnboundLocalError: cannot access local variable 'failed_tests' where it is not associated with a value
-			failed_tests.extend([[expected, got]])
+			failed_tests.extend([[name_correctness, few_vals, all_vals, few_types, expected, got]])
 		
 		return failed_tests
 
@@ -232,12 +221,26 @@ global_tests(True, 'good', None, 4, 5, 2)
 
 # Если имя - непустая строка И
 # Если все были правильные
-all_failed_tests = global_tests(True, 'good', None, 4, 4, 5)
+# all_failed_tests = 
+global_tests(True, 'good', None, 4, 4, 5)
 
-print('FAILED TESTS:\n')
+DANGER_all_tests_zone = global_tests_function()
+
+tests_i = 0
+for name_correctness in [True, False]:
+	for all_types in range(5):
+		for all_vals in range(5):
+			for few_vals in range(all_vals):
+				tests_i += 1 
+				DANGER_all_tests_zone(name_correctness, 'good', None, few_vals-2, all_vals-2, all_types-2)
+
+all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
+
+print(len(all_failed_tests),'TESTS FAILED FROM '+str(tests_i)+':\n')
 for i, one_test in enumerate(all_failed_tests):
-	expected, got = one_test
+	name_correctness, few_vals, all_vals, few_types, expected, got = one_test
 	print('Failed test #'+str(i+1)+':\n')
+	print(f'{name_correctness=}, {few_vals=}, {all_vals=}, {few_types=}\n')
 	print(f'Expected:\n\n{expected}')
 	print(f'Got:\n\n{got}')
 	print('========\n')
