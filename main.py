@@ -167,7 +167,7 @@ def imitate(correct_name: bool, correct, incorrect, few_vals: int, all_vals: int
             id_vals)
 
 	# печатаем карточку
-	print(new_card.get_card())
+	# print(new_card.get_card())
 
 	# если имя карточки некорректно, зануляем все значения
 	if not correct_name:
@@ -189,25 +189,55 @@ def imitate(correct_name: bool, correct, incorrect, few_vals: int, all_vals: int
 	expected += f'id_vals={id_vals}\n'
 
 	# выводим ожидаемый вывод теста 
-	print(expected)
+	# print(expected)
 
 	# сравниваем ожидаемый вывод теста и реальный вывод
-	print(expected == new_card.get_card())
+	# print(expected == new_card.get_card())
 	
-	return expected == new_card.get_card()
+	return expected == new_card.get_card(), expected, new_card.get_card()
 
+
+def global_tests_function():
+	failed_tests = []
+
+	# Функция-замыкание для одного теста
+	def one_test(correct_name: bool, correct, incorrect, few_vals: int, all_vals: int, few_types: int):
+		result, expected, got = imitate(correct_name, correct, incorrect, few_vals, all_vals, few_types)
+		
+		# print(f'{result=}\n\nexpected:\n{expected}\ngot:\n{got}\n')
+
+		# Если тест не сработал - накапливаем
+		if not result:
+			# .extend изменяет существующий список, не создавая новую локальную переменную
+			# Поэтому не будет возникать ошибки:
+			# UnboundLocalError: cannot access local variable 'failed_tests' where it is not associated with a value
+			failed_tests.extend([[expected, got]])
+		
+		return failed_tests
+
+	return one_test
+
+global_tests = global_tests_function()
 
 # Если имя - не строка, имя - пустая строка или нет ни одного корректного значения, то карточка недействительна
-#imitate(False, None, 'c++', 0, -1, 0)
-#imitate(False, '', 'c++', 0, -1, 0)
-imitate(True, 'good', None, 0, 0, 2)
+global_tests(False, 'good', None, 0, -1, 0)
+global_tests(False, 'good', None, 0, -1, 0)
+global_tests(True, 'good', None, 0, 0, 2)
 
 # Если имя - непустая строка И
 # Если было хотя бы одно неправильное значение
-#imitate(True, 'good', None, 1, 4, 1)
-#imitate(True, 'good', None, 2, 4, 2)
-#imitate(True, 'good', None, 4, 5, 2)
+global_tests(True, 'good', None, 1, 4, 1)
+global_tests(True, 'good', None, 2, 4, 2)
+global_tests(True, 'good', None, 4, 5, 2)
 
 # Если имя - непустая строка И
 # Если все были правильные
-#imitate(True, 'good', None, 4, 4, 5)
+all_failed_tests = global_tests(True, 'good', None, 4, 4, 5)
+
+print('FAILED TESTS:\n')
+for i, one_test in enumerate(all_failed_tests):
+	expected, got = one_test
+	print('Failed test #'+str(i+1)+':\n')
+	print(f'Expected:\n\n{expected}')
+	print(f'Got:\n\n{got}')
+	print('========\n')

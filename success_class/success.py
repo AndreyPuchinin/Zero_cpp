@@ -30,4 +30,4 @@ class success():
 
 obj = success()
 obj.set_unsuccessful()
-print(obj.get_state())
+# print(obj.get_state())
