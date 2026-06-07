@@ -5,16 +5,12 @@ from typing import List
 
 
 class Card:
-	def __init__(self, name: str, usual_vals: List[str],
-			selflink_vals: List[str], templ_vals: List[str], selflink_templ_vals: List[str],
-            id_vals: List[str], id_selflink_vals: List[str], id_templ_vals: List[str],
-			id_selflink_templ_vals: List[str]):
+	def __init__(self, name: str, usual_vals: List[list],
+			selflink_vals: List[list], templ_vals: List[list], selflink_templ_vals: List[list],
+            id_vals: List[list], id_selflink_vals: List[list], id_templ_vals: List[list],
+			id_selflink_templ_vals: List[list]):
 		# Если self.name == None, карточка недействительна;
 		# также недействительна, если все контейнеры значений пустые
-		# программа ВСЕГА отрабатывает ШТАТНО, 
-		# даже если карточка недействительна  по тем или иным причинам
-		# статус карточки - successful, half_successful или unsuccessful
-		# Если тип знчени карточки недействителен, то все его значения - пустые контейнеры
 		self.success = success()
 		self.success.set_successful()
 
@@ -50,16 +46,19 @@ class Card:
 				exists_uncorrect_value = True
 			else:
 				for j, one_val_of_one_type in enumerate(vals_one_type):
-					if type(one_val_of_one_type) != str:
-						self_one_val_of_one_type = ''
-						self_vals_types[i][j] = self_one_val_of_one_type
+					if type(one_val_of_one_type) != list or \
+							(len(one_val_of_one_type) > 0 and \
+	   						type(one_val_of_one_type[0]) != str):
+						# self_one_val_of_one_type = None
+						# self_vals_types[i][j] = self_one_val_of_one_type
+						del self_vals_types[i][-1]
 						exists_uncorrect_value = True
 					else:
 						contains_value = True
 	
 		# Если имя - не строка, имя - пустая строка или нет ни одного корректного значения, то карточка недействительна
-		if type(name) != str or name == '' or not contains_value:
-			self.name = None
+		if type(name[0]) != str or name[0] == '' or not contains_value:
+			self.name = [None]
 			self.usual_vals = []
 			self.selflink_vals = []
 			self.templ_vals = []
@@ -72,7 +71,7 @@ class Card:
 			return
 		
 		# Если имя - непустая строка
-		if type(name) == str and name != '':
+		if type(name[0]) == str and name[0] != '':
 			# Если было хотя бы одно неправильное значение
 			if exists_uncorrect_value:
 				self.success.set_half_successful()
@@ -83,7 +82,7 @@ class Card:
 	
 	def get_card(self):
 		result_str = f'status={self.success.get_state()}\n'
-		result_str += f'name=\"{self.name}\"\n'
+		result_str += f'name={self.name}\n'
 		
 		result_str += f'usual_vals={[one_val for one_val in self.usual_vals]}\n'
 		result_str += f'selflink_vals={[one_val for one_val in self.selflink_vals]}\n'
@@ -105,7 +104,8 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 	all_vals - общее количество значений в типе
 	few_types - количество корректных типов
 	"""
-
+	correct = [correct]
+	incorrect = [incorrect]
 	# устанавливаем корректное или некорректное имя
 	if name_correctness and few_vals != 0 and few_types > 0:
 		name = correct
@@ -149,7 +149,7 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 
 	# если имя карточки некорректно, зануляем все значения
 	if not name_correctness or few_vals <= 0:
-		name = None
+		name = [None]
 		usual_vals = []
 		selflink_vals = []
 		templ_vals = []
@@ -171,7 +171,7 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 	if few_vals <= 0 or few_types <= 0 or not name_correctness:
 		expected = f'status=unsuccessful\n'
 
-	expected += f'name=\"{name}\"\n'
+	expected += f'name={name}\n'
 	expected += f'usual_vals={usual_vals}\n'
 	expected += f'selflink_vals={selflink_vals}\n'
 	expected += f'templ_vals={templ_vals}\n'
@@ -226,7 +226,7 @@ global_tests(True, 'good', None, 4, 5, 2)
 # Если имя - непустая строка И
 # Если все были правильные
 # all_failed_tests = 
-global_tests(True, 'good', None, 4, 4, 5)
+global_tests(True, 'good', None, 4, 4, 8)
 
 DANGER_all_tests_zone = global_tests_function()
 
@@ -246,5 +246,5 @@ all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
 # 	print('Failed test #'+str(i+1)+':\n')
 # 	print(f'{name_correctness=}, {few_vals=}, {all_vals=}, {few_types=}\n')
 # 	print(f'Expected:\n\n{expected}')
-# 	print(f'Got:\n\n{got}')
+# 	print(f'Got:\n\n{got}\n')
 # 	print('========\n')

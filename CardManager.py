@@ -104,26 +104,26 @@ class CardManager():
 		# и класть карточку в библиотеку
 		pass
 
-	def is_selflink_value(self):
-		pass
+	def is_selflink_value(self, name: str, value: str):
+		return name in value
 
 	def is_template_value(self):
 		pass
 
 	def is_selflink_template_value(self):
-		pass
+		return self.is_selflink_value() and self.is_template_value()
 
 	def is_id_value(self):
 		pass
 
 	def is_id_template_value(self):
-		pass
+		return self.is_id_value() and self.is_template_value()
 
 	def is_id_selflink_value(self):
-		pass
+		return self.is_id_value() and self.is_selflink_value()
 
 	def is_id_selflink_template_value(self):
-		pass
+		return self.is_id_value() and self.is_selflink_value() and self.is_template_value()
 
 	def is_usual_value(self):
 		# использует is_self_link_value

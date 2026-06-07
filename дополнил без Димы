@@ -22,3 +22,17 @@ v - Запустить imitate в цикле для разных значени�
 v - Пропарсить json-value и выставить типы значений пользовательскими заглушками 
 
 v - выводить ошибки в ЛОГ
+
+v - is_selflink_value
+v - is_selflink_template_value
+v - is_id_template_value
+v - is_id_selflink_value
+v - is_id_selflink_template_value
+
+Осталось:
+x - is_usual_value (метод исключения, в том числе из id)
+x - is_id_value (нужен Парсер...)
+x - is_template_value (серчит по ссылкам, которые УЖЕ должны быть разложенны по json'у...
+
+v - перевести карточку на режим значений в подсписках
+v - Оттестил!
