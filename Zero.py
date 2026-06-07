@@ -31,11 +31,29 @@ class Zero:
             },
             {
                 "type": "selflink",
-                "value": ["<number><number>"]
+                "value": 
+                [
+                    "<number><number>",
+                    [
+                        {
+					        "link_name": "<number>",
+					        "link_positions": [0, 8]
+				        } 
+                    ]
+                ]
             },
             {
                 "type": "template",
-                "value": ["<number>.0"]
+                "value": 
+                [
+                    "<number>.0",
+                    [
+                        {
+					        "link_name": "<number>",
+					        "link_positions": [0]
+				        } 
+                    ]
+                ]
             },
             {
                 "type": "id",
@@ -102,7 +120,7 @@ class Zero:
         CardManager_object1.create_card(True, 1)
         CardManager_object2.create_card("<number>", values)
         for one_CardManager_object in self.some_CardManager_obects:
-            self.Logger_object.add_libruary(one_CardManager_object.get_library())
+            self.Logger_object.add_libruary(one_CardManager_object.get_libruary())
             self.Logger_object.add_error(one_CardManager_object.get_errors_as_list())
 
         # проверки на обработку некорректных типов данных в методах Логгера

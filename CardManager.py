@@ -4,7 +4,7 @@ from Card import Card
 
 class CardManager():
 	def __init__(self):
-		self.library = [] # хранит объекты класс Card
+		self.libruary = [] # хранит объекты класс Card
 		self.errors = error.error() # хранит ошибки, которые произошли при создании карточек
 	
 	def values_validate(self, values: json):
@@ -40,10 +40,13 @@ class CardManager():
 				continue
 
 			# добавляем значение в соответствующий список в зависимости от типа
-			if type == 'usual':
-				usual_vals.append(value)
+			# строго в поряде ухудшения эффективности
+			if type is None:
+				self.errors.create_notification(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 			elif type == 'selflink':
 				selflink_vals.append(value)
+			elif type == 'usual':
+				usual_vals.append(value)
 			elif type == 'template':
 				templ_vals.append(value)
 			elif type == 'selflink-template':
@@ -56,8 +59,6 @@ class CardManager():
 				id_templ_vals.append(value)
 			elif type == 'id-selflink-template':
 				id_selflink_templ_vals.append(value)
-			elif type is None:
-				self.errors.create_notification(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 			else:
 				self.errors.create_notification(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 		
@@ -97,7 +98,7 @@ class CardManager():
 		# print(Card_object.get_card()) # печатаем карточку
 
 		# кладем карточку в библиотеку
-		self.library.append(Card_object) 
+		self.libruary.append(Card_object) 
 
 		# определять все типы значений - позже, id - через Парсер
 		# передавать их в объект карточки
@@ -135,9 +136,9 @@ class CardManager():
 	#	parser_object = Parser()
 	#	parser_object.forward_usual_swaps()
 
-	def get_library(self):
+	def get_libruary(self):
 		res_text = []
-		for one_card in self.library:
+		for one_card in self.libruary:
 			res_text += [one_card.get_card()]
 		return res_text
 
