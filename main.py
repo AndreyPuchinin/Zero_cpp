@@ -1,88 +1,33 @@
-from CardManager import CardManager
+from Zero import Zero
 import json
 
-CardManager_object = CardManager()
+Zero_object = Zero()
+Zero_output = Zero_object.warp_drive()
+cards = Zero_output.get('cards')
+input_string = Zero_output.get('input_string')
+swaps = Zero_output.get('swaps')
+errors = Zero_output.get('errors')
 
-values = [
-    {
-        "type": "usual",
-        "value": "0"
-    },
-    {
-        "type": "usual",
-        "value": "0"
-    },
-    {
-        "type": "selflink",
-        "value": "<number><number>"
-    },
-    {
-        "type": "template",
-        "value": "<number>.0"
-    },
-    {
-        "type": "id",
-        "value": "<number><number>>"
-    },
-    {
-        "type": "selflink",
-        "value": "<number><number>"
-    },
-    {
-        "type": "template",
-        "value": "<number>.0"
-    },
-    {
-        "type": "id",
-        "value": "<number><number>>"
-    },
-    {
-        "type": "some error type",
-        "value": "SMTH"
-    },
-    {
-        "some error key": "some error value"
-    },
-    {
-        "type": "selflink-template",
-        "value": "<selflink-template>"
-    },
-    {
-        "type": "selflink-template",
-        "value": "<selflink-template>"
-    },
-    {
-        "type": "id-selflink",
-        "value": "<id-selflink>"
-    },
-    {
-        "type": "id-selflink",
-        "value": "<id-selflink>"
-    },
-    {
-        "type": "id-template",
-        "value": "<id-template>"
-    },
-    {
-        "type": "id-template",
-        "value": "<id-template>"
-    },
-    {
-        "type": "id-selflink-template",
-        "value": "<id-selflink-template>"
-    },
-    {
-        "type": "id-selflink-template",
-        "value": "<id-selflink-template>"
-    },
-    [
-        "type", "value"
-    ],
-    True
-]
+print('CARDS:\n')
 
-CardManager_object.create_card(True, 1)
-CardManager_object.create_card("<number>", values)
-print("Errors:")
-print()
-CardManager_object.print_errors()
+for i, one_card in enumerate(cards):
+    print(f"Card #{i+1}:\n{one_card}\n")
+
+print('' + '-'*50 + '\n')
+
+print(f"Input string:\n{input_string}\n")
+
+print('' + '-'*50 + '\n')
+print('SWAPS:\n')
+
+for i, one_swap in enumerate(swaps):
+    print(f"Swap #{i+1}:\n{one_swap}\n")
+
+print('' + '-'*50 + '\n')
+
+print('ERRORS:\n')
+
+for i, one_error in enumerate(errors):
+    print(f"Error #{i+1}:\n{one_error}\n")
+
+print('' + '-'*50 + '\n')

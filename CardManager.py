@@ -1,5 +1,4 @@
 import json
-from unicodedata import name
 from notification_classes import error
 from Card import Card
 
@@ -93,10 +92,14 @@ class CardManager():
 		Card_object = Card(name, validated_usual_vals, selflink_vals, templ_vals, \
 			selflink_templ_vals, id_vals, id_selflink_vals, id_templ_vals, \
 			id_selflink_templ_vals)
-		
+
 		# печатаем карточку для проверки
-		print(Card_object.get_card()) # печатаем карточку
-		# определять все типы значений - позже, через Парсер
+		# print(Card_object.get_card()) # печатаем карточку
+
+		# кладем карточку в библиотеку
+		self.library.append(Card_object) 
+
+		# определять все типы значений - позже, id - через Парсер
 		# передавать их в объект карточки
 		# и класть карточку в библиотеку
 		pass
@@ -132,9 +135,17 @@ class CardManager():
 	#	parser_object = Parser()
 	#	parser_object.forward_usual_swaps()
 
-	def get_errors(self):
+	def get_library(self):
+		res_text = []
+		for one_card in self.library:
+			res_text += [one_card.get_card()]
+		return res_text
+
+	def get_errors_as_list(self):
 		return self.errors.get_all_notifications()
 
-	def print_errors(self):
-		for i, one_error in enumerate(self.get_errors()):
-			print(f"#{i+1}: {one_error}\n")
+	def get_errors_as_str(self):
+		res_text = ''
+		for i, one_error in enumerate(self.errors.get_all_notifications()):
+			res_text += f"#{i+1}: {one_error}\n"
+		return res_text

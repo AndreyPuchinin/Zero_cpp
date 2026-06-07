@@ -92,7 +92,7 @@ class Card:
 		result_str += f'id_vals={[one_val for one_val in self.id_vals]}\n'
 		result_str += f'id_selflink_vals={[one_val for one_val in self.id_selflink_vals]}\n'
 		result_str += f'id_templ_vals={[one_val for one_val in self.id_templ_vals]}\n'
-		result_str += f'id_selflink_templ_vals={[one_val for one_val in self.id_selflink_templ_vals]}\n'
+		result_str += f'id_selflink_templ_vals={[one_val for one_val in self.id_selflink_templ_vals]}'
 		return result_str
 
 
