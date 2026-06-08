@@ -7,16 +7,7 @@ class CardManager():
 		self.libruary = [] # хранит объекты класс Card
 		self.errors = error.error() # хранит ошибки, которые произошли при создании карточек
 	
-	def values_validate(self, values: json):
-		# Парсит json, определяет типы значений и создает карточки, используя create_card
-		# Если тип и selflink, то кладет в selflink
-		# Если тип и template, то кладет в template
-		# Если тип и selflink и template то кладет в selflink-template
-		# Если тип и id, то кладет в id
-		# Если тип и id и selflink, то кладет в id-selflink
-		# Если тип и id и template, то кладет в id-template
-		# Если тип и id и selflink и template, то кладет в id-selflink-template
-
+	def values_validate(self, values: list):
 		# инициализируем списки для каждого типа значений
 		usual_vals = []
 		selflink_vals = []
@@ -29,43 +20,54 @@ class CardManager():
 
 		# проходим по каждому значению и определяем его тип
 		for i, one_value in enumerate(values):
-
 			# проверяем, что значение имеет правильный формат 
 			# (должно быть словарем с ключами "type" и "value")
 			try:
-				type = one_value.get('type')
-				value = one_value.get('value')
+				val_type = one_value.get('type')
+				val_value = one_value.get('value')
 			except AttributeError:
 				self.errors.create_notification(f"Invalid format of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 				continue
 
-			# добавляем значение в соответствующий список в зависимости от типа
-			# строго в поряде ухудшения эффективности
-			if type is None:
-				self.errors.create_notification(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-			elif type == 'selflink':
-				selflink_vals.append(value)
-			elif type == 'usual':
-				usual_vals.append(value)
-			elif type == 'template':
-				templ_vals.append(value)
-			elif type == 'selflink-template':
-				selflink_templ_vals.append(value)
-			elif type == 'id':
-				id_vals.append(value)
-			elif type == 'id-selflink':
-				id_selflink_vals.append(value)
-			elif type == 'id-template':
-				id_templ_vals.append(value)
-			elif type == 'id-selflink-template':
-				id_selflink_templ_vals.append(value)
-			else:
-				self.errors.create_notification(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+			# Внутренняя функция (замыкание). 
+			# Она имеет доступ ко всем переменным, объявленным выше, и в цикле ниже.
+			def __inner():
+				if val_type is None:
+					self.errors.create_notification(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+				elif val_type == 'selflink':
+					selflink_vals.append(val_value)
+				elif val_type == 'usual':
+					usual_vals.append(val_value)
+				elif val_type == 'template':
+					templ_vals.append(val_value)
+				elif val_type == 'selflink-template':
+					selflink_templ_vals.append(val_value)
+				elif val_type == 'id':
+					id_vals.append(val_value)
+				elif val_type == 'id-selflink':
+					id_selflink_vals.append(val_value)
+				elif val_type == 'id-template':
+					id_templ_vals.append(val_value)
+				elif val_type == 'id-selflink-template':
+					id_selflink_templ_vals.append(val_value)
+				else:
+					self.errors.create_notification(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+
+			# вызываем замыкание для добавления значения в нужный список
+			__inner()
 		
 		# формируем и возвращаем валидированные значения
-		validated_values = [usual_vals, selflink_vals, templ_vals, \
-					   selflink_templ_vals, id_vals, id_selflink_vals, id_templ_vals, \
-						id_selflink_templ_vals]
+		# (Важно: возврат должен быть здесь, после завершения цикла)
+		validated_values = [
+			usual_vals, 
+			selflink_vals, 
+			templ_vals, 
+			selflink_templ_vals, 
+			id_vals, 
+			id_selflink_vals, 
+			id_templ_vals, 
+			id_selflink_templ_vals
+		]
 		
 		return validated_values
 

@@ -179,7 +179,7 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 	expected += f'id_vals={id_vals}\n'
 	expected += f'id_selflink_vals={id_selflink_vals}\n'
 	expected += f'id_templ_vals={id_templ_vals}\n'
-	expected += f'id_selflink_templ_vals={id_selflink_templ_vals}\n'
+	expected += f'id_selflink_templ_vals={id_selflink_templ_vals}'
 
 	# выводим ожидаемый вывод теста 
 	# print(expected)
@@ -225,26 +225,26 @@ global_tests(True, 'good', None, 4, 5, 2)
 
 # Если имя - непустая строка И
 # Если все были правильные
-# all_failed_tests = 
-global_tests(True, 'good', None, 4, 4, 8)
+all_failed_tests = global_tests(True, 'good', None, 4, 4, 8)
 
-DANGER_all_tests_zone = global_tests_function()
+# DANGER_all_tests_zone = global_tests_function()
 
-tests_i = 0
-for name_correctness in [True, False]:
-	for all_types in range(5):
-		for all_vals in range(5):
-			for few_vals in range(all_vals):
-				tests_i += 1 
-				DANGER_all_tests_zone(name_correctness, 'good', None, few_vals-2, all_vals-2, all_types-2)
+# tests_i = 0
+# for name_correctness in [True, False]:
+# 	for all_types in range(5):
+# 		for all_vals in range(5):
+# 			for few_vals in range(all_vals):
+# 				tests_i += 1 
+# 				DANGER_all_tests_zone(name_correctness, 'good', None, few_vals-2, all_vals-2, all_types-2)
 
-all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
+# all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
 
 # print(len(all_failed_tests),'TESTS FAILED FROM '+str(tests_i)+':\n')
-# for i, one_test in enumerate(all_failed_tests):
-# 	name_correctness, few_vals, all_vals, few_types, expected, got = one_test
-# 	print('Failed test #'+str(i+1)+':\n')
-# 	print(f'{name_correctness=}, {few_vals=}, {all_vals=}, {few_types=}\n')
-# 	print(f'Expected:\n\n{expected}')
-# 	print(f'Got:\n\n{got}\n')
-# 	print('========\n')
+
+for i, one_test in enumerate(all_failed_tests):
+	name_correctness, few_vals, all_vals, few_types, expected, got = one_test
+	print('Failed test #'+str(i+1)+':\n')
+	print(f'{name_correctness=}, {few_vals=}, {all_vals=}, {few_types=}\n')
+	print(f'Expected:\n\n{expected}')
+	print(f'Got:\n\n{got}\n')
+	print('========\n')
