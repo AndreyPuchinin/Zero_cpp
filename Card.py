@@ -210,25 +210,28 @@ def global_tests_function():
 
 	return one_test
 
-global_tests = global_tests_function()
+# global_tests = global_tests_function()
+# 
+# # Если имя - не строка, имя - пустая строка или нет ни одного корректного значения, то карточка недействительна
+# global_tests(False, 'good', None, 0, -1, 0)
+# global_tests(False, 'good', None, 0, -1, 0)
+# global_tests(True, 'good', None, 0, 0, 2)
+# 
+# # Если имя - непустая строка И
+# # Если было хотя бы одно неправильное значение
+# global_tests(True, 'good', None, 1, 4, 1)
+# global_tests(True, 'good', None, 2, 4, 2)
+# global_tests(True, 'good', None, 4, 5, 2)
+# 
+# # Если имя - непустая строка И
+# # Если все были правильные
+# # all_failed_tests = 
+# global_tests(True, 'good', None, 4, 4, 8)
 
-# Если имя - не строка, имя - пустая строка или нет ни одного корректного значения, то карточка недействительна
-global_tests(False, 'good', None, 0, -1, 0)
-global_tests(False, 'good', None, 0, -1, 0)
-global_tests(True, 'good', None, 0, 0, 2)
-
-# Если имя - непустая строка И
-# Если было хотя бы одно неправильное значение
-global_tests(True, 'good', None, 1, 4, 1)
-global_tests(True, 'good', None, 2, 4, 2)
-global_tests(True, 'good', None, 4, 5, 2)
-
-# Если имя - непустая строка И
-# Если все были правильные
-all_failed_tests = global_tests(True, 'good', None, 4, 4, 8)
+# result, expected, card_output = imitate(True, 'good', None, 2, 5, 2)
+# print(f'{result}\n\n{expected}\n\n{card_output}')
 
 # DANGER_all_tests_zone = global_tests_function()
-
 # tests_i = 0
 # for name_correctness in [True, False]:
 # 	for all_types in range(5):
@@ -236,15 +239,15 @@ all_failed_tests = global_tests(True, 'good', None, 4, 4, 8)
 # 			for few_vals in range(all_vals):
 # 				tests_i += 1 
 # 				DANGER_all_tests_zone(name_correctness, 'good', None, few_vals-2, all_vals-2, all_types-2)
-
 # all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
-
 # print(len(all_failed_tests),'TESTS FAILED FROM '+str(tests_i)+':\n')
-
-for i, one_test in enumerate(all_failed_tests):
-	name_correctness, few_vals, all_vals, few_types, expected, got = one_test
-	print('Failed test #'+str(i+1)+':\n')
-	print(f'{name_correctness=}, {few_vals=}, {all_vals=}, {few_types=}\n')
-	print(f'Expected:\n\n{expected}')
-	print(f'Got:\n\n{got}\n')
-	print('========\n')
+# 
+# for i, one_test in enumerate(all_failed_tests):
+# 	name_correctness, few_vals, all_vals, few_types, expected, got = one_test
+# 	print('Failed test #'+str(i+1)+':\n')
+# 	print(f'{name_correctness=}, {few_vals=}, {all_vals=}, {few_types=}\n')
+# 	print(f'Expected:\n\n{expected}')
+# 	print(f'Got:\n\n{got}\n')
+# 	print('========\n')
+# else:
+# 	print('ALL TESTS ABOUT CARD CREATING PASSED SUCCESFULY!\n')
