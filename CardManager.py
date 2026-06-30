@@ -1,11 +1,11 @@
 import json
-from notification_classes import error
+from notification_classes import common_notification
 from Card import Card
 
 class CardManager():
 	def __init__(self):
 		self.libruary = [] # хранит объекты класс Card
-		self.errors = error.error() # хранит ошибки, которые произошли при создании карточек
+		self.notifications = common_notification.common_notification() # хранит ошибки, которые произошли при создании карточек
 	
 	def values_validate(self, values: list):
 		# инициализируем списки для каждого типа значений
@@ -26,14 +26,14 @@ class CardManager():
 				val_type = one_value.get('type')
 				val_value = one_value.get('value')
 			except AttributeError:
-				self.errors.create_notification(f"Invalid format of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+				self.notifications.add_error(f"Invalid format of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 				continue
 
 			# Внутренняя функция (замыкание). 
 			# Она имеет доступ ко всем переменным, объявленным выше, и в цикле ниже.
 			def __inner():
 				if val_type is None:
-					self.errors.create_notification(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+					self.notifications.add_error(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 				elif val_type == 'selflink':
 					selflink_vals.append(val_value)
 				elif val_type == 'usual':
@@ -51,7 +51,7 @@ class CardManager():
 				elif val_type == 'id-selflink-template':
 					id_selflink_templ_vals.append(val_value)
 				else:
-					self.errors.create_notification(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+					self.notifications.add_error(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 
 			# вызываем замыкание для добавления значения в нужный список
 			__inner()
@@ -75,11 +75,11 @@ class CardManager():
 		# ловим ошибку типа параметра name и values
 		got_error = False
 		if not isinstance(name, str):
-			self.errors.create_notification(f"Invalid format of card name:\n{name}")
+			self.notifications.add_error(f"Invalid format of card name:\n{name}")
 			got_error = True
 	
 		if not isinstance(values, list):
-			self.errors.create_notification(f"Invalid format of card values:\n{json.dumps(values, indent=4)}")
+			self.notifications.add_error(f"Invalid format of card values:\n{json.dumps(values, indent=4)}")
 			got_error = True
 
 		if got_error:
@@ -95,7 +95,17 @@ class CardManager():
 		Card_object = Card(name, validated_usual_vals, selflink_vals, templ_vals, \
 			selflink_templ_vals, id_vals, id_selflink_vals, id_templ_vals, \
 			id_selflink_templ_vals)
-
+		
+		notifications = Card_object.get_notifications()
+		if notifications.get_all_errors() != []:
+			self.notifications.add_error(notifications.get_all_errors())
+		if notifications.get_all_warnings() != []:
+			self.notifications.add_warning(notifications.get_all_warnings())
+		if notifications.get_all_notes() != []:
+			self.notifications.add_note(notifications.get_all_notes())
+		if notifications.get_all_messages() != []:
+			self.notifications.add_message(notifications.get_all_messages())
+		
 		# печатаем карточку для проверки
 		# print(Card_object.get_card()) # печатаем карточку
 
@@ -144,11 +154,11 @@ class CardManager():
 			res_text += [one_card.get_card()]
 		return res_text
 
-	def get_errors_as_list(self):
-		return self.errors.get_all_notifications()
+	def get_notifications_as_list(self):
+		return self.notifications.get_all_notifications()
 
-	def get_errors_as_str(self):
+	def get_notifications_as_str(self):
 		res_text = ''
-		for i, one_error in enumerate(self.errors.get_all_notifications()):
-			res_text += f"#{i+1}: {one_error}\n"
+		for i, one_notification in enumerate(self.notifications.get_all_notifications()):
+			res_text += f"#{i+1}: {one_notification}\n"
 		return res_text

@@ -2,12 +2,12 @@ import json
 from abc import abstractmethod
 from notification_classes import base_notification
 
-class error(base_notification.notification):
+class message(base_notification.notification):
     def __init__(self):
-        self.err = []
+        self.mes = []
     
-    def add_notification(self, err: str):
-        self.err += [err]
+    def add_notification(self, mes: str):
+        self.mes += [mes]
 
     def get_all_notifications(self):
-        return self.err
+        return self.mes

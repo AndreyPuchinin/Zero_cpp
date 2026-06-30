@@ -1,6 +1,7 @@
 import json
 from success_class.success import success
 from typing import List
+from notification_classes import common_notification
 #print("Zero second version!")
 
 
@@ -11,6 +12,7 @@ class Card:
 			id_selflink_templ_vals: List[list]):
 		# Если self.name == None, карточка недействительна;
 		# также недействительна, если все контейнеры значений пустые
+		self.notifications = common_notification.common_notification()
 		self.success = success()
 		self.success.set_successful()
 
@@ -51,7 +53,8 @@ class Card:
 	   						type(one_val_of_one_type[0]) != str):
 						# self_one_val_of_one_type = None
 						# self_vals_types[i][j] = self_one_val_of_one_type
-						del self_vals_types[i][-1]
+						self.notifications.add_warning(f"Значение {self_vals_types[i][-1]} исключено из карточки")
+						del self_vals_types[i][-1]				
 						exists_uncorrect_value = True
 					else:
 						contains_value = True
@@ -93,7 +96,9 @@ class Card:
 		result_str += f'id_templ_vals={[one_val for one_val in self.id_templ_vals]}\n'
 		result_str += f'id_selflink_templ_vals={[one_val for one_val in self.id_selflink_templ_vals]}'
 		return result_str
-
+	
+	def get_notifications(self):
+		return self.notifications
 
 def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals: int, few_types: int):
 	"""
@@ -210,44 +215,47 @@ def global_tests_function():
 
 	return one_test
 
-# global_tests = global_tests_function()
-# 
-# # Если имя - не строка, имя - пустая строка или нет ни одного корректного значения, то карточка недействительна
-# global_tests(False, 'good', None, 0, -1, 0)
-# global_tests(False, 'good', None, 0, -1, 0)
-# global_tests(True, 'good', None, 0, 0, 2)
-# 
-# # Если имя - непустая строка И
-# # Если было хотя бы одно неправильное значение
-# global_tests(True, 'good', None, 1, 4, 1)
-# global_tests(True, 'good', None, 2, 4, 2)
-# global_tests(True, 'good', None, 4, 5, 2)
-# 
-# # Если имя - непустая строка И
-# # Если все были правильные
-# # all_failed_tests = 
-# global_tests(True, 'good', None, 4, 4, 8)
+if __name__ == "__main__":
+	# раскомментариваем global_tests если нужны ручные тесты
+	global_tests = global_tests_function()
 
-# result, expected, card_output = imitate(True, 'good', None, 2, 5, 2)
-# print(f'{result}\n\n{expected}\n\n{card_output}')
+	# Если имя - не строка, имя - пустая строка или нет ни одного корректного значения, то карточка недействительна
+	global_tests(False, 'good', None, 0, -1, 0)
+	global_tests(False, 'good', None, 0, -1, 0)
+	global_tests(True, 'good', None, 0, 0, 2)
 
-# DANGER_all_tests_zone = global_tests_function()
-# tests_i = 0
-# for name_correctness in [True, False]:
-# 	for all_types in range(5):
-# 		for all_vals in range(5):
-# 			for few_vals in range(all_vals):
-# 				tests_i += 1 
-# 				DANGER_all_tests_zone(name_correctness, 'good', None, few_vals-2, all_vals-2, all_types-2)
-# all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
-# print(len(all_failed_tests),'TESTS FAILED FROM '+str(tests_i)+':\n')
-# 
-# for i, one_test in enumerate(all_failed_tests):
-# 	name_correctness, few_vals, all_vals, few_types, expected, got = one_test
-# 	print('Failed test #'+str(i+1)+':\n')
-# 	print(f'{name_correctness=}, {few_vals=}, {all_vals=}, {few_types=}\n')
-# 	print(f'Expected:\n\n{expected}')
-# 	print(f'Got:\n\n{got}\n')
-# 	print('========\n')
-# else:
-# 	print('ALL TESTS ABOUT CARD CREATING PASSED SUCCESFULY!\n')
+	# Если имя - непустая строка И
+	# Если было хотя бы одно неправильное значение
+	global_tests(True, 'good', None, 1, 4, 1)
+	global_tests(True, 'good', None, 2, 4, 2)
+	global_tests(True, 'good', None, 4, 5, 2)
+
+	# Если имя - непустая строка И
+	# Если все были правильные
+	all_failed_tests = global_tests(True, 'good', None, 4, 4, 8)
+
+	# раскомментариваем DANGER_all_tests_zone если нужно проверить на всех случаях
+
+	# result, expected, card_output = imitate(True, 'good', None, 2, 5, 2)
+	# print(f'{result}\n\n{expected}\n\n{card_output}')
+
+	# DANGER_all_tests_zone = global_tests_function()
+	# tests_i = 0
+	# for name_correctness in [True, False]:
+	# 	for all_types in range(5):
+	# 		for all_vals in range(5):
+	# 			for few_vals in range(all_vals):
+	# 				tests_i += 1 
+	# 				DANGER_all_tests_zone(name_correctness, 'good', None, few_vals-2, all_vals-2, all_types-2)
+	# all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
+	# print(len(all_failed_tests),'TESTS FAILED FROM '+str(tests_i)+':\n')
+
+	for i, one_test in enumerate(all_failed_tests):
+		name_correctness, few_vals, all_vals, few_types, expected, got = one_test
+		print('Failed test #'+str(i+1)+':\n')
+		print(f'{name_correctness=}, {few_vals=}, {all_vals=}, {few_types=}\n')
+		print(f'Expected:\n\n{expected}')
+		print(f'Got:\n\n{got}\n')
+		print('========\n')
+	else:
+		print('ALL TESTS ABOUT CARD CREATING PASSED SUCCESFULY!\n')

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 class notification(ABC):
     @abstractmethod
-    def create_notification(self):
+    def add_notification(self):
         pass
     
     @abstractmethod
