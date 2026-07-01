@@ -53,7 +53,7 @@ class Card:
 	   						type(one_val_of_one_type[0]) != str):
 						# self_one_val_of_one_type = None
 						# self_vals_types[i][j] = self_one_val_of_one_type
-						self.notifications.add_warning(f"Значение {self_vals_types[i][-1]} исключено из карточки")
+						self.notifications.add_warning(f"Value {self_vals_types[i][-1]} excepted from Card")
 						del self_vals_types[i][-1]				
 						exists_uncorrect_value = True
 					else:

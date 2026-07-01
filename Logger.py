@@ -12,15 +12,47 @@ class Logger:
 
     def add_libruary(self, libruary: list):
         if not isinstance(libruary, list):
-            self.notifications.add_error([f"Incorrect type of library:\n{libruary}\nExpected list, got {type(libruary)}"])
+            self.notifications.add_error(f"Incorrect type of library:\n{libruary}\nExpected list, got {type(libruary)}")
             return
 
         # добавляет карту в лог
         self.cards += libruary
 
-    def add_notification(self, notifications: list):
+    def add_error(self, error: str):
+        if not isinstance(error, str):
+            self.notifications.add_error(f"Incorrect type of error:\n{error}\nExpected str, got {type(error)}")
+            return
+        
+        # добавляет ошибку в лог
+        self.notifications.add_error(error)
+
+    def add_warning(self, warning: str):
+        if not isinstance(warning, str):
+            self.notifications.add_error(f"Incorrect type of warning:\n{warning}\nExpected str, got {type(warning)}")
+            return
+        
+        # добавляет предупреждение в лог
+        self.notifications.add_warning(warning)
+
+    def add_note(self, note: str):
+        if not isinstance(note, str):
+            self.notifications.add_error(f"Incorrect type of note:\n{note}\nExpected str, got {type(note)}")
+            return
+        
+        # добавляет заметку в лог
+        self.notifications.add_note(note)
+
+    def add_message(self, message: str):
+        if not isinstance(message, str):
+            self.notifications.add_error(f"Incorrect type of message:\n{message}\nExpected str, got {type(message)}")
+            return
+        
+        # добавляет сообщение в лог
+        self.notifications.add_message(message)
+
+    def add_notifications(self, notifications: list):
         if not isinstance(notifications, list):
-            self.notifications.add_error([f"Incorrect type of notification:\n{notifications}\nExpected list, got {type(notifications)}"])
+            self.notifications.add_error(f"Incorrect type of notification:\n{notifications}\nExpected list, got {type(notifications)}"  )
             return
 
         # добавляет ошибку в лог
@@ -44,7 +76,7 @@ class Logger:
 
     def add_input_string(self, inp_str: str):
         if not isinstance(inp_str, str):
-            self.notifications.add_error([f"Incorrect type of input string:\n{inp_str}\nExpected str, got {type(inp_str)}"])
+            self.notifications.add_error(f"Incorrect type of input string:\n{inp_str}\nExpected str, got {type(inp_str)}")
             return
 
         # добавляет входную строку в лог
@@ -52,7 +84,7 @@ class Logger:
 
     def add_swap(self, swap: list):
         if not isinstance(swap, list):
-            self.notifications.add_error([f"Incorrect type of swap:\n{swap}\nExpected list, got {type(swap)}"])
+            self.notifications.add_error(f"Incorrect type of swap:\n{swap}\nExpected list, got {type(swap)}")
             return
 
         # добавляет обмен в лог

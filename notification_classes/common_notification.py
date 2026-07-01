@@ -21,6 +21,32 @@ class common_notification():
     def add_message(self, mes: str):
         self.message.add_notification(mes)
 
+    def add_notifications(self, notifications: list):
+        if not isinstance(notifications, list):
+            self.add_error(f"Incorrect type of notification:\n{notifications}\nExpected list, got {type(notifications)}")
+            return
+
+        for one_notification in notifications:
+            if not isinstance(one_notification, dict):
+                self.add_error(f"Incorrect type of notification:\n{one_notification}\nExpected dict, got {type(one_notification)}")
+                continue
+
+            for key, value in one_notification.items():
+                if key == "errors" and value != []:
+                    for one_error in value:
+                        self.add_error(one_error)
+                elif key == "warnings" and value != []:
+                    for one_warning in value:
+                        self.add_warning(one_warning)
+                elif key == "notes" and value != []:    
+                    for one_note in value:
+                        self.add_note(one_note)
+                elif key == "messages" and value != []:
+                    for one_message in value:
+                        self.add_message(one_message)
+                else:
+                    self.add_error(f"Unknown notification type: {key}")
+
     def get_all_errors(self):
         return self.error.get_all_notifications()
     

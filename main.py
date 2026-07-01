@@ -111,36 +111,53 @@ for i, one_card in enumerate(cards):
 
 print('' + '='*50 + '\n')
 
-print(f"Input string:\n{input_string}\n")
+print(f"Input string:\n\"{input_string}\"\n")
 
 print('' + '='*50 + '\n')
 print('SWAPS:\n')
 
-for i, one_swap in enumerate(swaps):
-    print(f"Swap #{i+1}:\n{one_swap}\n")
+if swaps == []:
+    print("No swaps found.\n")
+else:
+    for i, one_swap in enumerate(swaps):
+        print(f"Swap #{i+1}:\n{one_swap}\n")
 
 print('' + '='*50 + '\n')
 
 print('NOTIFICATIONS:\n')
 
-
 print("Errors:\n")
-for i, one_error in enumerate(notifications[0]["errors"]):
-	print(f"Error #{i+1}:\n{one_error}\n")
+if notifications[0]["errors"] == []:
+	print("No errors found.\n")
+else:
+	for i, one_error in enumerate(notifications[0]["errors"]):
+		print(f"Error #{i+1}:\n{one_error}\n")
 
 print('' + '-'*50 + '\n')
+
 print(f"Warning:\n")
-for i, one_warning in enumerate(notifications[1]["warnings"]):
-	print(f"Warning #{i+1}:\n{one_warning}\n")
-
+if notifications[1]["warnings"] == []:
+    print("No warnings found.\n")
+else:
+	for i, one_warning in enumerate(notifications[1]["warnings"]):
+		print(f"Warning #{i+1}:\n{one_warning}\n")
+	
 print('' + '-'*50 + '\n')
-print(f"Note:\n")
-for i, one_note in enumerate(notifications[2]["notes"]):
-	print(f"Note #{i+1}:\n{one_note}\n")
 
-print('' + '-'*50 + '\n')
 print(f"Message:\n")
-for i, one_message in enumerate(notifications[3]["messages"]):
-	print(f"Message #{i+1}:\n{one_message}\n")
+if notifications[3]["messages"] == []:
+    print("No messages found.\n")
+else:
+	for i, one_message in enumerate(notifications[3]["messages"]):
+		print(f"Message #{i+1}:\n{one_message}\n")   
 				
+print('' + '-'*50 + '\n')
+
+print(f"Note:\n")
+if notifications[2]["notes"] == []:
+    print("No notes found.\n")
+else:
+	for i, one_note in enumerate(notifications[2]["notes"]):
+		print(f"Note #{i+1}:\n{one_note}\n")
+
 print('' + '='*50 + '\n')

@@ -97,14 +97,28 @@ class CardManager():
 			id_selflink_templ_vals)
 		
 		notifications = Card_object.get_notifications()
+		errors =[]
+		warnings =[]
+		notes =[]
+		messages =[]
+		
 		if notifications.get_all_errors() != []:
-			self.notifications.add_error(notifications.get_all_errors())
+			errors = notifications.get_all_errors()
 		if notifications.get_all_warnings() != []:
-			self.notifications.add_warning(notifications.get_all_warnings())
+			warnings = notifications.get_all_warnings()
 		if notifications.get_all_notes() != []:
-			self.notifications.add_note(notifications.get_all_notes())
+			notes = notifications.get_all_notes()
 		if notifications.get_all_messages() != []:
-			self.notifications.add_message(notifications.get_all_messages())
+			messages = notifications.get_all_messages()
+
+		notifications = [
+			{"errors" : errors},
+			{"warnings" : warnings},
+			{"notes" : notes},
+			{"messages" : messages}
+		]
+
+		self.notifications.add_notifications(notifications)
 		
 		# печатаем карточку для проверки
 		# print(Card_object.get_card()) # печатаем карточку
