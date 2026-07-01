@@ -33,6 +33,12 @@ class common_notification():
             # 1. Модуль (берём только имя файла, без полного пути)
             module = os.path.basename(frame.filename)
 
+            # # Предотвращаем попадение вывода в стек вызовов результата методов данного класса
+            # if "common_notification" in module:
+            #     print(11111111)
+            #     return ""
+
+
             # 2. Номер строки
             lineno = frame.lineno
 
@@ -50,7 +56,7 @@ class common_notification():
             code_line = frame.code_context[0].strip() if frame.code_context else "Failed to get code line"
 
             # Форматированный вывод
-            result_str += f"-Level: {level}\n"
+            result_str += f"-Level: {level}/{len(stack) - 1}\n"
             result_str += f"--Module: {module}\n"
             result_str += f"--Line: {lineno}\n"
             result_str += f"--Column: {col_offset}\n"
@@ -89,53 +95,59 @@ class common_notification():
         # Если не нашли — возвращаем 0
         return 0
 
+    def add_error_without_stack_nodes(self, err: str):
+        self.error.add_notification(err)
 
-    def add_error(self, err: str):
-        error_str = self.get_stack_node()
-        error_str += f"\nError_text: \"{err}\""
+    def add_warning_without_stack_nodes(self, warning: str):
+        self.warning.add_notification(warning)
+
+    def add_note_without_stack_nodes(self, note: str):
+        self.note.add_notification(note)
+
+    def add_message_without_stack_nodes(self, mes: str):
+        self.message.add_notification(mes)
+
+    def add_error_with_stack_nodes(self, err: str):
+        error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
         self.error.add_notification(error_str)
 
-    def add_warning(self, warning: str):
-        warning_str = self.get_stack_node()
-        warning_str += f"\nWarning_text: \"{warning}\""
+    def add_warning_with_stack_nodes(self, warning: str):
+        warning_str = f"\n{self.get_stack_node()}\nWarning_text: \"{warning}\"\n"
         self.warning.add_notification(warning_str)
 
-    def add_note(self, note: str):
-        note_str = self.get_stack_node()
-        note_str += f"\nNote_text: \"{note}\""
+    def add_note_with_stack_nodes(self, note: str):
+        note_str = f"\n{self.get_stack_node()}\nNote_text: \"{note}\"\n"
         self.note.add_notification(note_str)
 
-    def add_message(self, mes: str):
-        message_str = self.get_stack_node()
-        message_str += f"\nMessage_text: \"{mes}\""
-        print(message_str)
+    def add_message_with_stack_nodes(self, mes: str):
+        message_str = f"\n{self.get_stack_node()}\nMessage_text: \"{mes}\"\n"
         self.message.add_notification(message_str)
 
     def add_notifications(self, notifications: list):
         if not isinstance(notifications, list):
-            self.add_error(f"Incorrect type of notification:\n{notifications}\nExpected list, got {type(notifications)}")
+            self.add_error_with_stack_nodes(f"Incorrect type of notification:\n{notifications}\nExpected list, got {type(notifications)}")
             return
 
         for one_notification in notifications:
             if not isinstance(one_notification, dict):
-                self.add_error(f"Incorrect type of notification:\n{one_notification}\nExpected dict, got {type(one_notification)}")
+                self.add_error_with_stack_nodes(f"Incorrect type of notification:\n{one_notification}\nExpected dict, got {type(one_notification)}")
                 continue
 
             for key, value in one_notification.items():
                 if key == "errors" and value != []:
                     for one_error in value:
-                        self.add_error(one_error)
+                        self.add_error_without_stack_nodes(one_error)
                 elif key == "warnings" and value != []:
                     for one_warning in value:
-                        self.add_warning(one_warning)
+                        self.add_warning_without_stack_nodes(one_warning)
                 elif key == "notes" and value != []:    
                     for one_note in value:
-                        self.add_note(one_note)
+                        self.add_note_without_stack_nodes(one_note)
                 elif key == "messages" and value != []:
                     for one_message in value:
-                        self.add_message(one_message)
+                        self.add_message_without_stack_nodes(one_message)
                 else:
-                    self.add_error(f"Unknown notification type: {key}")
+                    self.add_error_with_stack_nodes(f"Unknown notification type: {key}")
 
     def get_all_errors(self):
         return self.error.get_all_notifications()

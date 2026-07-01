@@ -26,14 +26,14 @@ class CardManager():
 				val_type = one_value.get('type')
 				val_value = one_value.get('value')
 			except AttributeError:
-				self.notifications.add_error(f"Invalid format of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+				self.notifications.add_error_with_stack_nodes(f"Invalid format of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 				continue
 
 			# Внутренняя функция (замыкание). 
 			# Она имеет доступ ко всем переменным, объявленным выше, и в цикле ниже.
 			def __inner():
 				if val_type is None:
-					self.notifications.add_error(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+					self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 				elif val_type == 'selflink':
 					selflink_vals.append(val_value)
 				elif val_type == 'usual':
@@ -51,7 +51,7 @@ class CardManager():
 				elif val_type == 'id-selflink-template':
 					id_selflink_templ_vals.append(val_value)
 				else:
-					self.notifications.add_error(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+					self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 
 			# вызываем замыкание для добавления значения в нужный список
 			__inner()
@@ -75,11 +75,11 @@ class CardManager():
 		# ловим ошибку типа параметра name и values
 		got_error = False
 		if not isinstance(name, str):
-			self.notifications.add_error(f"Invalid format of card name:\n{name}")
+			self.notifications.add_error_with_stack_nodes(f"Invalid format of card name:\n{name}")
 			got_error = True
 	
 		if not isinstance(values, list):
-			self.notifications.add_error(f"Invalid format of card values:\n{json.dumps(values, indent=4)}")
+			self.notifications.add_error_with_stack_nodes(f"Invalid format of card values:\n{json.dumps(values, indent=4)}")
 			got_error = True
 
 		if got_error:
@@ -97,28 +97,18 @@ class CardManager():
 			id_selflink_templ_vals)
 		
 		notifications = Card_object.get_notifications()
-		errors =[]
-		warnings =[]
-		notes =[]
-		messages =[]
-		
 		if notifications.get_all_errors() != []:
-			errors = notifications.get_all_errors()
+			for one_error in notifications.get_all_errors():
+				self.notifications.add_error_without_stack_nodes(one_error)
 		if notifications.get_all_warnings() != []:
-			warnings = notifications.get_all_warnings()
+			for one_warning in notifications.get_all_warnings():
+				self.notifications.add_warning_without_stack_nodes(one_warning)
 		if notifications.get_all_notes() != []:
-			notes = notifications.get_all_notes()
+			for one_note in notifications.get_all_notes():
+				self.notifications.add_note_without_stack_nodes(one_note)
 		if notifications.get_all_messages() != []:
-			messages = notifications.get_all_messages()
-
-		notifications = [
-			{"errors" : errors},
-			{"warnings" : warnings},
-			{"notes" : notes},
-			{"messages" : messages}
-		]
-
-		self.notifications.add_notifications(notifications)
+			for one_message in notifications.get_all_messages():
+				self.notifications.add_message_without_stack_nodes(one_message)
 		
 		# печатаем карточку для проверки
 		# print(Card_object.get_card()) # печатаем карточку
