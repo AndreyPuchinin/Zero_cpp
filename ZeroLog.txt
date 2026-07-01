@@ -44,34 +44,13 @@ Errors:
 
 Error #1:
 
-Stack trace:
--Level: 1/4
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/4
---Module: Zero.py
---Line: 26
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: CardManager_object1.create_card(True, 1)
-
--Level: 3/4
---Module: CardManager.py
---Line: 78
---Column: 0
---Description: Method/Function 'create_card'
---Code_line: self.notifications.add_error_with_stack_nodes(f"Invalid format of card name:\n{name}")
-
--Level: 4/4
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 4
+Level: 4
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Invalid format of card name:
 True"
@@ -79,34 +58,13 @@ True"
 
 Error #2:
 
-Stack trace:
--Level: 1/4
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/4
---Module: Zero.py
---Line: 26
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: CardManager_object1.create_card(True, 1)
-
--Level: 3/4
---Module: CardManager.py
---Line: 82
---Column: 0
---Description: Method/Function 'create_card'
---Code_line: self.notifications.add_error_with_stack_nodes(f"Invalid format of card values:\n{json.dumps(values, indent=4)}")
-
--Level: 4/4
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 4
+Level: 4
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Invalid format of card values:
 1"
@@ -114,171 +72,52 @@ Error_text: "Invalid format of card values:
 
 Error #3:
 
-Stack trace:
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/5
---Module: Zero.py
---Line: 30
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: self.notifications.add_notifications(notifications)
-
--Level: 4/5
---Module: common_notification.py
---Line: 150
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: self.add_error_with_stack_nodes(f"Unknown notification type: {key}")
-
--Level: 5/5
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 5
+Level: 5
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Unknown notification type: warnings"
 
 
 Error #4:
 
-Stack trace:
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/5
---Module: Zero.py
---Line: 30
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: self.notifications.add_notifications(notifications)
-
--Level: 4/5
---Module: common_notification.py
---Line: 150
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: self.add_error_with_stack_nodes(f"Unknown notification type: {key}")
-
--Level: 5/5
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 5
+Level: 5
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Unknown notification type: notes"
 
 
 Error #5:
 
-Stack trace:
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/5
---Module: Zero.py
---Line: 30
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: self.notifications.add_notifications(notifications)
-
--Level: 4/5
---Module: common_notification.py
---Line: 150
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: self.add_error_with_stack_nodes(f"Unknown notification type: {key}")
-
--Level: 5/5
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 5
+Level: 5
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Unknown notification type: messages"
 
 
 Error #6:
 
-Stack trace:
--Level: 1/6
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/6
---Module: Zero.py
---Line: 27
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: CardManager_object2.create_card("<number>", values)
-
--Level: 3/6
---Module: CardManager.py
---Line: 92
---Column: 0
---Description: Method/Function 'create_card'
---Code_line: id_selflink_templ_vals= self.values_validate(values)
-
--Level: 4/6
---Module: CardManager.py
---Line: 57
---Column: 0
---Description: Method/Function 'values_validate'
---Code_line: __inner()
-
--Level: 5/6
---Module: CardManager.py
---Line: 54
---Column: 0
---Description: Method/Function '__inner'
---Code_line: self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-
--Level: 6/6
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 6
+Level: 6
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Unknown type of value #9:
 {
@@ -289,48 +128,13 @@ Error_text: "Unknown type of value #9:
 
 Error #7:
 
-Stack trace:
--Level: 1/6
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/6
---Module: Zero.py
---Line: 27
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: CardManager_object2.create_card("<number>", values)
-
--Level: 3/6
---Module: CardManager.py
---Line: 92
---Column: 0
---Description: Method/Function 'create_card'
---Code_line: id_selflink_templ_vals= self.values_validate(values)
-
--Level: 4/6
---Module: CardManager.py
---Line: 57
---Column: 0
---Description: Method/Function 'values_validate'
---Code_line: __inner()
-
--Level: 5/6
---Module: CardManager.py
---Line: 36
---Column: 0
---Description: Method/Function '__inner'
---Code_line: self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-
--Level: 6/6
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 6
+Level: 6
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Unknown type of value #10:
 {
@@ -340,41 +144,13 @@ Error_text: "Unknown type of value #10:
 
 Error #8:
 
-Stack trace:
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/5
---Module: Zero.py
---Line: 27
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: CardManager_object2.create_card("<number>", values)
-
--Level: 3/5
---Module: CardManager.py
---Line: 92
---Column: 0
---Description: Method/Function 'create_card'
---Code_line: id_selflink_templ_vals= self.values_validate(values)
-
--Level: 4/5
---Module: CardManager.py
---Line: 29
---Column: 0
---Description: Method/Function 'values_validate'
---Code_line: self.notifications.add_error_with_stack_nodes(f"Invalid format of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-
--Level: 5/5
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 5
+Level: 5
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Invalid format of value #19:
 [
@@ -385,41 +161,13 @@ Error_text: "Invalid format of value #19:
 
 Error #9:
 
-Stack trace:
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/5
---Module: Zero.py
---Line: 27
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: CardManager_object2.create_card("<number>", values)
-
--Level: 3/5
---Module: CardManager.py
---Line: 92
---Column: 0
---Description: Method/Function 'create_card'
---Code_line: id_selflink_templ_vals= self.values_validate(values)
-
--Level: 4/5
---Module: CardManager.py
---Line: 29
---Column: 0
---Description: Method/Function 'values_validate'
---Code_line: self.notifications.add_error_with_stack_nodes(f"Invalid format of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-
--Level: 5/5
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 5
+Level: 5
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Invalid format of value #20:
 true"
@@ -427,116 +175,39 @@ true"
 
 Error #10:
 
-Stack trace:
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/5
---Module: Zero.py
---Line: 30
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: self.notifications.add_notifications(notifications)
-
--Level: 4/5
---Module: common_notification.py
---Line: 150
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: self.add_error_with_stack_nodes(f"Unknown notification type: {key}")
-
--Level: 5/5
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 5
+Level: 5
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Unknown notification type: notes"
 
 
 Error #11:
 
-Stack trace:
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/5
---Module: Zero.py
---Line: 30
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: self.notifications.add_notifications(notifications)
-
--Level: 4/5
---Module: common_notification.py
---Line: 150
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: self.add_error_with_stack_nodes(f"Unknown notification type: {key}")
-
--Level: 5/5
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 5
+Level: 5
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Unknown notification type: messages"
 
 
 Error #12:
 
-Stack trace:
--Level: 1/4
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/4
---Module: Zero.py
---Line: 33
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_libruary("some string instead of list")
-
--Level: 3/4
---Module: Logger.py
---Line: 15
---Column: 0
---Description: Method/Function 'add_libruary'
---Code_line: self.notifications.add_error_with_stack_nodes(f"Incorrect type of library:\n{libruary}\nExpected list, got {type(libruary)}")
-
--Level: 4/4
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 4
+Level: 4
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Incorrect type of library:
 some string instead of list
@@ -545,68 +216,26 @@ Expected list, got <class 'str'>"
 
 Error #13:
 
-Stack trace:
--Level: 1/4
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/4
---Module: Zero.py
---Line: 34
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_error("Some error from Logger")
-
--Level: 3/4
---Module: Logger.py
---Line: 27
---Column: 0
---Description: Method/Function 'add_error'
---Code_line: self.notifications.add_error_with_stack_nodes(error)
-
--Level: 4/4
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 4
+Level: 4
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Some error from Logger"
 
 
 Error #14:
 
-Stack trace:
--Level: 1/4
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/4
---Module: Zero.py
---Line: 38
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_input_string(123)
-
--Level: 3/4
---Module: Logger.py
---Line: 80
---Column: 0
---Description: Method/Function 'add_input_string'
---Code_line: self.notifications.add_error_with_stack_nodes(f"Incorrect type of input string:\n{inp_str}\nExpected str, got {type(inp_str)}")
-
--Level: 4/4
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 4
+Level: 4
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Incorrect type of input string:
 123
@@ -615,39 +244,17 @@ Expected str, got <class 'int'>"
 
 Error #15:
 
-Stack trace:
--Level: 1/4
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/4
---Module: Zero.py
---Line: 39
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_swap("some string instead of tuple")
-
--Level: 3/4
---Module: Logger.py
---Line: 88
---Column: 0
---Description: Method/Function 'add_swap'
---Code_line: self.notifications.add_error_with_stack_nodes(f"Incorrect type of swap:\n{swap}\nExpected list, got {type(swap)}")
-
--Level: 4/4
---Module: common_notification.py
---Line: 111
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
+Levels_N: 4
+Level: 4
+Module: common_notification.py
+Line: 120
+Column: 0
+Description: Method/Function 'add_error_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Error_text: "Incorrect type of swap:
 some string instead of tuple
 Expected list, got <class 'str'>"
-
 
 --------------------------------------------------
 
@@ -655,121 +262,48 @@ Warning:
 
 Warning #1:
 
-Stack trace:
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/5
---Module: Zero.py
---Line: 27
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: CardManager_object2.create_card("<number>", values)
-
--Level: 3/5
---Module: CardManager.py
---Line: 95
---Column: 0
---Description: Method/Function 'create_card'
---Code_line: Card_object = Card(name, validated_usual_vals, selflink_vals, templ_vals, \
-
--Level: 4/5
---Module: Card.py
---Line: 56
---Column: 0
---Description: Method/Function '__init__'
---Code_line: self.notifications.add_warning_with_stack_nodes(f"Value {self_vals_types[i][-1]} excepted from Card")
-
--Level: 5/5
---Module: common_notification.py
---Line: 115
---Column: 0
---Description: Method/Function 'add_warning_with_stack_nodes'
---Code_line: warning_str = f"\n{self.get_stack_node()}\nWarning_text: \"{warning}\"\n"
+Levels_N: 5
+Level: 5
+Module: common_notification.py
+Line: 132
+Column: 0
+Description: Method/Function 'add_warning_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Warning_text: "Value <id-selflink-template> excepted from Card"
 
 
 Warning #2:
 
-Stack trace:
--Level: 1/4
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/4
---Module: Zero.py
---Line: 35
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_warning("Some warning from Logger")
-
--Level: 3/4
---Module: Logger.py
---Line: 35
---Column: 0
---Description: Method/Function 'add_warning'
---Code_line: self.notifications.add_warning_with_stack_nodes(warning)
-
--Level: 4/4
---Module: common_notification.py
---Line: 115
---Column: 0
---Description: Method/Function 'add_warning_with_stack_nodes'
---Code_line: warning_str = f"\n{self.get_stack_node()}\nWarning_text: \"{warning}\"\n"
+Levels_N: 4
+Level: 4
+Module: common_notification.py
+Line: 132
+Column: 0
+Description: Method/Function 'add_warning_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Warning_text: "Some warning from Logger"
-
 
 --------------------------------------------------
 
 Message:
 
 No messages found.
-
 --------------------------------------------------
 
 Note:
 
 Note #1:
 
-Stack trace:
--Level: 1/4
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: Zero_output = Zero_object.warp_drive(values)
-
--Level: 2/4
---Module: Zero.py
---Line: 36
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: self.Logger_object.add_note("Some note from Logger")
-
--Level: 3/4
---Module: Logger.py
---Line: 43
---Column: 0
---Description: Method/Function 'add_note'
---Code_line: self.notifications.add_note_with_stack_nodes(note)
-
--Level: 4/4
---Module: common_notification.py
---Line: 119
---Column: 0
---Description: Method/Function 'add_note_with_stack_nodes'
---Code_line: note_str = f"\n{self.get_stack_node()}\nNote_text: \"{note}\"\n"
+Levels_N: 4
+Level: 4
+Module: common_notification.py
+Line: 144
+Column: 0
+Description: Method/Function 'add_note_with_stack_nodes'
+Code_line: "Stack_Node = self.get_stack_node()"
 
 Note_text: "Some note from Logger"
-
 
 ==================================================

@@ -56,18 +56,27 @@ class common_notification():
             code_line = frame.code_context[0].strip() if frame.code_context else "Failed to get code line"
 
             # Форматированный вывод
-            result_str += f"-Level: {level}/{len(stack) - 1}\n"
-            result_str += f"--Module: {module}\n"
-            result_str += f"--Line: {lineno}\n"
-            result_str += f"--Column: {col_offset}\n"
-            result_str += f"--Description: {desc}\n"
-            result_str += f"--Code_line: {code_line}\n"
+            result = {
+                "Levels_N": len(stack) - 1,
+                "Level": level,
+                "Module": module,
+                "Line": lineno,
+                "Column": col_offset,
+                "Description": desc,
+                "Code_line": code_line
+            }
             level += 1
+            # result_str += f"-Level: {level}/{len(stack) - 1}\n"
+            # result_str += f"--Module: {module}\n"
+            # result_str += f"--Line: {lineno}\n"
+            # result_str += f"--Column: {col_offset}\n"
+            # result_str += f"--Description: {desc}\n"
+            # result_str += f"--Code_line: {code_line}\n"
 
-            if i != 1:  # Если дошли до места вызова, выходим из цикла
-                result_str += "\n"
+            # if i != 1:  # Если дошли до места вызова, выходим из цикла
+            #     result_str += "\n"
 
-        return result_str
+        return result
 
 
     def _get_col_offset(self, frame, info):
@@ -108,19 +117,51 @@ class common_notification():
         self.message.add_notification(mes)
 
     def add_error_with_stack_nodes(self, err: str):
-        error_str = f"\n{self.get_stack_node()}\nError_text: \"{err}\"\n"
-        self.error.add_notification(error_str)
+        Stack_Node = self.get_stack_node()
+        Levels_N = Stack_Node["Levels_N"]
+        Level = Stack_Node["Level"]
+        Module = Stack_Node["Module"]
+        Line = Stack_Node["Line"]
+        Column = Stack_Node["Column"]
+        Description = Stack_Node["Description"]
+        Code_line = Stack_Node["Code_line"]
+        error_str = f"\nLevels_N: {Levels_N}\nLevel: {Level}\nModule: {Module}\nLine: {Line}\nColumn: {Column}\nDescription: {Description}\nCode_line: \"{Code_line}\"\n\nError_text: \"{err}\"\n"
+        self.error.add_notification(error_str) 
 
     def add_warning_with_stack_nodes(self, warning: str):
-        warning_str = f"\n{self.get_stack_node()}\nWarning_text: \"{warning}\"\n"
+        Stack_Node = self.get_stack_node()
+        Levels_N = Stack_Node["Levels_N"]
+        Level = Stack_Node["Level"]
+        Module = Stack_Node["Module"]
+        Line = Stack_Node["Line"]
+        Column = Stack_Node["Column"]
+        Description = Stack_Node["Description"]
+        Code_line = Stack_Node["Code_line"]
+        warning_str = f"\nLevels_N: {Levels_N}\nLevel: {Level}\nModule: {Module}\nLine: {Line}\nColumn: {Column}\nDescription: {Description}\nCode_line: \"{Code_line}\"\n\nWarning_text: \"{warning}\"\n"
         self.warning.add_notification(warning_str)
 
     def add_note_with_stack_nodes(self, note: str):
-        note_str = f"\n{self.get_stack_node()}\nNote_text: \"{note}\"\n"
+        Stack_Node = self.get_stack_node()
+        Levels_N = Stack_Node["Levels_N"]
+        Level = Stack_Node["Level"]
+        Module = Stack_Node["Module"]
+        Line = Stack_Node["Line"]
+        Column = Stack_Node["Column"]
+        Description = Stack_Node["Description"]
+        Code_line = Stack_Node["Code_line"]
+        note_str = f"\nLevels_N: {Levels_N}\nLevel: {Level}\nModule: {Module}\nLine: {Line}\nColumn: {Column}\nDescription: {Description}\nCode_line: \"{Code_line}\"\n\nNote_text: \"{note}\"\n"
         self.note.add_notification(note_str)
 
     def add_message_with_stack_nodes(self, mes: str):
-        message_str = f"\n{self.get_stack_node()}\nMessage_text: \"{mes}\"\n"
+        Stack_Node = self.get_stack_node()
+        Levels_N = Stack_Node["Levels_N"]
+        Level = Stack_Node["Level"]
+        Module = Stack_Node["Module"]
+        Line = Stack_Node["Line"]
+        Column = Stack_Node["Column"]
+        Description = Stack_Node["Description"]
+        Code_line = Stack_Node["Code_line"]
+        message_str = f"\nLevels_N: {Levels_N}\nLevel: {Level}\nModule: {Module}\nLine: {Line}\nColumn: {Column}\nDescription: {Description}\nCode_line: \"{Code_line}\"\n\nMessage_text: \"{mes}\"\n"
         self.message.add_notification(message_str)
 
     def add_notifications(self, notifications: list):

@@ -137,7 +137,7 @@ else:
 	for i, one_error in enumerate(notifications[0]["errors"]):
 		result_str += f"\nError #{i+1}:\n{one_error}\n"
 
-result_str += '\n' + '-'*50 + '\n'
+result_str += '-'*50 + '\n'
 
 result_str += f"\nWarning:\n"
 if notifications[1]["warnings"] == []:
@@ -146,7 +146,7 @@ else:
 	for i, one_warning in enumerate(notifications[1]["warnings"]):
 		result_str += f"\nWarning #{i+1}:\n{one_warning}\n"
 	
-result_str += '\n' + '-'*50 + '\n'
+result_str += '-'*50 + '\n'
 
 result_str += f"\nMessage:\n"
 if notifications[3]["messages"] == []:
@@ -155,7 +155,7 @@ else:
 	for i, one_message in enumerate(notifications[3]["messages"]):
 		result_str += f"\nMessage #{i+1}:\n{one_message}\n"   
 				
-result_str += '\n' + '-'*50 + '\n'
+result_str += '-'*50 + '\n'
 
 result_str += f"\nNote:\n"
 if notifications[2]["notes"] == []:
@@ -164,7 +164,7 @@ else:
 	for i, one_note in enumerate(notifications[2]["notes"]):
 		result_str += f"\nNote #{i+1}:\n{one_note}\n"
 
-result_str += '\n' + '='*50 + '\n'
+result_str += '='*50 + '\n'
 
 with open("ZeroLog.txt", "w", encoding="utf-8") as file:
     file.write(result_str)
