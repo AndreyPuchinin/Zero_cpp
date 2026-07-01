@@ -1,3 +1,5 @@
+from email.mime import text
+
 from Zero import Zero
 import json
 
@@ -104,60 +106,65 @@ input_string = Zero_output.get('input_string')
 swaps = Zero_output.get('swaps')
 notifications = Zero_output.get('notifications')
 
-print('CARDS:\n')
+result_str = ""
+
+result_str += '\nCARDS:\n\n'
 
 for i, one_card in enumerate(cards):
-    print(f"Card #{i+1}:\n{one_card}\n")
+    result_str += f"Card #{i+1}:\n{one_card}\n\n"
 
-print('' + '='*50 + '\n')
+result_str += '='*50 + '\n'
 
-print(f"Input string:\n\"{input_string}\"\n")
+result_str += f"\nInput string:\n\"{input_string}\"\n"
 
-print('' + '='*50 + '\n')
-print('SWAPS:\n')
+result_str += '\n' + '='*50 + '\n'
+result_str += '\nSWAPS:\n'
 
 if swaps == []:
-    print("No swaps found.\n")
+    result_str += "\nNo swaps found.\n"
 else:
     for i, one_swap in enumerate(swaps):
-        print(f"Swap #{i+1}:\n{one_swap}\n")
+        result_str += f"\nSwap #{i+1}:\n{one_swap}\n"
 
-print('' + '='*50 + '\n')
+result_str += '\n' + '='*50 + '\n'
 
-print('NOTIFICATIONS:\n')
+result_str += '\n' + 'NOTIFICATIONS:\n'
 
-print("Errors:\n")
+result_str += '\n' + "Errors:\n"
 if notifications[0]["errors"] == []:
-	print("No errors found.\n")
+	result_str += ("\nNo errors found.\n")
 else:
 	for i, one_error in enumerate(notifications[0]["errors"]):
-		print(f"Error #{i+1}:\n{one_error}\n")
+		result_str += f"\nError #{i+1}:\n{one_error}\n"
 
-print('' + '-'*50 + '\n')
+result_str += '\n' + '-'*50 + '\n'
 
-print(f"Warning:\n")
+result_str += f"\nWarning:\n"
 if notifications[1]["warnings"] == []:
-    print("No warnings found.\n")
+    result_str += "\nNo warnings found.\n"
 else:
 	for i, one_warning in enumerate(notifications[1]["warnings"]):
-		print(f"Warning #{i+1}:\n{one_warning}\n")
+		result_str += f"\nWarning #{i+1}:\n{one_warning}\n"
 	
-print('' + '-'*50 + '\n')
+result_str += '\n' + '-'*50 + '\n'
 
-print(f"Message:\n")
+result_str += f"\nMessage:\n"
 if notifications[3]["messages"] == []:
-    print("No messages found.\n")
+    result_str += "\nNo messages found.\n"
 else:
 	for i, one_message in enumerate(notifications[3]["messages"]):
-		print(f"Message #{i+1}:\n{one_message}\n")   
+		result_str += f"\nMessage #{i+1}:\n{one_message}\n"   
 				
-print('' + '-'*50 + '\n')
+result_str += '\n' + '-'*50 + '\n'
 
-print(f"Note:\n")
+result_str += f"\nNote:\n"
 if notifications[2]["notes"] == []:
-    print("No notes found.\n")
+    result_str += "\nNo notes found.\n"
 else:
 	for i, one_note in enumerate(notifications[2]["notes"]):
-		print(f"Note #{i+1}:\n{one_note}\n")
+		result_str += f"\nNote #{i+1}:\n{one_note}\n"
 
-print('' + '='*50 + '\n')
+result_str += '\n' + '='*50 + '\n'
+
+with open("ZeroLog.txt", "w", encoding="utf-8") as file:
+    file.write(result_str)

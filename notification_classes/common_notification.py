@@ -1,5 +1,7 @@
-import json
+import inspect
+import os
 from abc import abstractmethod
+from unittest import result
 from notification_classes import error, warning, note, message
 
 class common_notification():
@@ -9,17 +11,105 @@ class common_notification():
         self.note = note.note()
         self.message = message.message()
     
+    # Глобальная функция, анализирующая стек вызовов
+    def get_stack_node(self):
+        """
+        Выводит полную информацию о стеке вызовов:
+        - модуль (файл)
+        - номер строки
+        - колонка (позиция начала вызова в строке)
+        - описание уровня
+        - сам код строки
+        """
+        stack = inspect.stack()
+
+        level = 1
+        result_str = "Stack trace:\n"
+        # Идём с конца стека (глобальный уровень) к началу (место вызова)
+        for i in range(len(stack) - 1, 0, -1):
+            frame = stack[i]
+            info = frame[0]  # сам объект фрейма
+
+            # 1. Модуль (берём только имя файла, без полного пути)
+            module = os.path.basename(frame.filename)
+
+            # 2. Номер строки
+            lineno = frame.lineno
+
+            # 3. Позиция начала вызова в строке (колонка)
+            col_offset = self._get_col_offset(frame, info)
+
+            # Описание уровня
+            func_name = frame.function
+            if func_name == '<module>':
+                desc = "Global level (module)"
+            else:
+                desc = f"Method/Function '{func_name}'"
+
+            # Сам код строки
+            code_line = frame.code_context[0].strip() if frame.code_context else "Failed to get code line"
+
+            # Форматированный вывод
+            result_str += f"-Level: {level}\n"
+            result_str += f"--Module: {module}\n"
+            result_str += f"--Line: {lineno}\n"
+            result_str += f"--Column: {col_offset}\n"
+            result_str += f"--Description: {desc}\n"
+            result_str += f"--Code_line: {code_line}\n"
+            level += 1
+
+            if i != 1:  # Если дошли до места вызова, выходим из цикла
+                result_str += "\n"
+
+        return result_str
+
+
+    def _get_col_offset(self, frame, info):
+        """
+        Получает колонку (позицию) начала текущего вызова в строке.
+        В Python 3.11+ используется frame.positions, 
+        в старых версиях — поиск подстроки в тексте строки.
+        """
+        # Современный способ (Python 3.11+)
+        positions = getattr(info, 'positions', None)
+        if positions is not None:
+            # positions = (start_lineno, end_lineno, start_col_offset, end_col_offset)
+            return positions[2]
+
+        # Fallback для старых версий Python: ищем имя функции в строке
+        code = frame.code_context[0] if frame.code_context else ""
+        func_name = frame.function
+
+        # Ищем "имя_функции(" в строке
+        search_pattern = f"{func_name}("
+        idx = code.find(search_pattern)
+        if idx != -1:
+            return idx
+
+        # Если не нашли — возвращаем 0
+        return 0
+
+
     def add_error(self, err: str):
-        self.error.add_notification(err)
+        error_str = self.get_stack_node()
+        error_str += f"\nError_text: \"{err}\""
+        self.error.add_notification(error_str)
 
     def add_warning(self, warning: str):
-        self.warning.add_notification(warning)
+        warning_str = self.get_stack_node()
+        warning_str += f"\nWarning_text: \"{warning}\""
+        self.warning.add_notification(warning_str)
 
     def add_note(self, note: str):
-        self.note.add_notification(note)
+        note_str = self.get_stack_node()
+        note_str += f"\nNote_text: \"{note}\""
+        self.note.add_notification(note_str)
 
     def add_message(self, mes: str):
-        self.message.add_notification(mes)
+        message_str = self.get_stack_node()
+        message_str += f"\nMessage_text: \"{mes}\""
+        print(message_str)
+        self.message.add_notification(message_str)
 
     def add_notifications(self, notifications: list):
         if not isinstance(notifications, list):
