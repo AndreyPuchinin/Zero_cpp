@@ -1,5 +1,6 @@
 import inspect
 import os
+import json
 from abc import abstractmethod
 from notification_classes import error, warning, note, message
 
@@ -106,6 +107,7 @@ class common_notification():
     def add_warning_with_stack_nodes(self, warning: str):
         result = self.get_stack_node(warning)
         result["Warning_text"] = warning
+        # print(json.dumps(warning, indent=4, ensure_ascii=False))
         self.warning.add_notification(result)
 
     def add_note_with_stack_nodes(self, note: str):
@@ -121,28 +123,48 @@ class common_notification():
     def add_notifications(self, notifications: dict):
         if not isinstance(notifications, dict):
             self.add_error_with_stack_nodes(f"Incorrect type of notification:\n{notifications}\nExpected list, got {type(notifications)}")
-            return
+            return  
 
-        for one_notification in notifications:
-            if not isinstance(one_notification, dict):
-                self.add_error_with_stack_nodes(f"Incorrect type of notification:\n{one_notification}\nExpected dict, got {type(one_notification)}")
-                continue
+        for error in notifications.get("errors", []):
+            if "Error_text" not in error:
+                self.add_error_with_stack_nodes(f"Missing 'Error_text' in notifications['errors']:\n{notifications.get('errors', [])}")
+            else:
+                self.add_error_with_stack_nodes(error.get("Error_text", []))
 
-            for key, value in one_notification.items():
-                if key == "errors" and value != []:
-                    for one_error in value:
-                        self.add_error_with_stack_nodes(one_error)
-                elif key == "warnings" and value != []:
-                    for one_warning in value:
-                        self.add_warning_with_stack_nodes(one_warning)
-                elif key == "notes" and value != []:    
-                    for one_note in value:
-                        self.add_note_with_stack_nodes(one_note)
-                elif key == "messages" and value != []:
-                    for one_message in value:
-                        self.add_message_with_stack_nodes(one_message)
-                else:
-                    self.add_error_with_stack_nodes(f"Unknown notification type: {key}")
+        for warning in notifications.get("warnings", []):
+            if "Warning_text" not in warning:
+                self.add_error_with_stack_nodes(f"Missing 'Warning_text' in notifications['warnings']:\n{notifications.get('warnings', [])}")
+            else:
+                self.add_warning_with_stack_nodes(warning.get("Warning_text", []))
+
+        for note in notifications.get("notes", []):
+            if "Note_text" not in note:
+                self.add_error_with_stack_nodes(f"Missing 'Note_text' in notifications['notes']:\n{notifications.get('notes', [])}")
+            else:
+                self.add_note_with_stack_nodes(note.get("Note_text", []))
+
+        for message in notifications.get("messages", []):
+            if "Message_text" not in message:
+                self.add_error_with_stack_nodes(f"Missing 'Message_text' in notifications['messages']:\n{notifications.get('messages', [])}")
+            else:
+                self.add_message_with_stack_nodes(message.get("Message_text", []))
+
+        # for key, value in notifications:
+        #     # print(value)
+        #     if key == "errors" and value != []:
+        #         for one_error in value:
+        #             self.add_error_with_stack_nodes(one_error)
+        #     elif key == "warnings" and value != []:
+        #         for one_warning in value:
+        #             self.add_warning_with_stack_nodes(one_warning)
+        #     elif key == "notes" and value != []:    
+        #         for one_note in value:
+        #             self.add_note_with_stack_nodes(one_note)
+        #     elif key == "messages" and value != []:
+        #         for one_message in value:
+        #             self.add_message_with_stack_nodes(one_message)
+        #     else:
+        #         self.add_error_with_stack_nodes(f"Unknown notification type: {key}")
 
     def get_all_errors(self):
         return self.error.get_all_notifications()

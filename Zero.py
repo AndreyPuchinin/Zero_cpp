@@ -20,12 +20,13 @@ class Zero:
         # <!!!ВРЕМЕННЫЙ КОД!!!>
         CardManager_object1 = CardManager()
         CardManager_object2 = CardManager()
-        self.some_CardManager_obects += [CardManager_object1, CardManager_object2]
         
         CardManager_object1.create_card("<digit>", [{"type": "usual", "value": ["0"]}])
         CardManager_object1.create_card(True, 1)
         CardManager_object2.create_card("<number>", values)
+        self.some_CardManager_obects = [CardManager_object1, CardManager_object2]
         for one_CardManager_object in self.some_CardManager_obects:
+            # print(one_CardManager_object.get_notifications_as_list())
             self.Logger_object.add_libruary(one_CardManager_object.get_libruary())
             self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())
 

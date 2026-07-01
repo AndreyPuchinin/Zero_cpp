@@ -1,4 +1,3 @@
-import json
 from abc import abstractmethod
 from notification_classes import base_notification
 

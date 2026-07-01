@@ -131,7 +131,8 @@ result_str += '\n' + '='*50 + '\n'
 result_str += '\n' + 'NOTIFICATIONS:\n'
 
 result_str += '\n' + "Errors:\n"
-if notifications["errors"] == []:
+if isinstance(notifications, dict) and isinstance(notifications["errors"], list) \
+    and notifications["errors"] == []:
     result_str += ("\nNo errors found.\n\n")
 else:
     for error_i, one_error in enumerate(notifications["errors"]):
@@ -155,8 +156,11 @@ else:
         Error_text = one_error.get("Error_text", "")
         result_str += f"Error_text: \"{Error_text}\"\n\n"
 
+result_str += '-'*50 + '\n'
+
 result_str += f"\nWarning:\n"
-if notifications["warnings"] == []:
+if isinstance(notifications, dict) and isinstance(notifications["warnings"], list) \
+    and notifications["warnings"] == []:
     result_str += "\nNo warnings found.\n\n"
 else:
     for warning_i, one_warning in enumerate(notifications["warnings"]):
@@ -183,7 +187,8 @@ else:
 result_str += '-'*50 + '\n'
 
 result_str += f"\nMessage:\n"
-if notifications["messages"] == []:
+if isinstance(notifications, dict) and isinstance(notifications["messages"], list) \
+    and notifications["messages"] == []:
     result_str += "\nNo messages found.\n\n"
 else:
     for message_i, one_message in enumerate(notifications["messages"]):
@@ -210,7 +215,8 @@ else:
 result_str += '-'*50 + '\n'
 
 result_str += f"\nNote:\n"
-if notifications["notes"] == []:
+if isinstance(notifications, dict) and isinstance(notifications["notes"], list) \
+      and notifications["notes"] == []:
     result_str += "\nNo notes found.\n\n"
 else:
     for note_i, one_note in enumerate(notifications["notes"]):
