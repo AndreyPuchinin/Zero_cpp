@@ -1,7 +1,6 @@
 import inspect
 import os
 from abc import abstractmethod
-from unittest import result
 from notification_classes import error, warning, note, message
 
 class common_notification():
@@ -12,7 +11,7 @@ class common_notification():
         self.message = message.message()
     
     # Глобальная функция, анализирующая стек вызовов
-    def get_stack_node(self):
+    def get_stack_node(self, notification_text: str = ""):
         """
         Выводит полную информацию о стеке вызовов:
         - модуль (файл)
@@ -24,7 +23,7 @@ class common_notification():
         stack = inspect.stack()
 
         level = 1
-        result_str = "Stack trace:\n"
+        levels = []
         # Идём с конца стека (глобальный уровень) к началу (место вызова)
         for i in range(len(stack) - 1, 0, -1):
             frame = stack[i]
@@ -32,12 +31,6 @@ class common_notification():
 
             # 1. Модуль (берём только имя файла, без полного пути)
             module = os.path.basename(frame.filename)
-
-            # # Предотвращаем попадение вывода в стек вызовов результата методов данного класса
-            # if "common_notification" in module:
-            #     print(11111111)
-            #     return ""
-
 
             # 2. Номер строки
             lineno = frame.lineno
@@ -56,7 +49,7 @@ class common_notification():
             code_line = frame.code_context[0].strip() if frame.code_context else "Failed to get code line"
 
             # Форматированный вывод
-            result = {
+            current_level = {
                 "Levels_N": len(stack) - 1,
                 "Level": level,
                 "Module": module,
@@ -65,6 +58,7 @@ class common_notification():
                 "Description": desc,
                 "Code_line": code_line
             }
+            levels += [current_level]
             level += 1
             # result_str += f"-Level: {level}/{len(stack) - 1}\n"
             # result_str += f"--Module: {module}\n"
@@ -76,7 +70,7 @@ class common_notification():
             # if i != 1:  # Если дошли до места вызова, выходим из цикла
             #     result_str += "\n"
 
-        return result
+        return {"Levels": levels}
 
 
     def _get_col_offset(self, frame, info):
@@ -104,68 +98,28 @@ class common_notification():
         # Если не нашли — возвращаем 0
         return 0
 
-    def add_error_without_stack_nodes(self, err: str):
-        self.error.add_notification(err)
-
-    def add_warning_without_stack_nodes(self, warning: str):
-        self.warning.add_notification(warning)
-
-    def add_note_without_stack_nodes(self, note: str):
-        self.note.add_notification(note)
-
-    def add_message_without_stack_nodes(self, mes: str):
-        self.message.add_notification(mes)
-
-    def add_error_with_stack_nodes(self, err: str):
-        Stack_Node = self.get_stack_node()
-        Levels_N = Stack_Node["Levels_N"]
-        Level = Stack_Node["Level"]
-        Module = Stack_Node["Module"]
-        Line = Stack_Node["Line"]
-        Column = Stack_Node["Column"]
-        Description = Stack_Node["Description"]
-        Code_line = Stack_Node["Code_line"]
-        error_str = f"\nLevels_N: {Levels_N}\nLevel: {Level}\nModule: {Module}\nLine: {Line}\nColumn: {Column}\nDescription: {Description}\nCode_line: \"{Code_line}\"\n\nError_text: \"{err}\"\n"
-        self.error.add_notification(error_str) 
+    def add_error_with_stack_nodes(self, error: str):
+        result = self.get_stack_node(error)
+        result["Error_text"] = error
+        self.error.add_notification(result) 
 
     def add_warning_with_stack_nodes(self, warning: str):
-        Stack_Node = self.get_stack_node()
-        Levels_N = Stack_Node["Levels_N"]
-        Level = Stack_Node["Level"]
-        Module = Stack_Node["Module"]
-        Line = Stack_Node["Line"]
-        Column = Stack_Node["Column"]
-        Description = Stack_Node["Description"]
-        Code_line = Stack_Node["Code_line"]
-        warning_str = f"\nLevels_N: {Levels_N}\nLevel: {Level}\nModule: {Module}\nLine: {Line}\nColumn: {Column}\nDescription: {Description}\nCode_line: \"{Code_line}\"\n\nWarning_text: \"{warning}\"\n"
-        self.warning.add_notification(warning_str)
+        result = self.get_stack_node(warning)
+        result["Warning_text"] = warning
+        self.warning.add_notification(result)
 
     def add_note_with_stack_nodes(self, note: str):
-        Stack_Node = self.get_stack_node()
-        Levels_N = Stack_Node["Levels_N"]
-        Level = Stack_Node["Level"]
-        Module = Stack_Node["Module"]
-        Line = Stack_Node["Line"]
-        Column = Stack_Node["Column"]
-        Description = Stack_Node["Description"]
-        Code_line = Stack_Node["Code_line"]
-        note_str = f"\nLevels_N: {Levels_N}\nLevel: {Level}\nModule: {Module}\nLine: {Line}\nColumn: {Column}\nDescription: {Description}\nCode_line: \"{Code_line}\"\n\nNote_text: \"{note}\"\n"
-        self.note.add_notification(note_str)
+        result = self.get_stack_node(note)
+        result["Note_text"] = note
+        self.note.add_notification(result)
 
-    def add_message_with_stack_nodes(self, mes: str):
-        Stack_Node = self.get_stack_node()
-        Levels_N = Stack_Node["Levels_N"]
-        Level = Stack_Node["Level"]
-        Module = Stack_Node["Module"]
-        Line = Stack_Node["Line"]
-        Column = Stack_Node["Column"]
-        Description = Stack_Node["Description"]
-        Code_line = Stack_Node["Code_line"]
-        message_str = f"\nLevels_N: {Levels_N}\nLevel: {Level}\nModule: {Module}\nLine: {Line}\nColumn: {Column}\nDescription: {Description}\nCode_line: \"{Code_line}\"\n\nMessage_text: \"{mes}\"\n"
-        self.message.add_notification(message_str)
+    def add_message_with_stack_nodes(self, message: str):
+        result = self.get_stack_node(message)
+        result["Message_text"] = message
+        self.message.add_notification(result)
 
-    def add_notifications(self, notifications: list):
-        if not isinstance(notifications, list):
+    def add_notifications(self, notifications: dict):
+        if not isinstance(notifications, dict):
             self.add_error_with_stack_nodes(f"Incorrect type of notification:\n{notifications}\nExpected list, got {type(notifications)}")
             return
 
@@ -177,16 +131,16 @@ class common_notification():
             for key, value in one_notification.items():
                 if key == "errors" and value != []:
                     for one_error in value:
-                        self.add_error_without_stack_nodes(one_error)
+                        self.add_error_with_stack_nodes(one_error)
                 elif key == "warnings" and value != []:
                     for one_warning in value:
-                        self.add_warning_without_stack_nodes(one_warning)
+                        self.add_warning_with_stack_nodes(one_warning)
                 elif key == "notes" and value != []:    
                     for one_note in value:
-                        self.add_note_without_stack_nodes(one_note)
+                        self.add_note_with_stack_nodes(one_note)
                 elif key == "messages" and value != []:
                     for one_message in value:
-                        self.add_message_without_stack_nodes(one_message)
+                        self.add_message_with_stack_nodes(one_message)
                 else:
                     self.add_error_with_stack_nodes(f"Unknown notification type: {key}")
 
@@ -203,10 +157,10 @@ class common_notification():
         return self.message.get_all_notifications()
     
     def get_all_notifications(self):
-        notifications = [
-            {"errors" :self.get_all_errors()},
-            {"warnings" :self.get_all_warnings()},
-            {"notes" :self.get_all_notes()},
-            {"messages" :self.get_all_messages()}
-        ]
+        notifications = {
+            "errors": self.get_all_errors(),
+            "warnings": self.get_all_warnings(),
+            "notes": self.get_all_notes(),
+            "messages": self.get_all_messages()
+        }
         return notifications

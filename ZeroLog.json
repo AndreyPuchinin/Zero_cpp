@@ -1,0 +1,663 @@
+{
+    "cards": [
+        "status=successful\nname=<digit>\nusual_vals=[['0']]\nselflink_vals=[]\ntempl_vals=[]\nselflink_templ_vals=[]\nid_vals=[]\nid_selflink_vals=[]\nid_templ_vals=[]\nid_selflink_templ_vals=[]",
+        "status=half_successful\nname=<number>\nusual_vals=[['0'], ['0']]\nselflink_vals=[['<number><number>', [{'link_name': '<number>', 'link_positions': [0, 8]}]], ['<number><number>']]\ntempl_vals=[['<number>.0', [{'link_name': '<number>', 'link_positions': [0]}]], ['<number>.0']]\nselflink_templ_vals=[['<selflink-template>'], ['<selflink-template>']]\nid_vals=[['<number><number>>'], ['<number><number>>']]\nid_selflink_vals=[['<id-selflink>'], ['<id-selflink>']]\nid_templ_vals=[['<id-template>'], ['<id-template>']]\nid_selflink_templ_vals=[['<id-selflink-template>']]"
+    ],
+    "input_string": "",
+    "swaps": [],
+    "notifications": {
+        "errors": [
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 5,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 30,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 59,
+                        "Column": 27,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.notifications.add_notifications(notifications)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 128,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.add_error_with_stack_nodes(f\"Incorrect type of notification:\\n{one_notification}\\nExpected dict, got {type(one_notification)}\")"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 5,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of notification:\nerrors\nExpected dict, got <class 'str'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 5,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 30,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 59,
+                        "Column": 27,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.notifications.add_notifications(notifications)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 128,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.add_error_with_stack_nodes(f\"Incorrect type of notification:\\n{one_notification}\\nExpected dict, got {type(one_notification)}\")"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 5,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of notification:\nwarnings\nExpected dict, got <class 'str'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 5,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 30,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 59,
+                        "Column": 27,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.notifications.add_notifications(notifications)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 128,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.add_error_with_stack_nodes(f\"Incorrect type of notification:\\n{one_notification}\\nExpected dict, got {type(one_notification)}\")"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 5,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of notification:\nnotes\nExpected dict, got <class 'str'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 5,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 30,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 59,
+                        "Column": 27,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.notifications.add_notifications(notifications)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 128,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.add_error_with_stack_nodes(f\"Incorrect type of notification:\\n{one_notification}\\nExpected dict, got {type(one_notification)}\")"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 5,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of notification:\nmessages\nExpected dict, got <class 'str'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 5,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 30,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 59,
+                        "Column": 27,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.notifications.add_notifications(notifications)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 128,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.add_error_with_stack_nodes(f\"Incorrect type of notification:\\n{one_notification}\\nExpected dict, got {type(one_notification)}\")"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 5,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of notification:\nerrors\nExpected dict, got <class 'str'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 5,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 30,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 59,
+                        "Column": 27,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.notifications.add_notifications(notifications)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 128,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.add_error_with_stack_nodes(f\"Incorrect type of notification:\\n{one_notification}\\nExpected dict, got {type(one_notification)}\")"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 5,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of notification:\nwarnings\nExpected dict, got <class 'str'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 5,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 30,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 59,
+                        "Column": 27,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.notifications.add_notifications(notifications)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 128,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.add_error_with_stack_nodes(f\"Incorrect type of notification:\\n{one_notification}\\nExpected dict, got {type(one_notification)}\")"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 5,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of notification:\nnotes\nExpected dict, got <class 'str'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 5,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 30,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 59,
+                        "Column": 27,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.notifications.add_notifications(notifications)"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 128,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_notifications'",
+                        "Code_line": "self.add_error_with_stack_nodes(f\"Incorrect type of notification:\\n{one_notification}\\nExpected dict, got {type(one_notification)}\")"
+                    },
+                    {
+                        "Levels_N": 5,
+                        "Level": 5,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of notification:\nmessages\nExpected dict, got <class 'str'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 4,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 33,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_libruary(\"some string instead of list\")"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 15,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_libruary'",
+                        "Code_line": "self.notifications.add_error_with_stack_nodes(f\"Incorrect type of library:\\n{libruary}\\nExpected list, got {type(libruary)}\")"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of library:\nsome string instead of list\nExpected list, got <class 'str'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 4,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 34,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_error(\"Some error from Logger\")"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 27,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error'",
+                        "Code_line": "self.notifications.add_error_with_stack_nodes(error)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Some error from Logger"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 4,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 38,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_input_string(123)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 80,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_input_string'",
+                        "Code_line": "self.notifications.add_error_with_stack_nodes(f\"Incorrect type of input string:\\n{inp_str}\\nExpected str, got {type(inp_str)}\")"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of input string:\n123\nExpected str, got <class 'int'>"
+            },
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 4,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 39,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_swap(\"some string instead of tuple\")"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 88,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_swap'",
+                        "Code_line": "self.notifications.add_error_with_stack_nodes(f\"Incorrect type of swap:\\n{swap}\\nExpected list, got {type(swap)}\")"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 102,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_error_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(error)"
+                    }
+                ],
+                "Error_text": "Incorrect type of swap:\nsome string instead of tuple\nExpected list, got <class 'str'>"
+            }
+        ],
+        "warnings": [
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 4,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 35,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_warning(\"Some warning from Logger\")"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 35,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_warning'",
+                        "Code_line": "self.notifications.add_warning_with_stack_nodes(warning)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 107,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_warning_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(warning)"
+                    }
+                ],
+                "Warning_text": "Some warning from Logger"
+            }
+        ],
+        "notes": [
+            {
+                "Levels": [
+                    {
+                        "Levels_N": 4,
+                        "Level": 1,
+                        "Module": "main.py",
+                        "Line": 103,
+                        "Column": 0,
+                        "Description": "Global level (module)",
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 2,
+                        "Module": "Zero.py",
+                        "Line": 36,
+                        "Column": 0,
+                        "Description": "Method/Function 'warp_drive'",
+                        "Code_line": "self.Logger_object.add_note(\"Some note from Logger\")"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 3,
+                        "Module": "Logger.py",
+                        "Line": 43,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_note'",
+                        "Code_line": "self.notifications.add_note_with_stack_nodes(note)"
+                    },
+                    {
+                        "Levels_N": 4,
+                        "Level": 4,
+                        "Module": "common_notification.py",
+                        "Line": 112,
+                        "Column": 0,
+                        "Description": "Method/Function 'add_note_with_stack_nodes'",
+                        "Code_line": "result = self.get_stack_node(note)"
+                    }
+                ],
+                "Note_text": "Some note from Logger"
+            }
+        ],
+        "messages": []
+    }
+}

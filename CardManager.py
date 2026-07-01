@@ -99,16 +99,16 @@ class CardManager():
 		notifications = Card_object.get_notifications()
 		if notifications.get_all_errors() != []:
 			for one_error in notifications.get_all_errors():
-				self.notifications.add_error_without_stack_nodes(one_error)
+				self.notifications.add_error_with_stack_nodes(one_error)
 		if notifications.get_all_warnings() != []:
 			for one_warning in notifications.get_all_warnings():
-				self.notifications.add_warning_without_stack_nodes(one_warning)
+				self.notifications.add_warning_with_stack_nodes(one_warning)
 		if notifications.get_all_notes() != []:
 			for one_note in notifications.get_all_notes():
-				self.notifications.add_note_without_stack_nodes(one_note)
+				self.notifications.add_note_with_stack_nodes(one_note)
 		if notifications.get_all_messages() != []:
 			for one_message in notifications.get_all_messages():
-				self.notifications.add_message_without_stack_nodes(one_message)
+				self.notifications.add_message_with_stack_nodes(one_message)
 		
 		# печатаем карточку для проверки
 		# print(Card_object.get_card()) # печатаем карточку

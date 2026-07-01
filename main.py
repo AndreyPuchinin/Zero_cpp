@@ -1,4 +1,4 @@
-from email.mime import text
+from email import errors
 
 from Zero import Zero
 import json
@@ -131,40 +131,116 @@ result_str += '\n' + '='*50 + '\n'
 result_str += '\n' + 'NOTIFICATIONS:\n'
 
 result_str += '\n' + "Errors:\n"
-if notifications[0]["errors"] == []:
-	result_str += ("\nNo errors found.\n")
+if notifications["errors"] == []:
+    result_str += ("\nNo errors found.\n\n")
 else:
-	for i, one_error in enumerate(notifications[0]["errors"]):
-		result_str += f"\nError #{i+1}:\n{one_error}\n"
-
-result_str += '-'*50 + '\n'
+    for error_i, one_error in enumerate(notifications["errors"]):
+        result_str += f"\nError #{error_i+1}/{len(notifications["errors"])}:\n\n"
+        for current_level in one_error.get("Levels", ""):
+            Levels_N = current_level.get("Levels_N", "")
+            currnt_level = current_level.get("Level", "")
+            Module = current_level.get("Module", "")
+            Line = current_level.get("Line", "")
+            Column = current_level.get("Column", "")
+            Description = current_level.get("Description", "")
+            Code_line = current_level.get("Code_line", "")
+            result_str += (
+                f"-Level: {currnt_level}/{Levels_N}\n"
+                f"--Module: {Module}\n"
+                f"--Line: {Line}\n"
+                f"--Column: {Column}\n"
+                f"--Description: {Description}\n"
+                f"--Code_line: \"{Code_line}\"\n\n"
+            )
+        Error_text = one_error.get("Error_text", "")
+        result_str += f"Error_text: \"{Error_text}\"\n\n"
 
 result_str += f"\nWarning:\n"
-if notifications[1]["warnings"] == []:
-    result_str += "\nNo warnings found.\n"
+if notifications["warnings"] == []:
+    result_str += "\nNo warnings found.\n\n"
 else:
-	for i, one_warning in enumerate(notifications[1]["warnings"]):
-		result_str += f"\nWarning #{i+1}:\n{one_warning}\n"
-	
+    for warning_i, one_warning in enumerate(notifications["warnings"]):
+        result_str += f"\nWarning #{warning_i+1}/{len(notifications['warnings'])}:\n\n"
+        for current_level in one_warning.get("Levels", ""):
+            Levels_N = current_level.get("Levels_N", "")
+            currnt_level = current_level.get("Level", "")
+            Module = current_level.get("Module", "")
+            Line = current_level.get("Line", "")
+            Column = current_level.get("Column", "")
+            Description = current_level.get("Description", "")
+            Code_line = current_level.get("Code_line", "")
+            result_str += (
+                f"-Level: {currnt_level}/{Levels_N}\n"
+                f"--Module: {Module}\n"
+                f"--Line: {Line}\n"
+                f"--Column: {Column}\n"
+                f"--Description: {Description}\n"
+                f"--Code_line: \"{Code_line}\"\n\n"
+            )
+        Warning_text = one_warning.get("Warning_text", "")
+        result_str += f"Warning_text: \"{Warning_text}\"\n\n"
+
 result_str += '-'*50 + '\n'
 
 result_str += f"\nMessage:\n"
-if notifications[3]["messages"] == []:
-    result_str += "\nNo messages found.\n"
+if notifications["messages"] == []:
+    result_str += "\nNo messages found.\n\n"
 else:
-	for i, one_message in enumerate(notifications[3]["messages"]):
-		result_str += f"\nMessage #{i+1}:\n{one_message}\n"   
-				
+    for message_i, one_message in enumerate(notifications["messages"]):
+        result_str += f"\nMessage #{message_i+1}/{len(notifications['messages'])}:\n\n"
+        for current_level in one_message.get("Levels", ""):
+            Levels_N = current_level.get("Levels_N", "")
+            currnt_level = current_level.get("Level", "")
+            Module = current_level.get("Module", "")
+            Line = current_level.get("Line", "")
+            Column = current_level.get("Column", "")
+            Description = current_level.get("Description", "")
+            Code_line = current_level.get("Code_line", "")
+            result_str += (
+                f"-Level: {currnt_level}/{Levels_N}\n"
+                f"--Module: {Module}\n"
+                f"--Line: {Line}\n"
+                f"--Column: {Column}\n"
+                f"--Description: {Description}\n"
+                f"--Code_line: \"{Code_line}\"\n\n"
+            )
+        Message_text = one_message.get("Message_text", "")
+        result_str += f"Message_text: \"{Message_text}\"\n\n"
+
 result_str += '-'*50 + '\n'
 
 result_str += f"\nNote:\n"
-if notifications[2]["notes"] == []:
-    result_str += "\nNo notes found.\n"
+if notifications["notes"] == []:
+    result_str += "\nNo notes found.\n\n"
 else:
-	for i, one_note in enumerate(notifications[2]["notes"]):
-		result_str += f"\nNote #{i+1}:\n{one_note}\n"
+    for note_i, one_note in enumerate(notifications["notes"]):
+        result_str += f"\nNote #{note_i+1}/{len(notifications['notes'])}:\n\n"
+        for current_level in one_note.get("Levels", ""):
+            Levels_N = current_level.get("Levels_N", "")
+            currnt_level = current_level.get("Level", "")
+            Module = current_level.get("Module", "")
+            Line = current_level.get("Line", "")
+            Column = current_level.get("Column", "")
+            Description = current_level.get("Description", "")
+            Code_line = current_level.get("Code_line", "")
+            result_str += (
+                f"-Level: {currnt_level}/{Levels_N}\n"
+                f"--Module: {Module}\n"
+                f"--Line: {Line}\n"
+                f"--Column: {Column}\n"
+                f"--Description: {Description}\n"
+                f"--Code_line: \"{Code_line}\"\n\n"
+            )
+        Note_text = one_note.get("Note_text", "")
+        result_str += f"Note_text: \"{Note_text}\"\n\n"
 
 result_str += '='*50 + '\n'
 
+with open("ZeroLog.json", "w", encoding="utf-8") as file:
+    file.write(json.dumps(Zero_output, indent=4, ensure_ascii=False))
+
 with open("ZeroLog.txt", "w", encoding="utf-8") as file:
     file.write(result_str)
+
+print("Log files generated successfully!")
+print("Open 'ZeroLog.json' and 'ZeroLog.txt' to view the logs.")

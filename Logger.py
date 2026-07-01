@@ -50,8 +50,8 @@ class Logger:
         # добавляет сообщение в лог
         self.notifications.add_message_with_stack_nodes(message)
 
-    def add_notifications(self, notifications: list):
-        if not isinstance(notifications, list):
+    def add_notifications(self, notifications: dict):
+        if not isinstance(notifications, dict):
             self.notifications.add_error_with_stack_nodes(f"Incorrect type of notification:\n{notifications}\nExpected list, got {type(notifications)}"  )
             return
 
