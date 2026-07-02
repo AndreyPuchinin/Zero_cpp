@@ -1,4 +1,10 @@
+from Logger import Logger
+
+
 class Parser():
+	def __init__(self, _logger: Logger):
+		self.__logger = _logger
+
 	def forward_usual_swaps(self):
 		# Принимает входную строку
 		pass
