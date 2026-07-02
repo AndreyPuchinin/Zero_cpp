@@ -55,7 +55,7 @@ Error #1/10:
 --Line: 31
 --Column: 0
 --Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+--Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
 
 -Level: 3/5
 --Module: Logger.py
@@ -96,7 +96,7 @@ Error #2/10:
 --Line: 31
 --Column: 0
 --Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+--Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
 
 -Level: 3/5
 --Module: Logger.py
@@ -137,7 +137,7 @@ Error #3/10:
 --Line: 31
 --Column: 0
 --Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+--Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
 
 -Level: 3/5
 --Module: Logger.py
@@ -181,7 +181,7 @@ Error #4/10:
 --Line: 31
 --Column: 0
 --Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+--Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
 
 -Level: 3/5
 --Module: Logger.py
@@ -224,7 +224,7 @@ Error #5/10:
 --Line: 31
 --Column: 0
 --Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+--Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
 
 -Level: 3/5
 --Module: Logger.py
@@ -268,7 +268,7 @@ Error #6/10:
 --Line: 31
 --Column: 0
 --Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+--Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
 
 -Level: 3/5
 --Module: Logger.py
@@ -450,7 +450,7 @@ Warning #1/2:
 --Line: 31
 --Column: 0
 --Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+--Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
 
 -Level: 3/5
 --Module: Logger.py

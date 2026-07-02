@@ -121,7 +121,7 @@
                         "Line": 31,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
                     },
                     {
                         "Levels_N": 5,
@@ -171,7 +171,7 @@
                         "Line": 31,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
                     },
                     {
                         "Levels_N": 5,
@@ -221,7 +221,7 @@
                         "Line": 31,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
                     },
                     {
                         "Levels_N": 5,
@@ -271,7 +271,7 @@
                         "Line": 31,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
                     },
                     {
                         "Levels_N": 5,
@@ -321,7 +321,7 @@
                         "Line": 31,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
                     },
                     {
                         "Levels_N": 5,
@@ -371,7 +371,7 @@
                         "Line": 31,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
                     },
                     {
                         "Levels_N": 5,
@@ -587,7 +587,7 @@
                         "Line": 31,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())"
+                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
                     },
                     {
                         "Levels_N": 5,

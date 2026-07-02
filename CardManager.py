@@ -147,7 +147,7 @@ class CardManager():
 			res_text += [one_card.get_card()]
 		return res_text
 
-	def get_notifications_as_list(self):
+	def get_notifications_as_json(self):
 		return self.notifications.get_all_notifications()
 
 	def get_notifications_as_str(self):

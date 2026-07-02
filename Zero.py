@@ -28,7 +28,7 @@ class Zero:
         for one_CardManager_object in self.some_CardManager_obects:
             # print(one_CardManager_object.get_notifications_as_list())
             self.Logger_object.add_libruary(one_CardManager_object.get_libruary())
-            self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_list())
+            self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())
 
         # проверки на обработку некорректных типов данных в методах Логгера
         self.Logger_object.add_libruary("some string instead of list")
