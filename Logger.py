@@ -52,7 +52,7 @@ class Logger:
 
     def add_notifications(self, notifications: dict):
         if not isinstance(notifications, dict):
-            self.notifications.add_error_with_stack_nodes(f"Incorrect type of notification:\n{notifications}\nExpected list, got {type(notifications)}"  )
+            self.notifications.add_error_with_stack_nodes(f"Incorrect type of notification:\n{notifications}\nExpected dict, got {type(notifications)}"  )
             return
 
         # добавляет ошибку в лог

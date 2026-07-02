@@ -84,21 +84,23 @@ class Card:
 				return
 	
 	def get_card(self):
-		result_str = f'status={self.success.get_state()}\n'
-		result_str += f'name={self.name}\n'
-		
-		result_str += f'usual_vals={[one_val for one_val in self.usual_vals]}\n'
-		result_str += f'selflink_vals={[one_val for one_val in self.selflink_vals]}\n'
-		result_str += f'templ_vals={[one_val for one_val in self.templ_vals]}\n'
-		result_str += f'selflink_templ_vals={[one_val for one_val in self.selflink_templ_vals]}\n'
-		result_str += f'id_vals={[one_val for one_val in self.id_vals]}\n'
-		result_str += f'id_selflink_vals={[one_val for one_val in self.id_selflink_vals]}\n'
-		result_str += f'id_templ_vals={[one_val for one_val in self.id_templ_vals]}\n'
-		result_str += f'id_selflink_templ_vals={[one_val for one_val in self.id_selflink_templ_vals]}'
-		return result_str
+		result_json = {
+			"status": self.success.get_state(),
+			"name": self.name,
+			"usual_vals": self.usual_vals,
+			"selflink_vals": self.selflink_vals,
+			"templ_vals": self.templ_vals,
+			"selflink_templ_vals": self.selflink_templ_vals,
+			"id_vals": self.id_vals,
+			"id_selflink_vals": self.id_selflink_vals,
+			"id_templ_vals": self.id_templ_vals,
+			"id_selflink_templ_vals": self.id_selflink_templ_vals
+		}
+	
+		return result_json
 	
 	def get_notifications(self):
-		return self.notifications
+		return self.notifications.get_all_notifications()
 
 def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals: int, few_types: int):
 	"""
@@ -164,27 +166,30 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 		id_templ_vals = []
 		id_selflink_templ_vals = []
 	
-	expected = ''
+	expected_status = ''
 
 	# Формируем ожидаемый вывод теста
 	if few_vals == all_vals:
-		expected = f'status=successful\n'
+		expected_status = f'successful'
 
 	if all_vals > few_vals >= 0  and few_types != 0 and name_correctness:
-		expected = f'status=half_successful\n'
+		expected_status = f'half_successful'
 
 	if few_vals <= 0 or few_types <= 0 or not name_correctness:
-		expected = f'status=unsuccessful\n'
+		expected_status = f'unsuccessful'
 
-	expected += f'name={name}\n'
-	expected += f'usual_vals={usual_vals}\n'
-	expected += f'selflink_vals={selflink_vals}\n'
-	expected += f'templ_vals={templ_vals}\n'
-	expected += f'selflink_templ_vals={selflink_templ_vals}\n'
-	expected += f'id_vals={id_vals}\n'
-	expected += f'id_selflink_vals={id_selflink_vals}\n'
-	expected += f'id_templ_vals={id_templ_vals}\n'
-	expected += f'id_selflink_templ_vals={id_selflink_templ_vals}'
+	expected_json = {
+		"status": expected_status,
+		"name": name,
+		"usual_vals": usual_vals,
+		"selflink_vals": selflink_vals,
+		"templ_vals": templ_vals,
+		"selflink_templ_vals": selflink_templ_vals,
+		"id_vals": id_vals,
+		"id_selflink_vals": id_selflink_vals,
+		"id_templ_vals": id_templ_vals,
+		"id_selflink_templ_vals": id_selflink_templ_vals
+	}
 
 	# выводим ожидаемый вывод теста 
 	# print(expected)
@@ -192,7 +197,7 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 	# сравниваем ожидаемый вывод теста и реальный вывод
 	# print(expected == new_card.get_card())
 	
-	return expected == new_card.get_card(), expected, new_card.get_card()
+	return expected_json == new_card.get_card(), expected_json, new_card.get_card()
 
 
 def global_tests_function():
@@ -234,11 +239,11 @@ if __name__ == "__main__":
 	# Если все были правильные
 	all_failed_tests = global_tests(True, 'good', None, 4, 4, 8)
 
-	# раскомментариваем DANGER_all_tests_zone если нужно проверить на всех случаях
+	#раскомментариваем DANGER_all_tests_zone если нужно проверить на всех случаях
 
 	# result, expected, card_output = imitate(True, 'good', None, 2, 5, 2)
-	# print(f'{result}\n\n{expected}\n\n{card_output}')
-
+	# # print(f'{result}\n\n{expected}\n\n{card_output}')
+# 
 	# DANGER_all_tests_zone = global_tests_function()
 	# tests_i = 0
 	# for name_correctness in [True, False]:
@@ -248,8 +253,9 @@ if __name__ == "__main__":
 	# 				tests_i += 1 
 	# 				DANGER_all_tests_zone(name_correctness, 'good', None, few_vals-2, all_vals-2, all_types-2)
 	# all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
-	# print(len(all_failed_tests),'TESTS FAILED FROM '+str(tests_i)+':\n')
+	# # print(len(all_failed_tests),'TESTS FAILED FROM '+str(tests_i)+':\n')
 
+	got_error = False
 	for i, one_test in enumerate(all_failed_tests):
 		name_correctness, few_vals, all_vals, few_types, expected, got = one_test
 		print('Failed test #'+str(i+1)+':\n')
@@ -257,5 +263,7 @@ if __name__ == "__main__":
 		print(f'Expected:\n\n{expected}')
 		print(f'Got:\n\n{got}\n')
 		print('========\n')
-	else:
+		got_error = True
+	
+	if not got_error:
 		print('ALL TESTS ABOUT CARD CREATING PASSED SUCCESFULY!\n')

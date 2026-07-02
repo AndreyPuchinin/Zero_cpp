@@ -96,33 +96,8 @@ class CardManager():
 			selflink_templ_vals, id_vals, id_selflink_vals, id_templ_vals, \
 			id_selflink_templ_vals)
 		
-		Card_inner_notifications = Card_object.get_notifications()
-		Card_notifications = Card_inner_notifications.get_all_notifications()
-
-		for one_error in Card_notifications.get("errors", []):
-			if "Error_text" not in one_error:
-				self.notifications.add_error_with_stack_nodes(f"Missing 'Error_text' in Card notifications['Errors']:\n{Card_notifications.get('Errors', [])}")
-			else:
-				self.notifications.add_error_with_stack_nodes(one_error["Error_text"])
-		
-		for one_warning in Card_notifications.get("warnings", []):
-			if "Warning_text" not in one_warning:
-				self.notifications.add_warning_with_stack_nodes(f"Missing 'Warning_text' in Card notifications['Warnings']:\n{Card_notifications.get('Warnings', [])}")
-			else:
-				self.notifications.add_warning_with_stack_nodes(one_warning["Warning_text"])
-		
-		for one_note in Card_notifications.get("notes", []):
-			if "Note_text" not in one_note:
-				self.notifications.add_note_with_stack_nodes(f"Missing 'Note_text' in Card notifications['Notes']:\n{Card_notifications.get('Notes', [])}")
-			else:
-				self.notifications.add_note_with_stack_nodes(one_note["Note_text"])
-		
-		for one_messages in Card_notifications.get("messages", []):
-			if "Message_text" not in one_messages:
-				self.notifications.add_message_with_stack_nodes(f"Missing 'Message_text' in Card notifications['Messages']:\n{Card_notifications.get('Messages', [])}")
-			else:
-				self.notifications.add_message_with_stack_nodes(one_messages["Message_text"])
-		
+		Card_notifications = Card_object.get_notifications()
+		self.notifications.add_notifications(Card_notifications)
 		
 		# печатаем карточку для проверки
 		# print(Card_object.get_card()) # печатаем карточку

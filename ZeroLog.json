@@ -1,7 +1,103 @@
 {
     "cards": [
-        "status=successful\nname=<digit>\nusual_vals=[['0']]\nselflink_vals=[]\ntempl_vals=[]\nselflink_templ_vals=[]\nid_vals=[]\nid_selflink_vals=[]\nid_templ_vals=[]\nid_selflink_templ_vals=[]",
-        "status=half_successful\nname=<number>\nusual_vals=[['0'], ['0']]\nselflink_vals=[['<number><number>', [{'link_name': '<number>', 'link_positions': [0, 8]}]], ['<number><number>']]\ntempl_vals=[['<number>.0', [{'link_name': '<number>', 'link_positions': [0]}]], ['<number>.0']]\nselflink_templ_vals=[['<selflink-template>'], ['<selflink-template>']]\nid_vals=[['<number><number>>'], ['<number><number>>']]\nid_selflink_vals=[['<id-selflink>'], ['<id-selflink>']]\nid_templ_vals=[['<id-template>'], ['<id-template>']]\nid_selflink_templ_vals=[['<id-selflink-template>']]"
+        {
+            "status": "successful",
+            "name": "<digit>",
+            "usual_vals": [
+                [
+                    "0"
+                ]
+            ],
+            "selflink_vals": [],
+            "templ_vals": [],
+            "selflink_templ_vals": [],
+            "id_vals": [],
+            "id_selflink_vals": [],
+            "id_templ_vals": [],
+            "id_selflink_templ_vals": []
+        },
+        {
+            "status": "half_successful",
+            "name": "<number>",
+            "usual_vals": [
+                [
+                    "0"
+                ],
+                [
+                    "0"
+                ]
+            ],
+            "selflink_vals": [
+                [
+                    "<number><number>",
+                    [
+                        {
+                            "link_name": "<number>",
+                            "link_positions": [
+                                0,
+                                8
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    "<number><number>"
+                ]
+            ],
+            "templ_vals": [
+                [
+                    "<number>.0",
+                    [
+                        {
+                            "link_name": "<number>",
+                            "link_positions": [
+                                0
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    "<number>.0"
+                ]
+            ],
+            "selflink_templ_vals": [
+                [
+                    "<selflink-template>"
+                ],
+                [
+                    "<selflink-template>"
+                ]
+            ],
+            "id_vals": [
+                [
+                    "<number><number>>"
+                ],
+                [
+                    "<number><number>>"
+                ]
+            ],
+            "id_selflink_vals": [
+                [
+                    "<id-selflink>"
+                ],
+                [
+                    "<id-selflink>"
+                ]
+            ],
+            "id_templ_vals": [
+                [
+                    "<id-template>"
+                ],
+                [
+                    "<id-template>"
+                ]
+            ],
+            "id_selflink_templ_vals": [
+                [
+                    "<id-selflink-template>"
+                ]
+            ]
+        }
     ],
     "input_string": "",
     "swaps": [],

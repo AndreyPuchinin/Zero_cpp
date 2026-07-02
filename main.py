@@ -108,10 +108,21 @@ notifications = Zero_output.get('notifications')
 
 result_str = ""
 
-result_str += '\nCARDS:\n\n'
+result_str += 'CARDS:\n\n'
 
 for i, one_card in enumerate(cards):
-    result_str += f"Card #{i+1}:\n{one_card}\n\n"
+    result_str += f"Card #{i+1}:\n"
+    result_str += f"status={one_card.get("status", "")}\n"
+    result_str += f"name={one_card.get('name', '')}\n"
+    result_str += f"usual_vals={one_card.get('usual_vals', '')}\n"
+    result_str += f"selflink_vals={one_card.get('selflink_vals', '')}\n"
+    result_str += f"templ_vals={one_card.get('templ_vals', '')}\n"
+    result_str += f"selflink_templ_vals={one_card.get('selflink_templ_vals', '')}\n"
+    result_str += f"id_vals={one_card.get('id_vals', '')}\n"
+    result_str += f"id_selflink_vals={one_card.get('id_selflink_vals', '')}\n"
+    result_str += f"id_templ_vals={one_card.get('id_templ_vals', '')}\n"
+    result_str += f"id_selflink_templ_vals={one_card.get('id_selflink_templ_vals', '')}\n"
+    result_str += '\n'
 
 result_str += '='*50 + '\n'
 
