@@ -7,6 +7,18 @@ class CardManager():
 		self.libruary = [] # хранит объекты класс Card
 		self.notifications = common_notification.common_notification() # хранит ошибки, которые произошли при создании карточек
 	
+	def gen_value_links_info(self, value_str: str):
+		'''
+		input str
+		output json 
+		{
+			"val": "<number><number>",
+			"link_name": "<number>",
+			"link_positions": [0, 8]
+		}
+		'''
+		return {"val": value_str}
+
 	def values_validate(self, values: list):
 		# инициализируем списки для каждого типа значений
 		usual_vals = []
@@ -23,8 +35,8 @@ class CardManager():
 			# проверяем, что значение имеет правильный формат 
 			# (должно быть словарем с ключами "type" и "value")
 			try:
-				val_type = one_value.get('type')
-				val_value = one_value.get('value')
+				value_type = one_value.get('type')
+				value_str = one_value.get('value')
 			except AttributeError:
 				self.notifications.add_error_with_stack_nodes(f"Invalid format of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 				continue
@@ -32,46 +44,54 @@ class CardManager():
 			# Внутренняя функция (замыкание). 
 			# Она имеет доступ ко всем переменным, объявленным выше, и в цикле ниже.
 			def __inner():
-				if val_type is None:
+				if value_type is None:
 						self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-				elif val_type == 'selflink':
+				elif value_type == 'selflink':
 					# if is_selflink_value(<параметры>):
-						selflink_vals.append(val_value)
+						informated_val_value = self.gen_value_links_info(value_str)
+						selflink_vals.append(informated_val_value)
 					# elif <глубина рекурсии < 3>:
 					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif val_type == 'usual':
+				elif value_type == 'usual':
 					# if is_usual_value(<параметры>):
-						usual_vals.append(val_value)
+						informated_val_value = self.gen_value_links_info(value_str)
+						usual_vals.append(informated_val_value)
 					# elif <глубина рекурсии < 3>:
 					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif val_type == 'template':
+				elif value_type == 'template':
 					# if is_template_value(<параметры>):
-						templ_vals.append(val_value)
+						informated_val_value = self.gen_value_links_info(value_str)
+						templ_vals.append(informated_val_value)
 					# elif <глубина рекурсии < 3>:
 					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif val_type == 'selflink-template':
+				elif value_type == 'selflink-template':
 					# if is_selflink_template_value(<параметры>):
-						selflink_templ_vals.append(val_value)
+						informated_val_value = self.gen_value_links_info(value_str)
+						selflink_templ_vals.append(informated_val_value)
 					# elif <глубина рекурсии < 3>:
 						#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif val_type == 'id':
+				elif value_type == 'id':
 					# if is_id_value(<параметры>):
-						id_vals.append(val_value)
+						informated_val_value = self.gen_value_links_info(value_str)
+						id_vals.append(informated_val_value)
 					# elif <глубина рекурсии < 3>:
 					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif val_type == 'id-selflink':
+				elif value_type == 'id-selflink':
 					# if is_id_selflink_value(<параметры>):
-						id_selflink_vals.append(val_value)
+						informated_val_value = self.gen_value_links_info(value_str)
+						id_selflink_vals.append(informated_val_value)
 					# elif <глубина рекурсии < 3>:
 					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif val_type == 'id-template':
+				elif value_type == 'id-template':
 					# if is_id_template_value(<параметры>):
-						id_templ_vals.append(val_value)
+						informated_val_value = self.gen_value_links_info(value_str)
+						id_templ_vals.append(informated_val_value)
 					# elif <глубина рекурсии < 3>:
 					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif val_type == 'id-selflink-template':
+				elif value_type == 'id-selflink-template':
 					# if is_id_selflink_template_value(<параметры>):
-						id_selflink_templ_vals.append(val_value)
+						informated_val_value = self.gen_value_links_info(value_str)
+						id_selflink_templ_vals.append(informated_val_value)
 					# elif <глубина рекурсии < 3>:
 					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
 				else:

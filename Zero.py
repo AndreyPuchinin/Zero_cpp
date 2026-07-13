@@ -21,7 +21,7 @@ class Zero:
         CardManager_object1 = CardManager()
         CardManager_object2 = CardManager()
         
-        CardManager_object1.create_card("<digit>", [{"type": "usual", "value": ["0"]}])
+        #CardManager_object1.create_card("<digit>", [{"type": "usual", "value": ["0"]}])
         CardManager_object1.create_card(True, 1)
         CardManager_object2.create_card("<number>", values)
         self.some_CardManager_obects = [CardManager_object1, CardManager_object2]

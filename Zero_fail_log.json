@@ -30,7 +30,7 @@
 										"link_positions": [0,9]
 									}
 								]
-						},
+						}
 					],
 				"id_vals": []
 			}
@@ -78,12 +78,12 @@
 															"new_str": "<number><number>+<number><number>"
 														}
 													],
-												"check_if_swaps_detected": true,
+												"check_if_swaps_detected": true
 											},
 											{
 												"searching": [],
 												"check_if_swaps_detected": false
-											},
+											}
 
 										],
 									"selflinks_forward_swaps":
@@ -175,7 +175,7 @@
 												"searching": [],
 												"check_if_swaps_detected": false
 											}
-										],
+										]
 								}
 							],
 						"check_if_swaps_detected": false

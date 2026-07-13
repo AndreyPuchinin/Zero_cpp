@@ -2,100 +2,64 @@
     "cards": [
         {
             "status": "successful",
-            "name": "<digit>",
-            "usual_vals": [
-                [
-                    "0"
-                ]
-            ],
-            "selflink_vals": [],
-            "templ_vals": [],
-            "selflink_templ_vals": [],
-            "id_vals": [],
-            "id_selflink_vals": [],
-            "id_templ_vals": [],
-            "id_selflink_templ_vals": []
-        },
-        {
-            "status": "half_successful",
             "name": "<number>",
             "usual_vals": [
-                [
-                    "0"
-                ],
-                [
-                    "0"
-                ]
+                {
+                    "val": "0"
+                },
+                {
+                    "val": "0"
+                }
             ],
             "selflink_vals": [
-                [
-                    "<number><number>",
-                    [
-                        {
-                            "link_name": "<number>",
-                            "link_positions": [
-                                0,
-                                8
-                            ]
-                        }
-                    ]
-                ],
-                [
-                    "<number><number>"
-                ]
+                {
+                    "val": "<number><number>"
+                }
             ],
             "templ_vals": [
-                [
-                    "<number>.0",
-                    [
-                        {
-                            "link_name": "<number>",
-                            "link_positions": [
-                                0
-                            ]
-                        }
-                    ]
-                ],
-                [
-                    "<number>.0"
-                ]
+                {
+                    "val": "<number>.0"
+                }
             ],
             "selflink_templ_vals": [
-                [
-                    "<selflink-template>"
-                ],
-                [
-                    "<selflink-template>"
-                ]
+                {
+                    "val": "<selflink-template>"
+                },
+                {
+                    "val": "<selflink-template>"
+                }
             ],
             "id_vals": [
-                [
-                    "<number><number>>"
-                ],
-                [
-                    "<number><number>>"
-                ]
+                {
+                    "val": "<number><number>>"
+                },
+                {
+                    "val": "<number><number>>"
+                }
             ],
             "id_selflink_vals": [
-                [
-                    "<id-selflink>"
-                ],
-                [
-                    "<id-selflink>"
-                ]
+                {
+                    "val": "<id-selflink>"
+                },
+                {
+                    "val": "<id-selflink>"
+                }
             ],
             "id_templ_vals": [
-                [
-                    "<id-template>"
-                ],
-                [
-                    "<id-template>"
-                ]
+                {
+                    "val": "<id-template>"
+                },
+                {
+                    "val": "<id-template>"
+                }
             ],
             "id_selflink_templ_vals": [
-                [
-                    "<id-selflink-template>"
-                ]
+                {
+                    "val": "<id-selflink-template>"
+                },
+                {
+                    "val": "<id-selflink-template>"
+                }
             ]
         }
     ],
@@ -251,157 +215,7 @@
                         "Code_line": "result = self.get_stack_node(error)"
                     }
                 ],
-                "Error_text": "Unknown type of value #9:\n{\n    \"type\": \"some error type\",\n    \"value\": \"SMTH\"\n}"
-            },
-            {
-                "Levels": [
-                    {
-                        "Levels_N": 5,
-                        "Level": 1,
-                        "Module": "main.py",
-                        "Line": 103,
-                        "Column": 0,
-                        "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 2,
-                        "Module": "Zero.py",
-                        "Line": 31,
-                        "Column": 0,
-                        "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 3,
-                        "Module": "Logger.py",
-                        "Line": 59,
-                        "Column": 27,
-                        "Description": "Method/Function 'add_notifications'",
-                        "Code_line": "self.notifications.add_notifications(notifications)"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 4,
-                        "Module": "common_notification.py",
-                        "Line": 132,
-                        "Column": 0,
-                        "Description": "Method/Function 'add_notifications'",
-                        "Code_line": "self.add_error_with_stack_nodes(error.get(\"Error_text\", []))"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 5,
-                        "Module": "common_notification.py",
-                        "Line": 103,
-                        "Column": 0,
-                        "Description": "Method/Function 'add_error_with_stack_nodes'",
-                        "Code_line": "result = self.get_stack_node(error)"
-                    }
-                ],
-                "Error_text": "Unknown type of value #10:\n{\n    \"some error key\": \"some error value\"\n}"
-            },
-            {
-                "Levels": [
-                    {
-                        "Levels_N": 5,
-                        "Level": 1,
-                        "Module": "main.py",
-                        "Line": 103,
-                        "Column": 0,
-                        "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 2,
-                        "Module": "Zero.py",
-                        "Line": 31,
-                        "Column": 0,
-                        "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 3,
-                        "Module": "Logger.py",
-                        "Line": 59,
-                        "Column": 27,
-                        "Description": "Method/Function 'add_notifications'",
-                        "Code_line": "self.notifications.add_notifications(notifications)"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 4,
-                        "Module": "common_notification.py",
-                        "Line": 132,
-                        "Column": 0,
-                        "Description": "Method/Function 'add_notifications'",
-                        "Code_line": "self.add_error_with_stack_nodes(error.get(\"Error_text\", []))"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 5,
-                        "Module": "common_notification.py",
-                        "Line": 103,
-                        "Column": 0,
-                        "Description": "Method/Function 'add_error_with_stack_nodes'",
-                        "Code_line": "result = self.get_stack_node(error)"
-                    }
-                ],
-                "Error_text": "Invalid format of value #19:\n[\n    \"type\",\n    \"value\"\n]"
-            },
-            {
-                "Levels": [
-                    {
-                        "Levels_N": 5,
-                        "Level": 1,
-                        "Module": "main.py",
-                        "Line": 103,
-                        "Column": 0,
-                        "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 2,
-                        "Module": "Zero.py",
-                        "Line": 31,
-                        "Column": 0,
-                        "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 3,
-                        "Module": "Logger.py",
-                        "Line": 59,
-                        "Column": 27,
-                        "Description": "Method/Function 'add_notifications'",
-                        "Code_line": "self.notifications.add_notifications(notifications)"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 4,
-                        "Module": "common_notification.py",
-                        "Line": 132,
-                        "Column": 0,
-                        "Description": "Method/Function 'add_notifications'",
-                        "Code_line": "self.add_error_with_stack_nodes(error.get(\"Error_text\", []))"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 5,
-                        "Module": "common_notification.py",
-                        "Line": 103,
-                        "Column": 0,
-                        "Description": "Method/Function 'add_error_with_stack_nodes'",
-                        "Code_line": "result = self.get_stack_node(error)"
-                    }
-                ],
-                "Error_text": "Invalid format of value #20:\ntrue"
+                "Error_text": "Unknown type of value #7:\n{\n    \"type\": \"some error type\",\n    \"value\": \"SMTH\"\n}"
             },
             {
                 "Levels": [
@@ -569,56 +383,6 @@
             }
         ],
         "warnings": [
-            {
-                "Levels": [
-                    {
-                        "Levels_N": 5,
-                        "Level": 1,
-                        "Module": "main.py",
-                        "Line": 103,
-                        "Column": 0,
-                        "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 2,
-                        "Module": "Zero.py",
-                        "Line": 31,
-                        "Column": 0,
-                        "Description": "Method/Function 'warp_drive'",
-                        "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 3,
-                        "Module": "Logger.py",
-                        "Line": 59,
-                        "Column": 27,
-                        "Description": "Method/Function 'add_notifications'",
-                        "Code_line": "self.notifications.add_notifications(notifications)"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 4,
-                        "Module": "common_notification.py",
-                        "Line": 138,
-                        "Column": 0,
-                        "Description": "Method/Function 'add_notifications'",
-                        "Code_line": "self.add_warning_with_stack_nodes(warning.get(\"Warning_text\", []))"
-                    },
-                    {
-                        "Levels_N": 5,
-                        "Level": 5,
-                        "Module": "common_notification.py",
-                        "Line": 108,
-                        "Column": 0,
-                        "Description": "Method/Function 'add_warning_with_stack_nodes'",
-                        "Code_line": "result = self.get_stack_node(warning)"
-                    }
-                ],
-                "Warning_text": "Value <id-selflink-template> excepted from Card"
-            },
             {
                 "Levels": [
                     {

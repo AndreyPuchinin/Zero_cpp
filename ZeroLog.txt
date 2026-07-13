@@ -2,27 +2,15 @@ CARDS:
 
 Card #1:
 status=successful
-name=<digit>
-usual_vals=[['0']]
-selflink_vals=[]
-templ_vals=[]
-selflink_templ_vals=[]
-id_vals=[]
-id_selflink_vals=[]
-id_templ_vals=[]
-id_selflink_templ_vals=[]
-
-Card #2:
-status=half_successful
 name=<number>
-usual_vals=[['0'], ['0']]
-selflink_vals=[['<number><number>', [{'link_name': '<number>', 'link_positions': [0, 8]}]], ['<number><number>']]
-templ_vals=[['<number>.0', [{'link_name': '<number>', 'link_positions': [0]}]], ['<number>.0']]
-selflink_templ_vals=[['<selflink-template>'], ['<selflink-template>']]
-id_vals=[['<number><number>>'], ['<number><number>>']]
-id_selflink_vals=[['<id-selflink>'], ['<id-selflink>']]
-id_templ_vals=[['<id-template>'], ['<id-template>']]
-id_selflink_templ_vals=[['<id-selflink-template>']]
+usual_vals=[{'val': '0'}, {'val': '0'}]
+selflink_vals=[{'val': '<number><number>'}]
+templ_vals=[{'val': '<number>.0'}]
+selflink_templ_vals=[{'val': '<selflink-template>'}, {'val': '<selflink-template>'}]
+id_vals=[{'val': '<number><number>>'}, {'val': '<number><number>>'}]
+id_selflink_vals=[{'val': '<id-selflink>'}, {'val': '<id-selflink>'}]
+id_templ_vals=[{'val': '<id-template>'}, {'val': '<id-template>'}]
+id_selflink_templ_vals=[{'val': '<id-selflink-template>'}, {'val': '<id-selflink-template>'}]
 
 ==================================================
 
@@ -41,7 +29,7 @@ NOTIFICATIONS:
 
 Errors:
 
-Error #1/10:
+Error #1/7:
 
 -Level: 1/5
 --Module: main.py
@@ -82,7 +70,7 @@ Error_text: "Invalid format of card name:
 True"
 
 
-Error #2/10:
+Error #2/7:
 
 -Level: 1/5
 --Module: main.py
@@ -123,7 +111,7 @@ Error_text: "Invalid format of card values:
 1"
 
 
-Error #3/10:
+Error #3/7:
 
 -Level: 1/5
 --Module: main.py
@@ -160,142 +148,14 @@ Error #3/10:
 --Description: Method/Function 'add_error_with_stack_nodes'
 --Code_line: "result = self.get_stack_node(error)"
 
-Error_text: "Unknown type of value #9:
+Error_text: "Unknown type of value #7:
 {
     "type": "some error type",
     "value": "SMTH"
 }"
 
 
-Error #4/10:
-
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: "Zero_output = Zero_object.warp_drive(values)"
-
--Level: 2/5
---Module: Zero.py
---Line: 31
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: "self.notifications.add_notifications(notifications)"
-
--Level: 4/5
---Module: common_notification.py
---Line: 132
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: "self.add_error_with_stack_nodes(error.get("Error_text", []))"
-
--Level: 5/5
---Module: common_notification.py
---Line: 103
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: "result = self.get_stack_node(error)"
-
-Error_text: "Unknown type of value #10:
-{
-    "some error key": "some error value"
-}"
-
-
-Error #5/10:
-
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: "Zero_output = Zero_object.warp_drive(values)"
-
--Level: 2/5
---Module: Zero.py
---Line: 31
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: "self.notifications.add_notifications(notifications)"
-
--Level: 4/5
---Module: common_notification.py
---Line: 132
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: "self.add_error_with_stack_nodes(error.get("Error_text", []))"
-
--Level: 5/5
---Module: common_notification.py
---Line: 103
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: "result = self.get_stack_node(error)"
-
-Error_text: "Invalid format of value #19:
-[
-    "type",
-    "value"
-]"
-
-
-Error #6/10:
-
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: "Zero_output = Zero_object.warp_drive(values)"
-
--Level: 2/5
---Module: Zero.py
---Line: 31
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: "self.notifications.add_notifications(notifications)"
-
--Level: 4/5
---Module: common_notification.py
---Line: 132
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: "self.add_error_with_stack_nodes(error.get("Error_text", []))"
-
--Level: 5/5
---Module: common_notification.py
---Line: 103
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: "result = self.get_stack_node(error)"
-
-Error_text: "Invalid format of value #20:
-true"
-
-
-Error #7/10:
+Error #4/7:
 
 -Level: 1/4
 --Module: main.py
@@ -330,7 +190,7 @@ some string instead of list
 Expected list, got <class 'str'>"
 
 
-Error #8/10:
+Error #5/7:
 
 -Level: 1/4
 --Module: main.py
@@ -363,7 +223,7 @@ Error #8/10:
 Error_text: "Some error from Logger"
 
 
-Error #9/10:
+Error #6/7:
 
 -Level: 1/4
 --Module: main.py
@@ -398,7 +258,7 @@ Error_text: "Incorrect type of input string:
 Expected str, got <class 'int'>"
 
 
-Error #10/10:
+Error #7/7:
 
 -Level: 1/4
 --Module: main.py
@@ -436,47 +296,7 @@ Expected list, got <class 'str'>"
 
 Warning:
 
-Warning #1/2:
-
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: "Zero_output = Zero_object.warp_drive(values)"
-
--Level: 2/5
---Module: Zero.py
---Line: 31
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: "self.notifications.add_notifications(notifications)"
-
--Level: 4/5
---Module: common_notification.py
---Line: 138
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: "self.add_warning_with_stack_nodes(warning.get("Warning_text", []))"
-
--Level: 5/5
---Module: common_notification.py
---Line: 108
---Column: 0
---Description: Method/Function 'add_warning_with_stack_nodes'
---Code_line: "result = self.get_stack_node(warning)"
-
-Warning_text: "Value <id-selflink-template> excepted from Card"
-
-
-Warning #2/2:
+Warning #1/1:
 
 -Level: 1/4
 --Module: main.py

@@ -48,9 +48,8 @@ class Card:
 				exists_uncorrect_value = True
 			else:
 				for j, one_val_of_one_type in enumerate(vals_one_type):
-					if type(one_val_of_one_type) != list or \
-							(len(one_val_of_one_type) > 0 and \
-	   						type(one_val_of_one_type[0]) != str):
+					if type(one_val_of_one_type) != dict or \
+	   						type(one_val_of_one_type.get("val",None)) != str:
 						# self_one_val_of_one_type = None
 						# self_vals_types[i][j] = self_one_val_of_one_type
 						self.notifications.add_warning_with_stack_nodes(f"Value {self_vals_types[i][-1]} excepted from Card")

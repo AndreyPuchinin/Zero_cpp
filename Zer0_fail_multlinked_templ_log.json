@@ -97,7 +97,7 @@
 															"new_str": "<number><number>+<number>+<letter>+<letter>"
 														}
 													],
-												"check_if_swaps_detected": true,
+												"check_if_swaps_detected": true
 											},
 											{
 												"searching": [],
