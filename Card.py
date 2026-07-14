@@ -136,11 +136,11 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 		if i < few_types:
 			for j in range(all_vals):
 				if j < few_vals:
-					one_type += [correct]
+					one_type += [{"val": correct}]
 				else:
-					one_type += [incorrect]
+					one_type += [{"val": incorrect}]
 		else:
-			vals_types[i] = incorrect
+			vals_types[i] = {"val": incorrect}  # Нужен ИНФОРМАТИВНЫЙ json 
 
 	# выводим список типов значений	
 	#print('val_types = ', vals_types)
@@ -259,8 +259,8 @@ if __name__ == "__main__":
 		name_correctness, few_vals, all_vals, few_types, expected, got = one_test
 		print('Failed test #'+str(i+1)+':\n')
 		print(f'{name_correctness=}, {few_vals=}, {all_vals=}, {few_types=}\n')
-		print(f'Expected:\n\n{expected}')
-		print(f'Got:\n\n{got}\n')
+		print(f'Expected:\n\n{json.dumps(expected, indent=2)}\n')
+		print(f'Got:\n\n{json.dumps(got, indent=2)}\n')
 		print('========\n')
 		got_error = True
 	

@@ -55,6 +55,7 @@ class CardManager():
 			def __inner():
 				if value_type is None:
 						self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
+				
 				elif value_type == '' or value_type == 'selflink':
 					self.validate_value_type(value_type, 'selflink', self.is_selflink_value, selflink_vals, __inner)
 			  
@@ -79,6 +80,10 @@ class CardManager():
 				elif value_type == '' or value_type == 'id-selflink-template':
 					self.validate_value_type(value_type, 'id-selflink-template', self.is_id_selflink_template_value, id_selflink_template_vals, __inner)
 				
+				# elif value_type == '':
+				# 	return
+				# возможно выход из рекурсии происходит автоматом после последнего действия в рабочей ветке
+
 				else:
 					self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 
