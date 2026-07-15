@@ -110,13 +110,13 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 	all_vals - общее количество значений в типе
 	few_types - количество корректных типов
 	"""
-	correct = [correct]
-	incorrect = [incorrect]
+	# correct = [correct]
+	# incorrect = [incorrect]
 	# устанавливаем корректное или некорректное имя
 	if name_correctness and few_vals != 0 and few_types > 0:
-		name = correct
+		name = [correct]
 	else:
-		name = incorrect
+		name = [incorrect]
 	
 	usual_vals = []
 	selflink_vals = []
@@ -131,19 +131,34 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
             selflink_vals, templ_vals, selflink_templ_vals,
             id_vals, id_selflink_vals, id_templ_vals, id_selflink_templ_vals]
 	
+	exp_usual_vals = []
+	exp_selflink_vals = []
+	exp_templ_vals = []
+	exp_selflink_templ_vals = []
+	exp_id_vals = []
+	exp_id_selflink_vals = []
+	exp_id_templ_vals = []
+	exp_id_selflink_templ_vals = []
+
+	exp_vals_types = [exp_usual_vals,
+            exp_selflink_vals, exp_templ_vals, exp_selflink_templ_vals,
+            exp_id_vals, exp_id_selflink_vals, exp_id_templ_vals, exp_id_selflink_templ_vals]
+	
 	# Формируем значения для ввода в Card
 	for i, one_type in enumerate(vals_types):
 		if i < few_types:
 			for j in range(all_vals):
 				if j < few_vals:
 					one_type += [{"val": correct}]
+					exp_vals_types[i] += [{"val": correct}]
 				else:
 					one_type += [{"val": incorrect}]
 		else:
 			vals_types[i] = {"val": incorrect}  # Нужен ИНФОРМАТИВНЫЙ json 
+			exp_vals_types[i] = []
 
 	# выводим список типов значений	
-	#print('val_types = ', vals_types)
+	# print('\nval_types = ', vals_types)
 
 	# формируем карточку
 	new_card = Card(name, usual_vals,
@@ -156,14 +171,14 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 	# если имя карточки некорректно, зануляем все значения
 	if not name_correctness or few_vals <= 0:
 		name = [None]
-		usual_vals = []
-		selflink_vals = []
-		templ_vals = []
-		selflink_templ_vals = []
-		id_vals = []
-		id_selflink_vals = []
-		id_templ_vals = []
-		id_selflink_templ_vals = []
+		exp_usual_vals = []
+		exp_selflink_vals = []
+		exp_templ_vals = []
+		exp_selflink_templ_vals = []
+		exp_id_vals = []
+		exp_id_selflink_vals = []
+		exp_id_templ_vals = []
+		exp_id_selflink_templ_vals = []
 	
 	expected_status = ''
 
@@ -180,19 +195,19 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 	expected_json = {
 		"status": expected_status,
 		"name": name,
-		"usual_vals": usual_vals,
-		"selflink_vals": selflink_vals,
-		"templ_vals": templ_vals,
-		"selflink_templ_vals": selflink_templ_vals,
-		"id_vals": id_vals,
-		"id_selflink_vals": id_selflink_vals,
-		"id_templ_vals": id_templ_vals,
-		"id_selflink_templ_vals": id_selflink_templ_vals
+		"usual_vals": exp_usual_vals,
+		"selflink_vals": exp_selflink_vals,
+		"templ_vals": exp_templ_vals,
+		"selflink_templ_vals": exp_selflink_templ_vals,
+		"id_vals": exp_id_vals,
+		"id_selflink_vals": exp_id_selflink_vals,
+		"id_templ_vals": exp_id_templ_vals,
+		"id_selflink_templ_vals": exp_id_selflink_templ_vals
 	}
 
 	# выводим ожидаемый вывод теста 
-	# print(expected)
-
+	# print(expected_json)
+	# print(new_card.get_card())
 	# сравниваем ожидаемый вывод теста и реальный вывод
 	# print(expected == new_card.get_card())
 	
@@ -243,16 +258,16 @@ if __name__ == "__main__":
 	# result, expected, card_output = imitate(True, 'good', None, 2, 5, 2)
 	# # print(f'{result}\n\n{expected}\n\n{card_output}')
 # 
-	# DANGER_all_tests_zone = global_tests_function()
-	# tests_i = 0
-	# for name_correctness in [True, False]:
-	# 	for all_types in range(5):
-	# 		for all_vals in range(5):
-	# 			for few_vals in range(all_vals):
-	# 				tests_i += 1 
-	# 				DANGER_all_tests_zone(name_correctness, 'good', None, few_vals-2, all_vals-2, all_types-2)
-	# all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
-	# # print(len(all_failed_tests),'TESTS FAILED FROM '+str(tests_i)+':\n')
+	DANGER_all_tests_zone = global_tests_function()
+	tests_i = 0
+	for name_correctness in [True, False]:
+		for all_types in range(5):
+			for all_vals in range(5):
+				for few_vals in range(all_vals):
+					tests_i += 1 
+					DANGER_all_tests_zone(name_correctness, 'good', None, few_vals-2, all_vals-2, all_types-2)
+	all_failed_tests = DANGER_all_tests_zone(True,'final_test',None,0,0,0)
+	print(len(all_failed_tests),'TESTS FAILED FROM '+str(tests_i)+':\n')
 
 	got_error = False
 	for i, one_test in enumerate(all_failed_tests):
