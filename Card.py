@@ -163,7 +163,7 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 			exp_vals_types[i] = []
 
 	# выводим список типов значений	
-	print('\nval_types = ', vals_types)
+	# print('\nval_types = ', vals_types)
 
 	# формируем карточку
 	new_card = Card(name, usual_vals,
@@ -211,7 +211,7 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 	}
 
 	# выводим ожидаемый вывод теста 
-	print(expected_json)
+	# print(expected_json)
 	# print(new_card.get_card())
 	# сравниваем ожидаемый вывод теста и реальный вывод
 	# print(expected == new_card.get_card())
