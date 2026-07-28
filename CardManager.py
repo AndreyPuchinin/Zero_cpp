@@ -25,7 +25,7 @@ class CardManager():
 							check_value_type_func: Callable[[str,str],bool],\
 							value:str,\
 							one_type_values_list: list):
-		if check_value_type_func(self.name, real_value_type_str):
+		if check_value_type_func(self.name, value):
 			informated_val_value = self.gen_value_links_info(value)
 			one_type_values_list.append(informated_val_value)
 			return True
@@ -33,7 +33,7 @@ class CardManager():
 			return False
 
 	def if_type_from_user_is_rigth(self, user_value_type: str, value: str, values_to_fill: list):
-		selflink_vals, usual_vals, templ_vals, selflink_templ_vals, \
+		usual_vals, selflink_vals, templ_vals, selflink_templ_vals, \
 		id_vals, id_selflink_vals, id_templ_vals, id_selflink_templ_vals = values_to_fill
 		if user_value_type == 'selflink':
 			if self.validate_value_type(user_value_type, self.is_selflink_value, value, selflink_vals):
@@ -64,7 +64,7 @@ class CardManager():
 		return False
 	
 	def if_type_from_user_is_wrong(self, value: str, values_to_fill: list):
-		selflink_vals, usual_vals, templ_vals, selflink_templ_vals, \
+		usual_vals, selflink_vals, templ_vals, selflink_templ_vals, \
 		id_vals, id_selflink_vals, id_templ_vals, id_selflink_templ_vals = values_to_fill
 
 		if  self.validate_value_type('selflink', self.is_selflink_value, value, selflink_vals):
