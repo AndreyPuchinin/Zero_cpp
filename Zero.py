@@ -26,7 +26,7 @@ class Zero:
         CardManager_object2.create_card("<number>", values)
         self.some_CardManager_obects = [CardManager_object1, CardManager_object2]
         for one_CardManager_object in self.some_CardManager_obects:
-            # print(one_CardManager_object.get_notifications_as_list())
+            # print(one_CardManager_object.get_notifications_as_str())
             self.Logger_object.add_libruary(one_CardManager_object.get_libruary())
             self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())
 

@@ -1,16 +1,16 @@
 CARDS:
 
 Card #1:
-status=successful
-name=<number>
-usual_vals=[{'val': '0'}, {'val': '0'}]
-selflink_vals=[{'val': '<number><number>'}]
-templ_vals=[{'val': '<number>.0'}]
-selflink_templ_vals=[{'val': '<selflink-template>'}, {'val': '<selflink-template>'}]
-id_vals=[{'val': '<number><number>>'}, {'val': '<number><number>>'}]
-id_selflink_vals=[{'val': '<id-selflink>'}, {'val': '<id-selflink>'}]
-id_templ_vals=[{'val': '<id-template>'}, {'val': '<id-template>'}]
-id_selflink_templ_vals=[{'val': '<id-selflink-template>'}, {'val': '<id-selflink-template>'}]
+status=unsuccessful
+name=[None]
+usual_vals=[]
+selflink_vals=[]
+templ_vals=[]
+selflink_templ_vals=[]
+id_vals=[]
+id_selflink_vals=[]
+id_templ_vals=[]
+id_selflink_templ_vals=[]
 
 ==================================================
 
@@ -29,7 +29,7 @@ NOTIFICATIONS:
 
 Errors:
 
-Error #1/7:
+Error #1/6:
 
 -Level: 1/5
 --Module: main.py
@@ -70,7 +70,7 @@ Error_text: "Invalid format of card name:
 True"
 
 
-Error #2/7:
+Error #2/6:
 
 -Level: 1/5
 --Module: main.py
@@ -111,51 +111,7 @@ Error_text: "Invalid format of card values:
 1"
 
 
-Error #3/7:
-
--Level: 1/5
---Module: main.py
---Line: 103
---Column: 0
---Description: Global level (module)
---Code_line: "Zero_output = Zero_object.warp_drive(values)"
-
--Level: 2/5
---Module: Zero.py
---Line: 31
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: "self.notifications.add_notifications(notifications)"
-
--Level: 4/5
---Module: common_notification.py
---Line: 132
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: "self.add_error_with_stack_nodes(error.get("Error_text", []))"
-
--Level: 5/5
---Module: common_notification.py
---Line: 103
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: "result = self.get_stack_node(error)"
-
-Error_text: "Unknown type of value #7:
-{
-    "type": "some error type",
-    "value": "SMTH"
-}"
-
-
-Error #4/7:
+Error #3/6:
 
 -Level: 1/4
 --Module: main.py
@@ -190,7 +146,7 @@ some string instead of list
 Expected list, got <class 'str'>"
 
 
-Error #5/7:
+Error #4/6:
 
 -Level: 1/4
 --Module: main.py
@@ -223,7 +179,7 @@ Error #5/7:
 Error_text: "Some error from Logger"
 
 
-Error #6/7:
+Error #5/6:
 
 -Level: 1/4
 --Module: main.py
@@ -258,7 +214,7 @@ Error_text: "Incorrect type of input string:
 Expected str, got <class 'int'>"
 
 
-Error #7/7:
+Error #6/6:
 
 -Level: 1/4
 --Module: main.py

@@ -21,21 +21,72 @@ class CardManager():
 		'''
 		return {"val": value_str}
 
-	def validate_value_type(self, depth: int, user_value_type: str, real_value_type_str: str,\
+	def validate_value_type(self, real_value_type_str: str,\
 							check_value_type_func: Callable[[str,str],bool],\
 							value:str,\
-							one_type_values_list: list, inner_func: Callable):
-		# Сделать замыканием?
-		if user_value_type == real_value_type_str and check_value_type_func(self.name, value):
-			informated_val_value = self.gen_value_links_info(real_value_type_str)
+							one_type_values_list: list):
+		if check_value_type_func(self.name, real_value_type_str):
+			informated_val_value = self.gen_value_links_info(value)
 			one_type_values_list.append(informated_val_value)
 			return True
 		else:
-			# value_type == '' когда юзер ошибся
-			user_value_type = ''
-			inner_func(depth + 1) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
 			return False
-			  
+
+	def if_type_from_user_is_rigth(self, user_value_type: str, value: str, values_to_fill: list):
+		selflink_vals, usual_vals, templ_vals, selflink_templ_vals, \
+		id_vals, id_selflink_vals, id_templ_vals, id_selflink_templ_vals = values_to_fill
+		if user_value_type == 'selflink':
+			if self.validate_value_type(user_value_type, self.is_selflink_value, value, selflink_vals):
+				return True
+		elif user_value_type == 'usual':
+			if self.validate_value_type(user_value_type, self.is_usual_value, value, usual_vals):
+				return True
+		elif user_value_type == 'template':
+			if self.validate_value_type(user_value_type, self.is_template_value, value, templ_vals):
+				return True
+		elif user_value_type == 'selflink-template':
+			if self.validate_value_type(user_value_type, self.is_selflink_template_value, value, selflink_templ_vals):
+				return True
+		elif user_value_type == 'id':
+			if self.validate_value_type(user_value_type, self.is_id_value, value, id_vals):
+				return True
+		elif user_value_type == 'id-selflink':
+			if self.validate_value_type(user_value_type, self.is_id_selflink_value, value, id_selflink_vals):
+				return True
+		elif user_value_type == 'id-template':
+			if self.validate_value_type(user_value_type, self.is_id_template_value, value, id_templ_vals):
+				return True
+		elif user_value_type == 'id-selflink-template':
+			if self.validate_value_type(user_value_type, self.is_id_selflink_template_value, value, id_selflink_templ_vals):
+				return True
+		else:
+			pass #логируем ошибку
+		return False
+	
+	def if_type_from_user_is_wrong(self, value: str, values_to_fill: list):
+		selflink_vals, usual_vals, templ_vals, selflink_templ_vals, \
+		id_vals, id_selflink_vals, id_templ_vals, id_selflink_templ_vals = values_to_fill
+
+		if  self.validate_value_type('selflink', self.is_selflink_value, value, selflink_vals):
+			return True
+		if self.validate_value_type('usual', self.is_usual_value, value, usual_vals):
+			return True
+		if self.validate_value_type('template', self.is_template_value, value, templ_vals):
+			return True
+		if self.validate_value_type('selflink-template', self.is_selflink_template_value, value, selflink_templ_vals):
+			return True
+		if self.validate_value_type('id', self.is_id_value, value, id_vals):
+			return True
+		if self.validate_value_type('id-selflink', self.is_id_selflink_value, value, id_selflink_vals):
+			return True
+		if self.validate_value_type('id-template', self.is_id_template_value, value, id_templ_vals):
+			return True
+		if self.validate_value_type('id-selflink-template', self.is_id_selflink_template_value, value, id_selflink_templ_vals):
+			return True
+		
+		#логируем ошибку
+		return False
+		
 	def values_validate(self, values: list):
 		# инициализируем списки для каждого типа значений
 		usual_vals = []
@@ -47,137 +98,31 @@ class CardManager():
 		id_templ_vals = []
 		id_selflink_templ_vals = []
 
+		values_to_fill = [
+					usual_vals, 
+					selflink_vals, 
+					templ_vals, 
+					selflink_templ_vals, 
+					id_vals, 
+					id_selflink_vals, 
+					id_templ_vals, 
+					id_selflink_templ_vals
+				]
 		
-
-		# Внутренняя функция (замыкание). 
-		# Она имеет доступ ко всем переменным, объявленным выше, и в цикле ниже.
-		# depth начинается с нуля. В первом вызове depth=0
-		# value_type == '' когда юзер ошибся
-		def __inner(depth: int):
-			if depth>1:
-				return
-			
-			elif type(value_type) != str:
-					self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-					return
-			
-			self.validate_value_type(depth, value_type, 'selflink', self.is_selflink_value, value_str, selflink_vals, __inner)
-			self.validate_value_type(depth, value_type, 'usual', self.is_usual_value, value_str, usual_vals, __inner)
-			self.validate_value_type(depth, value_type, 'template', self.is_template_value, value_str, templ_vals, __inner)
-			self.validate_value_type(depth, value_type, 'selflink-template', self.is_selflink_templ_value, value_str, selflink_templ_vals, __inner)
-			self.validate_value_type(depth, value_type, 'id', self.is_id_value, value_str, id_vals, __inner)
-			self.validate_value_type(depth, value_type, 'id-selflink', self.is_id_selflink_value, value_str, id_selflink_vals, __inner)
-			self.validate_value_type(depth, value_type, 'id-template', self.is_id_template_value, value_str, id_templ_vals, __inner)
-			self.validate_value_type(depth, value_type, 'id-selflink-template', self.is_id_selflink_template_value, value_str, id_selflink_templ_vals, __inner)
-
-			# elif value_type == '' or value_type == 'selflink':
-			# 	self.validate_value_type(depth, value_type, 'selflink', self.is_selflink_value, value_str, selflink_vals, __inner)
-			
-			# elif value_type == '' or value_type == 'usual':
-			# 	self.validate_value_type(depth, value_type, 'usual', self.is_usual_value, value_str, usual_vals, __inner)
-
-			# elif value_type == '' or value_type == 'template':
-			# 	self.validate_value_type(depth, value_type, 'template', self.is_template_value, value_str, template_vals, __inner)
-
-			# elif value_type == '' or value_type == 'selflink-template':
-			# 	self.validate_value_type(depth, value_type, 'selflink-template', self.is_selflink-template_value, value_str, selflink-template_vals, __inner)
-			
-			# elif value_type == '' or value_type == 'id':
-			# 	self.validate_value_type(depth, value_type, 'id', self.is_id_value, value_str, id_vals, __inner)
-			
-			# elif value_type == '' or value_type == 'id-selflink':
-			# 	self.validate_value_type(depth, value_type, 'id-selflink', self.is_id_selflink_value, value_str, id_selflink_vals, __inner)
-			
-			# elif value_type == '' or value_type == 'id-template':
-			# 	self.validate_value_type(depth, value_type, 'id-template', self.is_id_template_value, value_str, id_template_vals, __inner)
-			
-			# elif value_type == '' or value_type == 'id-selflink-template':
-			# 	self.validate_value_type(depth, value_type, 'id-selflink-template', self.is_id_selflink_template_value, value_str, id_selflink_template_vals, __inner)
-			
-			# elif value_type == '':
-			# 	return
-			# возможно выход из рекурсии происходит автоматом после последнего действия в рабочей ветке
-
-			else:
-				self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-		'''
-			def __inner():
-				if value_type is None:
-						self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-				elif value_type == '' or value_type == 'selflink':
-					if value_type == 'selflink' and self.is_selflink_value(<параметры>):
-						informated_val_value = self.gen_value_links_info(value_str)
-						selflink_vals.append(informated_val_value)
-					else:
-						value_type = ''
-						__inner(<value_type?>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-			  
-			  	elif value_type == '' or value_type == 'usual':
-					if value_type == 'usual' and self.is_usual_value(<параметры>):
-						informated_val_value = self.gen_value_links_info(value_str)
-						usual_vals.append(informated_val_value)
-					else:
-						value_type = ''
-						__inner(<value_type?>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-			  
-				elif value_type == '' or value_type == 'usual':
-					# if is_usual_value(<параметры>):
-						informated_val_value = self.gen_value_links_info(value_str)
-						usual_vals.append(informated_val_value)
-					# elif <глубина рекурсии < 3>:
-					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif value_type == '' or value_type == 'template':
-					# if is_template_value(<параметры>):
-						informated_val_value = self.gen_value_links_info(value_str)
-						templ_vals.append(informated_val_value)
-					# elif <глубина рекурсии < 3>:
-					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif value_type == '' or value_type == 'selflink-template':
-					# if is_selflink_template_value(<параметры>):
-						informated_val_value = self.gen_value_links_info(value_str)
-						selflink_templ_vals.append(informated_val_value)
-					# elif <глубина рекурсии < 3>:
-						#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif value_type == '' or value_type == 'id':
-					# if is_id_value(<параметры>):
-						informated_val_value = self.gen_value_links_info(value_str)
-						id_vals.append(informated_val_value)
-					# elif <глубина рекурсии < 3>:
-					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif value_type == '' or value_type == 'id-selflink':
-					# if is_id_selflink_value(<параметры>):
-						informated_val_value = self.gen_value_links_info(value_str)
-						id_selflink_vals.append(informated_val_value)
-					# elif <глубина рекурсии < 3>:
-					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif value_type == '' or value_type == 'id-template':
-					# if is_id_template_value(<параметры>):
-						informated_val_value = self.gen_value_links_info(value_str)
-						id_templ_vals.append(informated_val_value)
-					# elif <глубина рекурсии < 3>:
-					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				elif value_type == '' or value_type == 'id-selflink-template':
-					# if is_id_selflink_template_value(<параметры>):
-						informated_val_value = self.gen_value_links_info(value_str)
-						id_selflink_templ_vals.append(informated_val_value)
-					# elif <глубина рекурсии < 3>:
-					#	__inner(<параметр глубины>) # рекурсивно вызываем замыкание, чтобы проверить другие типы значений
-				else:
-					self.notifications.add_error_with_stack_nodes(f"Unknown type of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
-		'''
-
 		# проходим по каждому значению и определяем его тип
 		for i, one_value in enumerate(values):
 			# проверяем, что значение имеет правильный формат 
 			# (должно быть словарем с ключами "type" и "value")
 			try:
-				value_type = one_value.get('type')
+				user_value_type = one_value.get('type')
 				value_str = one_value.get('value')
 			except AttributeError:
 				self.notifications.add_error_with_stack_nodes(f"Invalid format of value #{i+1}:\n{json.dumps(one_value, indent=4)}")
 				continue
-			# вызываем замыкание для добавления значения в нужный список
-			__inner(0)
+			else:
+				if not self.if_type_from_user_is_rigth(user_value_type, value_str, values_to_fill):
+					self.if_type_from_user_is_wrong(value_str, values_to_fill)
+
 		
 		# формируем и возвращаем валидированные значения
 		# (Важно: возврат должен быть здесь, после завершения цикла)
