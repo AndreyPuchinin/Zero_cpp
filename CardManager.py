@@ -139,6 +139,20 @@ class CardManager():
 		
 		return validated_values
 
+	def temporary_values_validate(self, values: list):
+		validated_values = [
+					[], 
+					[], 
+					[], 
+					[], 
+					[], 
+					[], 
+					[], 
+					[]
+				]
+				
+		return validated_values
+
 	def create_card(self, name: str, values: list):
 		# ловим ошибку типа параметра name и values
 		
@@ -159,7 +173,7 @@ class CardManager():
 		# подтягивает из него валидированные значения
 		validated_usual_vals, selflink_vals, templ_vals, \
 			selflink_templ_vals, id_vals, id_selflink_vals, id_templ_vals, \
-			id_selflink_templ_vals= self.values_validate(values)
+			id_selflink_templ_vals = self.temporary_values_validate(values) #self.values_validate(values)
 
 		# ...и передает их в объект карточки
 		Card_object = Card(name, validated_usual_vals, selflink_vals, templ_vals, \

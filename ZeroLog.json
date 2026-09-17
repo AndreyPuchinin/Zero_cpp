@@ -1,23 +1,12 @@
 {
     "cards": [
         {
-            "status": "successful",
-            "name": "<number>",
-            "usual_vals": [],
-            "selflink_vals": [
-                {
-                    "val": "<number><number>>"
-                },
-                {
-                    "val": "<number><number>"
-                },
-                {
-                    "val": "<number>.0"
-                },
-                {
-                    "val": "<number><number>>"
-                }
+            "status": "unsuccessful",
+            "name": [
+                null
             ],
+            "usual_vals": [],
+            "selflink_vals": [],
             "templ_vals": [],
             "selflink_templ_vals": [],
             "id_vals": [],

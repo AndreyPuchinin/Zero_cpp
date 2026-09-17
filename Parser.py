@@ -1,6 +1,5 @@
 from Logger import Logger
 
-
 class Parser():
 	def __init__(self, _logger: Logger):
 		self.__logger = _logger
@@ -22,3 +21,4 @@ class Parser():
         # Принимает входную строку
 		# Вызывается, в случае, когда были коллизии
 		pass
+

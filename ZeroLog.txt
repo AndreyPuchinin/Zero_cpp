@@ -1,10 +1,10 @@
 CARDS:
 
 Card #1:
-status=successful
-name=<number>
+status=unsuccessful
+name=[None]
 usual_vals=[]
-selflink_vals=[{'val': '<number><number>>'}, {'val': '<number><number>'}, {'val': '<number>.0'}, {'val': '<number><number>>'}]
+selflink_vals=[]
 templ_vals=[]
 selflink_templ_vals=[]
 id_vals=[]
