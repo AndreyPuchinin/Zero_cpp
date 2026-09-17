@@ -3,6 +3,8 @@ from Logger import Logger
 class Parser():
 	def __init__(self, _logger: Logger):
 		self.__logger = _logger
+		print("воть", self.__logger.cards)
+		print(self.__logger.inp_str)
 
 	def forward_usual_swaps(self):
 		# Принимает входную строку

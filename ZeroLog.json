@@ -15,7 +15,7 @@
             "id_selflink_templ_vals": []
         }
     ],
-    "input_string": "",
+    "input_string": "ААББАА",
     "swaps": [],
     "notifications": {
         "errors": [
@@ -25,16 +25,16 @@
                         "Levels_N": 5,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 103,
+                        "Line": 104,
                         "Column": 0,
                         "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
                     },
                     {
                         "Levels_N": 5,
                         "Level": 2,
                         "Module": "Zero.py",
-                        "Line": 31,
+                        "Line": 32,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
                         "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
@@ -75,16 +75,16 @@
                         "Levels_N": 5,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 103,
+                        "Line": 104,
                         "Column": 0,
                         "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
                     },
                     {
                         "Levels_N": 5,
                         "Level": 2,
                         "Module": "Zero.py",
-                        "Line": 31,
+                        "Line": 32,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
                         "Code_line": "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
@@ -125,16 +125,16 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 103,
+                        "Line": 104,
                         "Column": 0,
                         "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
                     },
                     {
                         "Levels_N": 4,
                         "Level": 2,
                         "Module": "Zero.py",
-                        "Line": 34,
+                        "Line": 35,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
                         "Code_line": "self.Logger_object.add_libruary(\"some string instead of list\")"
@@ -166,16 +166,16 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 103,
+                        "Line": 104,
                         "Column": 0,
                         "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
                     },
                     {
                         "Levels_N": 4,
                         "Level": 2,
                         "Module": "Zero.py",
-                        "Line": 35,
+                        "Line": 36,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
                         "Code_line": "self.Logger_object.add_error(\"Some error from Logger\")"
@@ -207,16 +207,16 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 103,
+                        "Line": 104,
                         "Column": 0,
                         "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
                     },
                     {
                         "Levels_N": 4,
                         "Level": 2,
                         "Module": "Zero.py",
-                        "Line": 39,
+                        "Line": 40,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
                         "Code_line": "self.Logger_object.add_input_string(123)"
@@ -248,16 +248,16 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 103,
+                        "Line": 104,
                         "Column": 0,
                         "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
                     },
                     {
                         "Levels_N": 4,
                         "Level": 2,
                         "Module": "Zero.py",
-                        "Line": 40,
+                        "Line": 41,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
                         "Code_line": "self.Logger_object.add_swap(\"some string instead of tuple\")"
@@ -291,16 +291,16 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 103,
+                        "Line": 104,
                         "Column": 0,
                         "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
                     },
                     {
                         "Levels_N": 4,
                         "Level": 2,
                         "Module": "Zero.py",
-                        "Line": 36,
+                        "Line": 37,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
                         "Code_line": "self.Logger_object.add_warning(\"Some warning from Logger\")"
@@ -334,16 +334,16 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 103,
+                        "Line": 104,
                         "Column": 0,
                         "Description": "Global level (module)",
-                        "Code_line": "Zero_output = Zero_object.warp_drive(values)"
+                        "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
                     },
                     {
                         "Levels_N": 4,
                         "Level": 2,
                         "Module": "Zero.py",
-                        "Line": 37,
+                        "Line": 38,
                         "Column": 0,
                         "Description": "Method/Function 'warp_drive'",
                         "Code_line": "self.Logger_object.add_note(\"Some note from Logger\")"

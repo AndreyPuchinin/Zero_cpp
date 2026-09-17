@@ -1,6 +1,7 @@
 from notification_classes import common_notification
 from CardManager import CardManager
 from Logger import Logger
+from Parser import Parser
 
 class Zero:
     def __init__(self):
@@ -11,7 +12,7 @@ class Zero:
         # self.Parser_object = Parser()
         self.Logger_object = Logger()
 
-    def warp_drive(self, values):
+    def warp_drive(self, values, inp_str):
         # Парсит и анлизирует входной json (+инклюды!!),
         # генерирует лог-файл,
         # модифицирует карты фильтрами
@@ -38,5 +39,9 @@ class Zero:
         # self.Logger_object.add_message("Some message from Logger")
         self.Logger_object.add_input_string(123)
         self.Logger_object.add_swap("some string instead of tuple")
+
+        self.Logger_object.add_input_string(inp_str)
+        Parser_object1 = Parser(self.Logger_object)
+
         return self.Logger_object.get_log()
         # </!!!!ВРЕМЕННЫЙ КОД!!!>

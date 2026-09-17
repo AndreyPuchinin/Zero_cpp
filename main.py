@@ -100,7 +100,8 @@ values = [
         ]
 
 Zero_object = Zero()
-Zero_output = Zero_object.warp_drive(values)
+inp_str = "ААББАА"
+Zero_output = Zero_object.warp_drive(values, inp_str)
 cards = Zero_output.get('cards')
 input_string = Zero_output.get('input_string')
 swaps = Zero_output.get('swaps')
