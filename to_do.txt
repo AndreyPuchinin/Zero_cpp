@@ -98,3 +98,4 @@ V - В CardManager в create_card валидация не дописана, по
     Для этого в main все values должны быть корректны.
 
 V - создали temporary_values_validate(values) который возвращает пустые списки
+V - временную библиотеку для парсера захардкодили в temporary_values_validate

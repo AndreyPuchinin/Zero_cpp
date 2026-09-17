@@ -141,7 +141,9 @@ class CardManager():
 
 	def temporary_values_validate(self, values: list):
 		validated_values = [
-					[], 
+					[{
+						"val": "Деньги"
+						}], 
 					[], 
 					[], 
 					[], 

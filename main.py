@@ -100,7 +100,7 @@ values = [
         ]
 
 Zero_object = Zero()
-inp_str = "ААББАА"
+inp_str = "лучше Деньги может быть только Деньги"
 Zero_output = Zero_object.warp_drive(values, inp_str)
 cards = Zero_output.get('cards')
 input_string = Zero_output.get('input_string')

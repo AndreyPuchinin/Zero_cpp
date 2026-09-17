@@ -10,6 +10,7 @@ class Card:
 			selflink_vals: List[list], templ_vals: List[list], selflink_templ_vals: List[list],
             id_vals: List[list], id_selflink_vals: List[list], id_templ_vals: List[list],
 			id_selflink_templ_vals: List[list]):
+		# 
 		# Если self.name == None, карточка недействительна;
 		# также недействительна, если все контейнеры значений пустые
 		self.notifications = common_notification.common_notification()
@@ -198,7 +199,7 @@ def imitate(name_correctness: bool, correct, incorrect, few_vals: int, all_vals:
 		expected_status = f'unsuccessful'
 
 	expected_json = {
-		"status": expected_status,
+		"sta!!!!!tus": expected_status,
 		"name": name,
 		"usual_vals": exp_usual_vals,
 		"selflink_vals": exp_selflink_vals,

@@ -23,9 +23,9 @@ class Zero:
         CardManager_object2 = CardManager()
         
         # CardManager_object1.create_card("<digit>", [{"type": "usual", "value": ["0"]}])
-        CardManager_object1.create_card(True, 1)
-        CardManager_object2.create_card("<number>", values)
-        self.some_CardManager_obects = [CardManager_object1, CardManager_object2]
+        CardManager_object1.create_card("Пиво", values)
+        #CardManager_object2.create_card("<number>", values)
+        self.some_CardManager_obects = [CardManager_object1] #, CardManager_object2]
         for one_CardManager_object in self.some_CardManager_obects:
             # print(one_CardManager_object.get_notifications_as_str())
             self.Logger_object.add_libruary(one_CardManager_object.get_libruary())
@@ -42,6 +42,7 @@ class Zero:
 
         self.Logger_object.add_input_string(inp_str)
         Parser_object1 = Parser(self.Logger_object)
+        print("Результат:\n", Parser_object1.forward_usual_swaps())
 
         return self.Logger_object.get_log()
         # </!!!!ВРЕМЕННЫЙ КОД!!!>

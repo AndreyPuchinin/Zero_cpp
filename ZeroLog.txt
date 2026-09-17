@@ -1,9 +1,9 @@
 CARDS:
 
 Card #1:
-status=unsuccessful
-name=[None]
-usual_vals=[]
+status=successful
+name=Пиво
+usual_vals=[{'val': 'Деньги'}]
 selflink_vals=[]
 templ_vals=[]
 selflink_templ_vals=[]
@@ -15,7 +15,7 @@ id_selflink_templ_vals=[]
 ==================================================
 
 Input string:
-"ААББАА"
+"лучше Деньги может быть только Деньги"
 
 ==================================================
 
@@ -29,89 +29,7 @@ NOTIFICATIONS:
 
 Errors:
 
-Error #1/6:
-
--Level: 1/5
---Module: main.py
---Line: 104
---Column: 0
---Description: Global level (module)
---Code_line: "Zero_output = Zero_object.warp_drive(values, inp_str)"
-
--Level: 2/5
---Module: Zero.py
---Line: 32
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: "self.notifications.add_notifications(notifications)"
-
--Level: 4/5
---Module: common_notification.py
---Line: 132
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: "self.add_error_with_stack_nodes(error.get("Error_text", []))"
-
--Level: 5/5
---Module: common_notification.py
---Line: 103
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: "result = self.get_stack_node(error)"
-
-Error_text: "Invalid format of card name:
-True"
-
-
-Error #2/6:
-
--Level: 1/5
---Module: main.py
---Line: 104
---Column: 0
---Description: Global level (module)
---Code_line: "Zero_output = Zero_object.warp_drive(values, inp_str)"
-
--Level: 2/5
---Module: Zero.py
---Line: 32
---Column: 0
---Description: Method/Function 'warp_drive'
---Code_line: "self.Logger_object.add_notifications(one_CardManager_object.get_notifications_as_json())"
-
--Level: 3/5
---Module: Logger.py
---Line: 59
---Column: 27
---Description: Method/Function 'add_notifications'
---Code_line: "self.notifications.add_notifications(notifications)"
-
--Level: 4/5
---Module: common_notification.py
---Line: 132
---Column: 0
---Description: Method/Function 'add_notifications'
---Code_line: "self.add_error_with_stack_nodes(error.get("Error_text", []))"
-
--Level: 5/5
---Module: common_notification.py
---Line: 103
---Column: 0
---Description: Method/Function 'add_error_with_stack_nodes'
---Code_line: "result = self.get_stack_node(error)"
-
-Error_text: "Invalid format of card values:
-1"
-
-
-Error #3/6:
+Error #1/4:
 
 -Level: 1/4
 --Module: main.py
@@ -146,7 +64,7 @@ some string instead of list
 Expected list, got <class 'str'>"
 
 
-Error #4/6:
+Error #2/4:
 
 -Level: 1/4
 --Module: main.py
@@ -179,7 +97,7 @@ Error #4/6:
 Error_text: "Some error from Logger"
 
 
-Error #5/6:
+Error #3/4:
 
 -Level: 1/4
 --Module: main.py
@@ -214,7 +132,7 @@ Error_text: "Incorrect type of input string:
 Expected str, got <class 'int'>"
 
 
-Error #6/6:
+Error #4/4:
 
 -Level: 1/4
 --Module: main.py
