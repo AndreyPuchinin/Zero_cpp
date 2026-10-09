@@ -42,7 +42,7 @@ class Zero:
 
         self.Logger_object.add_input_string(inp_str)
         Parser_object1 = Parser(self.Logger_object)
-        print("Результат:\n", Parser_object1.forward_usual_swaps())
+        print("Результат:\n", Parser_object1.forward_swaps(100000))
 
         return self.Logger_object.get_log()
         # </!!!!ВРЕМЕННЫЙ КОД!!!>
