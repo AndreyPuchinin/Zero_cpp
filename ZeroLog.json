@@ -17,7 +17,7 @@
             "id_selflink_templ_vals": []
         }
     ],
-    "input_string": "лучше Деньги может быть только Деньги",
+    "input_string": "Лучше Рубли может быть только Деньги!",
     "swaps": [],
     "notifications": {
         "errors": [

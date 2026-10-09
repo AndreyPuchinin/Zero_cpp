@@ -28,6 +28,8 @@ class Trie:
     
     def search_prefix(self, prefix: str) -> list:
         """
+        !!!Когда e, elf добавлено, а el нет!!!
+        входная строка elf будет без замен. А должно быть замена по имени для значения 'e'.
         Возвращает имя 
         самого длинного найденного значения и его длину
         поиск name=Вася [а] в ббббб: 
@@ -53,7 +55,7 @@ class Trie:
 
         if node.name == None:
             return prefix[0], 1
-        return node.name, i
+        return node.name, i+1
     
     def _collect_all(self, node: TrieNode, current_key: str, results: list) -> None:
         """Рекурсивно собирает все пары (ключ, значение) из поддерева."""
@@ -70,7 +72,7 @@ def test_example(data_list: list) -> Trie:
     return trie
 
 
-Trie_usual_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
+Trie_usual_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеров"]])
 Trie_selflink_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
 Trie_vals22 = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
 Trie_vals222 = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
@@ -123,12 +125,12 @@ class Parser():
 		while pos<len(text):
 			name, step = hardcode_self_cards[valtype].search_prefix(text[pos::])
 			if pos+step >len(text):
-				return False
+				return False, text
 			if name != text[pos:pos+step]:
 				were_swaps = True
 			text = text.replace(text[pos:pos+step], name)
 			pos += len(name)
-		return were_swaps
+		return were_swaps, text
 
 	def forward_swaps(self, STOPCOUNT):
         # Работает со входной строкой
@@ -138,19 +140,23 @@ class Parser():
 
         # Типы значений = всё кроме ID-шников
 		val_types = [
-            'usual_vals',
-            'selflink_vals',
-            'templ_vals',
-            'selflink_templ_vals',
-            'id_vals',
-            'id_selflink_vals',
-            'id_templ_vals',
-            'id_selflink_templ_vals',
-        ]
+           'usual_vals']
+        # [
+        #     'usual_vals',
+        #     'selflink_vals',
+        #     'templ_vals',
+        #     'selflink_templ_vals',
+        #     'id_vals',
+        #     'id_selflink_vals',
+        #     'id_templ_vals',
+        #     'id_selflink_templ_vals',
+        # ]
 
 		for val_type in val_types:
 			i = 0
-			while i<STOPCOUNT and self.__replase_all_1_pass(self.inp_str, val_type):
+			were_changes = True
+			while i<STOPCOUNT and were_changes:
+				were_changes, self.inp_str = self.__replase_all_1_pass(self.inp_str, val_type)
 				i += 1
 
 		# self.inp_str = self.inp_str.replace(
