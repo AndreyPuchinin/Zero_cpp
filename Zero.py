@@ -41,6 +41,8 @@ class Zero:
         self.Logger_object.add_swap("some string instead of tuple")
 
         self.Logger_object.add_input_string(inp_str)
+
+        print("\nВходная строка:", inp_str, sep = '\n')
         Parser_object1 = Parser(self.Logger_object)
         print("Результат:", Parser_object1.forward_swaps(100000), sep = '\n')
 

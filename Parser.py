@@ -45,16 +45,19 @@ class Trie:
         поиск name=И [а] в абббб:
                         И, 1
         """
+        last_correct_name = prefix[0]
         node = self.root
         for i, char in enumerate(prefix):
             if char not in node.children:
                 if node.name == None:
-                    return prefix[0], 1
+                    return last_correct_name, len(last_correct_name)
                 return node.name, i  # имя и сколько символов нужно заменить на это имя
+            if node.name is not None:
+                last_correct_name = node.name
             node = node.children[char]
 
         if node.name == None:
-            return prefix[0], 1
+            return last_correct_name, len(last_correct_name)
         return node.name, i+1
     
     def _collect_all(self, node: TrieNode, current_key: str, results: list) -> None:
