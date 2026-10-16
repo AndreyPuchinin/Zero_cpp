@@ -46,18 +46,20 @@ class Trie:
                         И, 1
         """
         last_correct_name = prefix[0]
+        last_correct_step = 1
         node = self.root
         for i, char in enumerate(prefix):
             if char not in node.children:
                 if node.name == None:
-                    return last_correct_name, len(last_correct_name)
+                    return last_correct_name, last_correct_step
                 return node.name, i  # имя и сколько символов нужно заменить на это имя
             if node.name is not None:
                 last_correct_name = node.name
+                last_correct_step = i+1
             node = node.children[char]
 
         if node.name == None:
-            return last_correct_name, len(last_correct_name)
+            return last_correct_name, last_correct_step
         return node.name, i+1
     
     def _collect_all(self, node: TrieNode, current_key: str, results: list) -> None:
