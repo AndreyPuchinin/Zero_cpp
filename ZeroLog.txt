@@ -21,7 +21,11 @@ Input string:
 
 SWAPS:
 
-No swaps found.
+Swap #1:
+pos: 6, replaced: Рубли, replacing: Киндеров
+
+Swap #2:
+pos: 33, replaced: Деньги, replacing: Пиво
 
 ==================================================
 

@@ -79,24 +79,23 @@ def test_example(data_list: list) -> Trie:
 
 Trie_usual_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеров"]])
 Trie_selflink_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
-Trie_vals22 = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
-Trie_vals222 = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
-Trie_vals2222 = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
-Trie_vals22222 = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
-Trie_vals222222 = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
-Trie_vals2222222 = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
+Trie_templ_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
+Trie_selflink_templ_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
+Trie_id_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
+Trie_id_selflink_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
+Trie_id_templ_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
+Trie_id_selflink_templ_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
 result=[]
 Trie_usual_vals._collect_all(Trie_usual_vals.root,'',result)
-print("создали дерево", result)
 
 hardcode_self_cards={"usual_vals": Trie_usual_vals,
 		"selflink_vals": Trie_selflink_vals,
-		"templ_vals": Trie_vals22,
-		"selflink_templ_vals": Trie_vals222,
-		"id_vals": Trie_vals2222,
-		"id_selflink_vals": Trie_vals22222,
-		"id_templ_vals": Trie_vals222222,
-		"id_selflink_templ_vals": Trie_vals2222222}
+		"templ_vals": Trie_templ_vals,
+		"selflink_templ_vals": Trie_selflink_templ_vals,
+		"id_vals": Trie_id_vals,
+		"id_selflink_vals": Trie_id_selflink_vals,
+		"id_templ_vals": Trie_id_templ_vals,
+		"id_selflink_templ_vals": Trie_id_selflink_templ_vals}
 
 class Parser():
 	# на вход библиотека в следующем виде:
@@ -110,16 +109,11 @@ class Parser():
     #             }
     #         ],
     #         "selflink_vals": [],}]
-	
 	def __init__(self, _logger: Logger):
 		self.__logger = _logger
 		self.inp_str = self.__logger.inp_str
 		self.cards = self.__logger.cards
-
-		# print("получены карточки", self.__logger.cards)
-		# print("Введенная строка:")
-		# print(self.__logger.inp_str)
-
+		self.swaps = []
 	# def search_for_replace(valtype: str, string):
 	# 	for i in range(len(string)):
 			
@@ -132,8 +126,10 @@ class Parser():
 			if pos+step >len(text):
 				return False, text
 			if name != text[pos:pos+step]:
+				self.swaps += [{'position': pos, 'replaced': text[pos:pos+step], 'replacing': name}]
 				were_swaps = True
 			text = text.replace(text[pos:pos+step], name)
+			
 			pos += len(name)
 		return were_swaps, text
 
@@ -168,7 +164,8 @@ class Parser():
         #     self.cards[0]['usual_vals'][0]["val"],
         #     self.cards[0]['name'],
         # )
-		return self.inp_str
+
+		return {'final_str':self.inp_str, 'swaps': self.swaps}
 
 	def temple_swaps(self):
 		# Принимает входную строку

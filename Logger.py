@@ -83,20 +83,21 @@ class Logger:
         # добавляет входную строку в лог
         self.inp_str = inp_str
 
-    def add_swap(self, swap: list):
-        if not isinstance(swap, list):
+    def add_swap(self, swap: dict):
+        if not isinstance(swap, dict):
             self.notifications.add_error_with_stack_nodes(f"Incorrect type of swap:\n{swap}\nExpected list, got {type(swap)}")
             return
 
         # добавляет обмен в лог
-        self.swaps += swap
+        self.swaps += [swap]
 
     def get_log(self):
         # возвращает все ошибки, которые произошли при работе программы
+
         log = {
             "cards": self.cards,
             "input_string": self.inp_str,
-            "swaps": self.swaps,
+            "swaps": [f"pos: {swap['position']}, replaced: {swap['replaced']}, replacing: {swap['replacing']}" for swap in self.swaps],
             "notifications": self.notifications.get_all_notifications()
         }
         return log
