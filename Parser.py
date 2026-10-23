@@ -76,7 +76,7 @@ def test_example(data_list: list) -> Trie:
         trie.insert(key, value)
     return trie
 
-Trie_usual_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеров"]])
+Trie_usual_vals = test_example([["Деньги","Пиво"],["Пиво","Деньги"]]) #["Рубли","Киндеров"]])
 # Trie_selflink_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
 # Trie_templ_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
 # Trie_selflink_templ_vals = test_example([["Деньги","Пиво"],["Рубли","Киндеры"]])
@@ -156,7 +156,7 @@ class Parser():
 		for val_type in val_types:
 			i = 0
 			were_changes = True
-			while i<STOPCOUNT and were_changes:
+			while (STOPCOUNT>=0 and i<STOPCOUNT or STOPCOUNT<0) and were_changes:
 				were_changes, self.inp_str = self.__replase_all_1_pass(self.inp_str, val_type)
 				i += 1
 

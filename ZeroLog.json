@@ -19,8 +19,10 @@
     ],
     "input_string": "Лучше Рубли может быть только Деньги!",
     "swaps": [
-        "pos: 6, replaced: Рубли, replacing: Киндеров",
-        "pos: 33, replaced: Деньги, replacing: Пиво"
+        "pos: 30, replaced: Деньги, replacing: Пиво",
+        "pos: 30, replaced: Пиво, replacing: Деньги",
+        "pos: 30, replaced: Деньги, replacing: Пиво",
+        "pos: 30, replaced: Пиво, replacing: Деньги"
     ],
     "notifications": {
         "errors": [

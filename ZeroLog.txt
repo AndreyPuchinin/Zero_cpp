@@ -22,10 +22,16 @@ Input string:
 SWAPS:
 
 Swap #1:
-pos: 6, replaced: Рубли, replacing: Киндеров
+pos: 30, replaced: Деньги, replacing: Пиво
 
 Swap #2:
-pos: 33, replaced: Деньги, replacing: Пиво
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #3:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #4:
+pos: 30, replaced: Пиво, replacing: Деньги
 
 ==================================================
 
