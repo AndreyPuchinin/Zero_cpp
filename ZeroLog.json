@@ -20,8 +20,6 @@
     "input_string": "Лучше Рубли может быть только Деньги!",
     "swaps": [
         "pos: 30, replaced: Деньги, replacing: Пиво",
-        "pos: 30, replaced: Пиво, replacing: Деньги",
-        "pos: 30, replaced: Деньги, replacing: Пиво",
         "pos: 30, replaced: Пиво, replacing: Деньги"
     ],
     "notifications": {
@@ -32,7 +30,7 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 104,
+                        "Line": 111,
                         "Column": 0,
                         "Description": "Global level (module)",
                         "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
@@ -73,7 +71,7 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 104,
+                        "Line": 111,
                         "Column": 0,
                         "Description": "Global level (module)",
                         "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
@@ -114,7 +112,7 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 104,
+                        "Line": 111,
                         "Column": 0,
                         "Description": "Global level (module)",
                         "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
@@ -155,7 +153,7 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 104,
+                        "Line": 111,
                         "Column": 0,
                         "Description": "Global level (module)",
                         "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
@@ -198,7 +196,7 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 104,
+                        "Line": 111,
                         "Column": 0,
                         "Description": "Global level (module)",
                         "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"
@@ -241,7 +239,7 @@
                         "Levels_N": 4,
                         "Level": 1,
                         "Module": "main.py",
-                        "Line": 104,
+                        "Line": 111,
                         "Column": 0,
                         "Description": "Global level (module)",
                         "Code_line": "Zero_output = Zero_object.warp_drive(values, inp_str)"

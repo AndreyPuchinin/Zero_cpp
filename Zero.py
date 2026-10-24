@@ -44,8 +44,9 @@ class Zero:
 
         print("\nВходная строка:", inp_str, sep = '\n')
         Parser_object1 = Parser(self.Logger_object)
-        final_str = Parser_object1.forward_swaps(2)['final_str']
-        swaps = Parser_object1.forward_swaps(2)['swaps']
+        forward_swaps = Parser_object1.forward_swaps(3)
+        final_str = forward_swaps['final_str']
+        swaps = forward_swaps['swaps']
         for swap in swaps:
             self.Logger_object.add_swap(swap)
         print("Результат:", final_str, sep = '\n')

@@ -1,6 +1,6 @@
 """Модели данных, используемые приложением."""
 
 # Экспортируем модель карточки на уровне пакета Models.
-from .Card import Card
+from .CardModel import CardModel
 
-__all__ = ["Card"]
+__all__ = ["CardModel"]
