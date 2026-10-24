@@ -10,7 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from Card import Card
+from Models.system_behavior import create_card
 
 
 VALUE_FIELDS = (
@@ -91,7 +91,7 @@ def imitate(
     expected_card.update(dict(zip(VALUE_FIELDS, expected_values)))
 
     # Передаём сформированные данные в Card и сравниваем публичный результат.
-    actual_card = Card(name, *input_values).get_card()
+    actual_card = create_card(name, input_values).get_card()
     return expected_card == actual_card, expected_card, actual_card
 
 

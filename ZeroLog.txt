@@ -27,6 +27,9 @@ pos: 30, replaced: Деньги, replacing: Пиво
 Swap #2:
 pos: 30, replaced: Пиво, replacing: Деньги
 
+Swap #3:
+pos: 30, replaced: Деньги, replacing: Пиво
+
 ==================================================
 
 NOTIFICATIONS:

@@ -1,7 +1,7 @@
 import json
 from collections.abc import Callable
 from notification_classes import common_notification
-from Card import Card
+from Models.system_behavior import create_card
 
 class CardManager():
 	def __init__(self):
@@ -178,9 +178,11 @@ class CardManager():
 			id_selflink_templ_vals = self.temporary_values_validate(values) #self.values_validate(values)
 
 		# ...и передает их в объект карточки
-		Card_object = Card(name, validated_usual_vals, selflink_vals, templ_vals, \
+		Card_object = create_card(name, [
+			validated_usual_vals, selflink_vals, templ_vals, \
 			selflink_templ_vals, id_vals, id_selflink_vals, id_templ_vals, \
-			id_selflink_templ_vals)
+			id_selflink_templ_vals
+		])
 		
 		Card_notifications = Card_object.get_notifications()
 		self.notifications.add_notifications(Card_notifications)
