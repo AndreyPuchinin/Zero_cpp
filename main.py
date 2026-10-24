@@ -3,6 +3,11 @@ from email import errors
 from Zero import Zero
 import json
 
+# Точка входа верхнего слоя управления.
+# Входы: набор значений для обработки и исходная строка.
+# Результаты: вывод отчёта в консоль и файлы ZeroLog.json / ZeroLog.txt.
+
+# Блок 1. Параметры управления: набор значений, передаваемый механике.
 values = [
             {
                 "type": "usual",
@@ -99,14 +104,19 @@ values = [
             # True
         ]
 
+# Блок 2. Атомарная механика: передаём параметры в Zero и получаем
+# структурированный результат обработки вместе с уведомлениями.
 Zero_object = Zero()
 inp_str = "Лучше Рубли может быть только Деньги!"
 Zero_output = Zero_object.warp_drive(values, inp_str)
+
+# Блок 3. Подготовка данных отчёта: выделяем части результата механики.
 cards = Zero_output.get('cards')
 input_string = Zero_output.get('input_string')
 swaps = Zero_output.get('swaps')
 notifications = Zero_output.get('notifications')
 
+# Блок 4. Представление результата: собираем карточки для текстового лога.
 result_str = ""
 
 result_str += 'CARDS:\n\n'
@@ -127,6 +137,7 @@ for i, one_card in enumerate(cards):
 
 result_str += '='*50 + '\n'
 
+# Блок 5. Представление результата: добавляем исходную строку и свапы.
 result_str += f"\nInput string:\n\"{input_string}\"\n"
 
 result_str += '\n' + '='*50 + '\n'
@@ -142,6 +153,7 @@ result_str += '\n' + '='*50 + '\n'
 
 result_str += '\n' + 'NOTIFICATIONS:\n'
 
+# Блок 6. Представление уведомлений: выводим ошибки с уровнями контекста.
 result_str += '\n' + "Errors:\n"
 if isinstance(notifications, dict) and isinstance(notifications["errors"], list) \
     and notifications["errors"] == []:
@@ -170,6 +182,7 @@ else:
 
 result_str += '-'*50 + '\n'
 
+# Блок 7. Представление уведомлений: выводим предупреждения.
 result_str += f"\nWarning:\n"
 if isinstance(notifications, dict) and isinstance(notifications["warnings"], list) \
     and notifications["warnings"] == []:
@@ -198,6 +211,7 @@ else:
 
 result_str += '-'*50 + '\n'
 
+# Блок 8. Представление уведомлений: выводим информационные сообщения.
 result_str += f"\nMessage:\n"
 if isinstance(notifications, dict) and isinstance(notifications["messages"], list) \
     and notifications["messages"] == []:
@@ -226,6 +240,7 @@ else:
 
 result_str += '-'*50 + '\n'
 
+# Блок 9. Представление уведомлений: выводим примечания.
 result_str += f"\nNote:\n"
 if isinstance(notifications, dict) and isinstance(notifications["notes"], list) \
       and notifications["notes"] == []:
@@ -254,6 +269,7 @@ else:
 
 result_str += '='*50 + '\n'
 
+# Блок 10. Сохранение и подтверждение: записываем оба сформированных лога.
 with open("ZeroLog.json", "w", encoding="utf-8") as file:
     file.write(json.dumps(Zero_output, indent=4, ensure_ascii=False))
 
