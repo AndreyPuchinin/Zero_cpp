@@ -30,6 +30,87 @@ pos: 30, replaced: Пиво, replacing: Деньги
 Swap #3:
 pos: 30, replaced: Деньги, replacing: Пиво
 
+Swap #4:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #5:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #6:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #7:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #8:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #9:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #10:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #11:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #12:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #13:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #14:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #15:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #16:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #17:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #18:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #19:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #20:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #21:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #22:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #23:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #24:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #25:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #26:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #27:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #28:
+pos: 30, replaced: Пиво, replacing: Деньги
+
+Swap #29:
+pos: 30, replaced: Деньги, replacing: Пиво
+
+Swap #30:
+pos: 30, replaced: Пиво, replacing: Деньги
+
 ==================================================
 
 NOTIFICATIONS:
